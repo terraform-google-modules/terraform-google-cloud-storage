@@ -18,7 +18,60 @@ terraform {
   required_version = "~> 0.11.0"
 }
 
-resource "google_storage_bucket" "main" {
-  project = "${var.project_id}"
-  name    = "${var.bucket_name}"
+locals {
+  prefix = "${var.prefix == "" ? "" : "${var.prefix}-"}${lower(var.location)}"
+}
+
+resource "google_storage_bucket" "buckets" {
+  count         = "${length(var.names)}"
+  name          = "${var.prefix}-${lower(element(var.names, count.index))}"
+  project       = "${var.project_id}"
+  location      = "${var.location}"
+  storage_class = "${var.storage_class}"
+  labels        = "${var.labels}"
+
+  versioning {
+    enabled = "${
+      lookup(var.versioning, lower(element(var.names, count.index)), false)
+    }"
+  }
+}
+
+resource "google_storage_bucket_iam_binding" "admins" {
+  count  = "${var.set_admin_roles ? length(var.names) : 0}"
+  bucket = "${element(google_storage_bucket.buckets.*.name, count.index)}"
+  role   = "roles/storage.objectAdmin"
+
+  members = ["${compact(concat(
+    var.admins,
+    split(",",
+      lookup(var.bucket_admins, element(var.names, count.index), "")
+    )
+  ))}"]
+}
+
+resource "google_storage_bucket_iam_binding" "creators" {
+  count  = "${var.set_creator_roles ? length(var.names) : 0}"
+  bucket = "${element(google_storage_bucket.buckets.*.name, count.index)}"
+  role   = "roles/storage.objectCreator"
+
+  members = ["${compact(concat(
+    var.creators,
+    split(",",
+      lookup(var.bucket_creators, element(var.names, count.index), "")
+    )
+  ))}"]
+}
+
+resource "google_storage_bucket_iam_binding" "viewers" {
+  count  = "${var.set_viewer_roles ? length(var.names) : 0}"
+  bucket = "${element(google_storage_bucket.buckets.*.name, count.index)}"
+  role   = "roles/storage.objectViewer"
+
+  members = ["${compact(concat(
+    var.viewers,
+    split(",",
+      lookup(var.bucket_viewers, element(var.names, count.index), "")
+    )
+  ))}"]
 }

@@ -15,9 +15,81 @@
  */
 
 variable "project_id" {
-  description = "The project ID to deploy to"
+  description = "Bucket project id."
 }
 
-variable "bucket_name" {
-  description = "The name of the bucket to create"
+variable "prefix" {
+  description = "Prefix used to generate the bucket name."
+}
+
+variable "names" {
+  description = "Bucket name suffixes."
+  type        = "list"
+}
+
+variable "location" {
+  description = "Bucket location."
+  default     = "EU"
+}
+
+variable "storage_class" {
+  description = "Bucket storage class."
+  default     = "MULTI_REGIONAL"
+}
+
+variable "versioning" {
+  description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
+  default     = {}
+}
+
+variable "admins" {
+  description = "IAM-style members who will be granted roles/storage.objectAdmin on all buckets."
+  default     = []
+}
+
+variable "creators" {
+  description = "IAM-style members who will be granted roles/storage.objectCreators on all buckets."
+  default     = []
+}
+
+variable "viewers" {
+  description = "IAM-style members who will be granted roles/storage.objectViewer on all buckets."
+  default     = []
+}
+
+variable "bucket_admins" {
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins."
+  default     = {}
+}
+
+variable "bucket_creators" {
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators."
+  default     = {}
+}
+
+variable "bucket_viewers" {
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers."
+  default     = {}
+}
+
+variable "labels" {
+  description = "Labels to be attached to the buckets"
+  default     = {}
+}
+
+# we need flags to allow member lists to contain dynamic elements
+
+variable "set_admin_roles" {
+  description = "Grant roles/storage.objectAdmin role to admins and bucket_admins."
+  default     = false
+}
+
+variable "set_creator_roles" {
+  description = "Grant roles/storage.objectCreator role to creators and bucket_creators."
+  default     = false
+}
+
+variable "set_viewer_roles" {
+  description = "Grant roles/storage.objectViewer role to viewers and bucket_viewers."
+  default     = false
 }

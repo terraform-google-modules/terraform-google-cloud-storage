@@ -1,22 +1,31 @@
-# terraform-google-cloud-storage
+# Terraform Google Cloud Storage Module
 
-This module was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template/), which by default generates a module that simply creates a GCS bucket. As the module develops, this README should be updated.
+This module makes it easy to create one or more GCS buckets, and assign basic permissions on them to arbitrary users.
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
-- Create a GCS bucket with the provided name
+- One or more GCS buckets
+- Zero or more IAM bindings for those buckets
 
 ## Usage
 
 Basic usage of this module is as follows:
 
 ```hcl
-module "cloud_storage" {
+module "gcs_buckets" {
   source  = "terraform-google-modules/cloud-storage/google"
   version = "~> 0.1"
-
   project_id  = "<PROJECT ID>"
-  bucket_name = "gcs-test-bucket"
+  names = ["first", "second"]
+  prefix = "my-unique-prefix"
+  set_admin_roles = true
+  admins = ["group:foo-admins@example.com"]
+  versioning = {
+    first = true
+  }
+  bucket_admins = {
+    second = "user:spam@example.com,eggs@example.com"
+  }
 }
 ```
 
@@ -24,7 +33,35 @@ Functional examples are included in the
 [examples](./examples/) directory.
 
 [^]: (autogen_docs_start)
+## Inputs
 
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| names | Bucket name suffixes. | list | n/a | yes |
+| prefix | Prefix used to generate the bucket name. | string | n/a | yes |
+| project\_id | Bucket project id. | string | n/a | yes |
+| admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list | `<list>` | no |
+| bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins. | map | `<map>` | no |
+| bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators. | map | `<map>` | no |
+| bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers. | map | `<map>` | no |
+| creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list | `<list>` | no |
+| labels | Labels to be attached to the buckets | map | `<map>` | no |
+| location | Bucket location. | string | `"EU"` | no |
+| set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | string | `"false"` | no |
+| set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | string | `"false"` | no |
+| set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | string | `"false"` | no |
+| storage\_class | Bucket storage class. | string | `"MULTI_REGIONAL"` | no |
+| versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
+| viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list | `<list>` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| name | Bucket name of the first bucket (for single-use cases). |
+| names | Map of unprefixed names => bucket names. |
+| url | URL of the first bucket (for single-use cases). |
+| urls | Map of unprefixed names => bucket URLs. |
 [^]: (autogen_docs_end)
 
 ## Requirements
@@ -40,8 +77,7 @@ The following dependencies must be available:
 
 ### Service Account
 
-A service account with the following roles must be used to provision
-the resources of this module:
+User or service account credentials with the following roles must be used to provision the resources of this module:
 
 - Storage Admin: `roles/storage.admin`
 
