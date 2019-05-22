@@ -21,6 +21,7 @@ provider "google" {
 module "cloud_storage" {
   source = "../.."
 
-  project_id  = "${var.project_id}"
-  bucket_name = "${var.bucket_name}"
+  project_id = "${var.project_id}"
+  prefix     = "${var.prefix}"
+  names      = "${var.names}"
 }

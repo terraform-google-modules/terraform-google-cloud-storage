@@ -7,6 +7,6 @@ attributes:
   - name: project_id
     required: true
     type: string
-  - name: bucket_name
+  - name: names
     required: true
-    type: string
+    type: array

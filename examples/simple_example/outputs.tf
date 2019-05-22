@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-output "bucket_name" {
-  description = "The name of the bucket."
-  value       = "${module.cloud_storage.bucket_name}"
+output "names" {
+  description = "Names of the buckets created."
+  value       = "${values(module.cloud_storage.names)}"
 }

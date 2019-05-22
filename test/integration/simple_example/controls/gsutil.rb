@@ -18,6 +18,7 @@ control "gsutil" do
   describe command("gsutil ls -p #{attribute("project_id")}") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
-    its(:stdout) { should match "gs://#{attribute("bucket_name")}" }
+    its(:stdout) { should include "#{attribute("names")[0]}" }
+    its(:stdout) { should include "#{attribute("names")[1]}" }
   end
 end

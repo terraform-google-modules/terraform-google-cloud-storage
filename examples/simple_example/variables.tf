@@ -19,7 +19,12 @@ variable "project_id" {
   type        = "string"
 }
 
-variable "bucket_name" {
-  description = "The name of the bucket to create."
+variable "names" {
+  description = "Names of the buckets to create."
+  type        = "list"
+}
+
+variable "prefix" {
+  description = "Prefix used to generate bueckt names."
   type        = "string"
 }
