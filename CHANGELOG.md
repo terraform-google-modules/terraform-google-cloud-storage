@@ -9,7 +9,7 @@ and this project adheres to
 
 ## [Unreleased]
 
-## [0.1.0] - 20XX-YY-ZZ
+## [0.1.0] - 2019-05-22
 
 ### Added
 
