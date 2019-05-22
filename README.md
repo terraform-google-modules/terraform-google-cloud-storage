@@ -33,13 +33,11 @@ Functional examples are included in the
 [examples](./examples/) directory.
 
 [^]: (autogen_docs_start)
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| names | Bucket name suffixes. | list | n/a | yes |
-| prefix | Prefix used to generate the bucket name. | string | n/a | yes |
-| project\_id | Bucket project id. | string | n/a | yes |
 | admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list | `<list>` | no |
 | bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins. | map | `<map>` | no |
 | bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators. | map | `<map>` | no |
@@ -47,6 +45,9 @@ Functional examples are included in the
 | creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list | `<list>` | no |
 | labels | Labels to be attached to the buckets | map | `<map>` | no |
 | location | Bucket location. | string | `"EU"` | no |
+| names | Bucket name suffixes. | list | n/a | yes |
+| prefix | Prefix used to generate the bucket name. | string | n/a | yes |
+| project\_id | Bucket project id. | string | n/a | yes |
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | string | `"false"` | no |
 | set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | string | `"false"` | no |
 | set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | string | `"false"` | no |
@@ -62,6 +63,7 @@ Functional examples are included in the
 | names | Map of unprefixed names => bucket names. |
 | url | URL of the first bucket (for single-use cases). |
 | urls | Map of unprefixed names => bucket URLs. |
+
 [^]: (autogen_docs_end)
 
 ## Requirements

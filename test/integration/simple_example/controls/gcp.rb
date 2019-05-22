@@ -15,7 +15,10 @@
 control "gcp" do
   title "GCP Resources"
 
-  describe google_storage_bucket(name: attribute("bucket_name")) do
-    it { should exist }
+  attribute("names").each do |name|
+    describe google_storage_bucket(name: name) do
+      it { should exist }
+    end
   end
+
 end

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-output "bucket_name" {
-  description = "The name of the bucket."
-  value       = "${module.example.bucket_name}"
+output "names" {
+  description = "The names of the buckets."
+  value       = "${module.example.names}"
 }
 
 output "project_id" {
