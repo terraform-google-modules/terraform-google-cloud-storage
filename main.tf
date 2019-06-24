@@ -23,12 +23,13 @@ locals {
 }
 
 resource "google_storage_bucket" "buckets" {
-  count         = "${length(var.names)}"
-  name          = "${var.prefix}-${lower(element(var.names, count.index))}"
-  project       = "${var.project_id}"
-  location      = "${var.location}"
-  storage_class = "${var.storage_class}"
-  labels        = "${var.labels}"
+  count              = "${length(var.names)}"
+  name               = "${var.prefix}-${lower(element(var.names, count.index))}"
+  project            = "${var.project_id}"
+  bucket_policy_only = "${lookup(var.bucket_policy_only, lower(element(var.names, count.index)), true)}"
+  location           = "${var.location}"
+  storage_class      = "${var.storage_class}"
+  labels             = "${var.labels}"
 
   versioning {
     enabled = "${

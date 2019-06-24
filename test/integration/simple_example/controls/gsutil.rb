@@ -21,4 +21,16 @@ control "gsutil" do
     its(:stdout) { should include "#{attribute("names")[0]}" }
     its(:stdout) { should include "#{attribute("names")[1]}" }
   end
+
+  describe command("gsutil bucketpolicyonly get gs://#{attribute("names")[0]}") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should include "Enabled: True" }
+  end
+
+  describe command("gsutil bucketpolicyonly get gs://#{attribute("names")[1]}") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should include "Enabled: False" }
+  end
 end
