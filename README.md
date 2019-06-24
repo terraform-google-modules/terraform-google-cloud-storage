@@ -41,6 +41,7 @@ Functional examples are included in the
 | admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list | `<list>` | no |
 | bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins. | map | `<map>` | no |
 | bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators. | map | `<map>` | no |
+| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map | `<map>` | no |
 | bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers. | map | `<map>` | no |
 | creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list | `<list>` | no |
 | labels | Labels to be attached to the buckets | map | `<map>` | no |

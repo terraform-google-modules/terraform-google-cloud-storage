@@ -42,6 +42,11 @@ variable "versioning" {
   default     = {}
 }
 
+variable "bucket_policy_only" {
+  description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
+  default     = {}
+}
+
 variable "admins" {
   description = "IAM-style members who will be granted roles/storage.objectAdmin on all buckets."
   default     = []

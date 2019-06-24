@@ -28,3 +28,8 @@ variable "prefix" {
   description = "Prefix used to generate bueckt names."
   type        = "string"
 }
+
+variable "bucket_policy_only" {
+  description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
+  type        = "map"
+}

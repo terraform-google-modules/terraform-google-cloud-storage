@@ -29,4 +29,9 @@ module "example" {
   project_id = "${var.project_id}"
   prefix     = "${random_pet.main.id}"
   names      = ["one", "two"]
+
+  bucket_policy_only = {
+    "one" = true
+    "two" = false
+  }
 }
