@@ -93,7 +93,7 @@ docker_run:
 		-e PROJECT_ID \
 		-e SERVICE_ACCOUNT_JSON \
 		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v "$(CURDIR)":/cft/workdir \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
 		/bin/bash -c "source test/ci_integration.sh && setup_environment && exec /bin/bash"
 
@@ -103,7 +103,7 @@ docker_create:
 		-e PROJECT_ID \
 		-e SERVICE_ACCOUNT_JSON \
 		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v "$(CURDIR)":/cft/workdir \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
 		/bin/bash -c "source test/ci_integration.sh && setup_environment && kitchen create"
 
@@ -113,7 +113,7 @@ docker_converge:
 		-e PROJECT_ID \
 		-e SERVICE_ACCOUNT_JSON \
 		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v "$(CURDIR)":/cft/workdir \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
 		/bin/bash -c "source test/ci_integration.sh && setup_environment && kitchen converge"
 
@@ -123,7 +123,7 @@ docker_verify:
 		-e PROJECT_ID \
 		-e SERVICE_ACCOUNT_JSON \
 		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v "$(CURDIR)":/cft/workdir \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
 		/bin/bash -c "source test/ci_integration.sh && setup_environment && kitchen verify"
 
@@ -133,7 +133,7 @@ docker_destroy:
 		-e PROJECT_ID \
 		-e SERVICE_ACCOUNT_JSON \
 		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v "$(CURDIR)":/cft/workdir \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
 		/bin/bash -c "source test/ci_integration.sh && setup_environment && kitchen destroy"
 
@@ -143,6 +143,6 @@ test_integration_docker:
 		-e PROJECT_ID \
 		-e SERVICE_ACCOUNT_JSON \
 		-e GOOGLE_APPLICATION_CREDENTIALS=${CREDENTIALS_PATH} \
-		-v $(CURDIR):/cft/workdir \
+		-v "$(CURDIR)":/cft/workdir \
 		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
 		make test_integration
