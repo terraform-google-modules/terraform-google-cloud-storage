@@ -16,5 +16,6 @@
 
 output "names" {
   description = "Names of the buckets created."
-  value       = "${values(module.cloud_storage.names)}"
+  value       = values(module.cloud_storage.names)
 }
+
