@@ -16,20 +16,21 @@
 
 output "name" {
   description = "Bucket name of the first bucket (for single-use cases)."
-  value       = "${element(google_storage_bucket.buckets.*.name, 0)}"
+  value       = element(google_storage_bucket.buckets.*.name, 0)
 }
 
 output "url" {
   description = "URL of the first bucket (for single-use cases)."
-  value       = "${element(google_storage_bucket.buckets.*.url, 0)}"
+  value       = element(google_storage_bucket.buckets.*.url, 0)
 }
 
 output "names" {
   description = "Map of unprefixed names => bucket names."
-  value       = "${zipmap(var.names, google_storage_bucket.buckets.*.name)}"
+  value       = zipmap(var.names, google_storage_bucket.buckets.*.name)
 }
 
 output "urls" {
   description = "Map of unprefixed names => bucket URLs."
-  value       = "${zipmap(var.names, google_storage_bucket.buckets.*.url)}"
+  value       = zipmap(var.names, google_storage_bucket.buckets.*.url)
 }
+

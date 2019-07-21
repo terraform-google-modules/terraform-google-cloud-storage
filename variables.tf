@@ -24,7 +24,7 @@ variable "prefix" {
 
 variable "names" {
   description = "Bucket name suffixes."
-  type        = "list"
+  type        = list(string)
 }
 
 variable "location" {
@@ -98,3 +98,4 @@ variable "set_viewer_roles" {
   description = "Grant roles/storage.objectViewer role to viewers and bucket_viewers."
   default     = false
 }
+
