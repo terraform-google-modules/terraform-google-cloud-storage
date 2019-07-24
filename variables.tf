@@ -38,46 +38,55 @@ variable "storage_class" {
 }
 
 variable "versioning" {
+  type        = map(bool)
   description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
   default     = {}
 }
 
 variable "bucket_policy_only" {
+  type        = map(string)
   description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
   default     = {}
 }
 
 variable "admins" {
+  type        = list(string)
   description = "IAM-style members who will be granted roles/storage.objectAdmin on all buckets."
   default     = []
 }
 
 variable "creators" {
+  type        = list(string)
   description = "IAM-style members who will be granted roles/storage.objectCreators on all buckets."
   default     = []
 }
 
 variable "viewers" {
+  type        = list(string)
   description = "IAM-style members who will be granted roles/storage.objectViewer on all buckets."
   default     = []
 }
 
 variable "bucket_admins" {
+  type        = map(string)
   description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins."
   default     = {}
 }
 
 variable "bucket_creators" {
+  type        = map(string)
   description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators."
   default     = {}
 }
 
 variable "bucket_viewers" {
+  type        = map(string)
   description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers."
   default     = {}
 }
 
 variable "labels" {
+  type        = map(string)
   description = "Labels to be attached to the buckets"
   default     = {}
 }
@@ -85,16 +94,19 @@ variable "labels" {
 # we need flags to allow member lists to contain dynamic elements
 
 variable "set_admin_roles" {
+  type        = bool
   description = "Grant roles/storage.objectAdmin role to admins and bucket_admins."
   default     = false
 }
 
 variable "set_creator_roles" {
+  type        = bool
   description = "Grant roles/storage.objectCreator role to creators and bucket_creators."
   default     = false
 }
 
 variable "set_viewer_roles" {
+  type        = bool
   description = "Grant roles/storage.objectViewer role to viewers and bucket_viewers."
   default     = false
 }
