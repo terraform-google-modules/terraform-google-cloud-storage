@@ -15,12 +15,12 @@
  */
 
 locals {
-  prefix = "${var.prefix == "" ? "" : "${var.prefix}-"}${lower(var.location)}"
+  prefix = var.prefix == "" ? "" : "${var.prefix}-${lower(var.location)}-"
 }
 
 resource "google_storage_bucket" "buckets" {
   count   = length(var.names)
-  name    = "${var.prefix}-${lower(element(var.names, count.index))}"
+  name    = "${local.prefix}${lower(element(var.names, count.index))}"
   project = var.project_id
   bucket_policy_only = lookup(
     var.bucket_policy_only,
