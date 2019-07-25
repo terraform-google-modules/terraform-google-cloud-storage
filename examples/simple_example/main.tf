@@ -18,6 +18,10 @@ provider "google" {
   version = "~> 2.0"
 }
 
+terraform {
+  required_version = ">= 0.12"
+}
+
 module "cloud_storage" {
   source = "../.."
 

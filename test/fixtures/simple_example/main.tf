@@ -18,6 +18,10 @@ provider "random" {
   version = "~> 2.0"
 }
 
+terraform {
+  required_version = ">= 0.12"
+}
+
 resource "random_pet" "main" {
   length    = 1
   prefix    = "simple-example"
