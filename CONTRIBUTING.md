@@ -13,12 +13,12 @@ must be refreshed if the module interfaces are changed.
 
 The following dependencies must be installed on the development system:
 
-- []
+- [make]
 - [terraform-docs] v0.6.0
 
 ### Execution
 
-Run ` generate_docs` to generate new Inputs and Outputs tables.
+Run `make generate_docs` to generate new Inputs and Outputs tables.
 
 ## Integration Testing
 
@@ -40,7 +40,7 @@ The following dependencies must be installed on the development system:
 
 - [Docker Engine][docker-engine]
 - [Google Cloud SDK][google-cloud-sdk]
-- []
+- [make]
 
 ### Inputs
 
@@ -58,7 +58,7 @@ Download the key of a Service Account with the
 
 ### Interactive Execution
 
-1. Run ` docker_run` to start the testing Docker container in
+1. Run `make docker_run` to start the testing Docker container in
    interactive mode.
 
 1. Run `kitchen create <EXAMPLE_NAME>` to initialize the working
@@ -73,7 +73,7 @@ Download the key of a Service Account with the
 
 ### Noninteractive Execution
 
-Run ` test_integration_docker` to test all of the example modules
+Run `make test_integration_docker` to test all of the example modules
 noninteractively.
 
 ## Linting and Formatting
@@ -88,13 +88,13 @@ The following dependencies must be installed on the development system:
 - [flake8]
 - [gofmt]
 - [hadolint]
-- []
+- [make]
 - [shellcheck]
 - [Terraform][terraform] v0.11
 
 ### Execution
 
-Run ` check`.
+Run `make check`.
 
 [docker-engine]: https://www.docker.com/products/docker-engine
 [flake8]: http://flake8.pycqa.org/en/latest/
@@ -104,7 +104,7 @@ Run ` check`.
 [inspec]: https://inspec.io/
 [kitchen-terraform]: https://github.com/newcontext-oss/kitchen-terraform
 [kitchen]: https://kitchen.ci/
-[]: https://en.wikipedia.org/wiki/Make_(software)
+[make]: https://en.wikipedia.org/wiki/Make_(software)
 [shellcheck]: https://www.shellcheck.net/
 [terraform-docs]: https://github.com/segmentio/terraform-docs
 [terraform]: https://terraform.io/
