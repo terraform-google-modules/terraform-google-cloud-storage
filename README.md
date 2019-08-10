@@ -7,6 +7,12 @@ The resources/services/activations/deletions that this module will create/trigge
 - One or more GCS buckets
 - Zero or more IAM bindings for those buckets
 
+## Compatibility
+
+ This module is meant for use with Terraform 0.12. If you haven't [upgraded](https://www.terraform.io/upgrade-guides/0-12.html)
+  and need a Terraform 0.11.x-compatible version of this module, the last released version intended for
+  Terraform 0.11.x is [0.1.0](https://registry.terraform.io/modules/terraform-google-modules/cloud-storage/google/0.1.0).
+
 ## Usage
 
 Basic usage of this module is as follows:
@@ -44,9 +50,10 @@ Functional examples are included in the
 | bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map | `<map>` | no |
 | bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers. | map | `<map>` | no |
 | creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list | `<list>` | no |
+| force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
 | labels | Labels to be attached to the buckets | map | `<map>` | no |
 | location | Bucket location. | string | `"EU"` | no |
-| names | Bucket name suffixes. | list | n/a | yes |
+| names | Bucket name suffixes. | list(string) | n/a | yes |
 | prefix | Prefix used to generate the bucket name. | string | n/a | yes |
 | project\_id | Bucket project id. | string | n/a | yes |
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | string | `"false"` | no |
@@ -61,9 +68,9 @@ Functional examples are included in the
 | Name | Description |
 |------|-------------|
 | name | Bucket name of the first bucket (for single-use cases). |
-| names | Map of unprefixed names => bucket names. |
+| names | List of generated bucket names. |
 | url | URL of the first bucket (for single-use cases). |
-| urls | Map of unprefixed names => bucket URLs. |
+| urls | List of bucket URLs. |
 
 [^]: (autogen_docs_end)
 
@@ -107,3 +114,4 @@ information on contributing to this module.
 [project-factory-module]: https://registry.terraform.io/modules/terraform-google-modules/project-factory/google
 [terraform-provider-gcp]: https://www.terraform.io/docs/providers/google/index.html
 [terraform]: https://www.terraform.io/downloads.html
+
