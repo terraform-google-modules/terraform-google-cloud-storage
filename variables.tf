@@ -24,7 +24,7 @@ variable "prefix" {
 
 variable "names" {
   description = "Bucket name suffixes."
-  type        = "list"
+  type        = list(string)
 }
 
 variable "location" {
@@ -35,6 +35,11 @@ variable "location" {
 variable "storage_class" {
   description = "Bucket storage class."
   default     = "MULTI_REGIONAL"
+}
+
+variable "force_destroy" {
+  description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
+  default     = {}
 }
 
 variable "versioning" {
@@ -98,3 +103,4 @@ variable "set_viewer_roles" {
   description = "Grant roles/storage.objectViewer role to viewers and bucket_viewers."
   default     = false
 }
+

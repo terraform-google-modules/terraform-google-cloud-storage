@@ -14,10 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Please note that this file was generated from
-# [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template).
-# Please make sure to contribute relevant changes upstream!
-
 ''' A simple test for the verify_boilerplate python script.
 This will create a set of test files, both valid and invalid,
 and confirm that the has_valid_header call returns the correct
@@ -82,17 +78,15 @@ class AllTestCase(unittest.TestCase):
         if extension not in special_cases:
             # Invalid test cases for non-*file files (.tf|.py|.sh|.yaml|.xml..)
             invalid_header = []
-            for line in header_template:
-                if "2018" in line:
-                    invalid_header.append(line.replace('2018', 'YEAR'))
-                else:
-                    invalid_header.append(line)
             invalid_header.append(content)
             invalid_content = invalid_header
             invalid_filename = tmp_path + "invalid." + extension
             self.write_file(invalid_filename, invalid_content, False)
             valid_filename = tmp_path + "testfile." + extension
 
+        for i, line in enumerate(header_template):
+            if "YEAR" in line:
+                header_template[i] = line.replace('YEAR', '2018')
         valid_content = header_template
         self.write_file(valid_filename, valid_content, True)
 
