@@ -26,11 +26,11 @@ output "url" {
 
 output "names" {
   description = "List of generated bucket names."
-  value       = google_storage_bucket.buckets.*.name
+  value       = google_storage_bucket.buckets[*].name
 }
 
 output "urls" {
   description = "List of bucket URLs."
-  value       = google_storage_bucket.buckets.*.url
+  value       = google_storage_bucket.buckets[*].url
 }
 
