@@ -38,8 +38,7 @@ module "gcs_buckets" {
 Functional examples are included in the
 [examples](./examples/) directory.
 
-[^]: (autogen_docs_start)
-
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -67,12 +66,16 @@ Functional examples are included in the
 
 | Name | Description |
 |------|-------------|
-| name | Bucket name of the first bucket (for single-use cases). |
-| names | List of generated bucket names. |
-| url | URL of the first bucket (for single-use cases). |
-| urls | List of bucket URLs. |
+| bucket | Bucket resource (for single use). |
+| buckets | Bucket resources. |
+| name | Bucket name (for single use). |
+| names | Bucket names. |
+| names\_list | List of bucket names. |
+| url | Bucket URL (for single use). |
+| urls | Bucket URLs. |
+| urls\_list | List of bucket URLs. |
 
-[^]: (autogen_docs_end)
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 

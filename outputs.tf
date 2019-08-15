@@ -14,23 +14,42 @@
  * limitations under the License.
  */
 
+output "bucket" {
+  description = "Bucket resource (for single use)."
+  value       = google_storage_bucket.buckets[0]
+}
+
 output "name" {
-  description = "Bucket name of the first bucket (for single-use cases)."
+  description = "Bucket name (for single use)."
   value       = google_storage_bucket.buckets[0].name
 }
 
 output "url" {
-  description = "URL of the first bucket (for single-use cases)."
+  description = "Bucket URL (for single use)."
   value       = google_storage_bucket.buckets[0].url
 }
 
+output "buckets" {
+  description = "Bucket resources."
+  value       = google_storage_bucket.buckets
+}
+
 output "names" {
-  description = "List of generated bucket names."
-  value       = google_storage_bucket.buckets[*].name
+  description = "Bucket names."
+  value       = zipmap(var.names, google_storage_bucket.buckets[*].name)
 }
 
 output "urls" {
+  description = "Bucket URLs."
+  value       = zipmap(var.names, google_storage_bucket.buckets[*].url)
+}
+
+output "names_list" {
+  description = "List of bucket names."
+  value       = google_storage_bucket.buckets[*].name
+}
+
+output "urls_list" {
   description = "List of bucket URLs."
   value       = google_storage_bucket.buckets[*].url
 }
-

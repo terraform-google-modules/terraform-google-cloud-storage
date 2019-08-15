@@ -2,14 +2,13 @@
 
 This example illustrates how to use the `cloud-storage` module.
 
-[^]: (autogen_docs_start)
-
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map | n/a | yes |
-| names | Names of the buckets to create. | list | n/a | yes |
+| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map(string) | n/a | yes |
+| names | Names of the buckets to create. | list(string) | n/a | yes |
 | prefix | Prefix used to generate bueckt names. | string | n/a | yes |
 | project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
 
@@ -17,9 +16,10 @@ This example illustrates how to use the `cloud-storage` module.
 
 | Name | Description |
 |------|-------------|
-| names | Names of the buckets created. |
+| names | Bucket names. |
+| names\_list | List of bucket names. |
 
-[^]: (autogen_docs_end)
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 To provision this example, run the following from within this directory:
 - `terraform init` to get the plugins

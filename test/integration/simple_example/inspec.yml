@@ -5,4 +5,6 @@ attributes:
     type: string
   - name: names
     required: true
+    type: hash
+  - name: names_list
     type: array

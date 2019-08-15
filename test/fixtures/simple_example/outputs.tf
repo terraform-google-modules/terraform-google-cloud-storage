@@ -15,8 +15,13 @@
  */
 
 output "names" {
-  description = "The names of the buckets."
+  description = "Bucket names."
   value       = module.example.names
+}
+
+output "names_list" {
+  description = "List of bucket names."
+  value       = module.example.names_list
 }
 
 output "project_id" {
