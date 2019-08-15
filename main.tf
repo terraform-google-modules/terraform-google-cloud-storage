@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,65 +14,77 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = "~> 0.11.0"
-}
-
 locals {
-  prefix = "${var.prefix == "" ? "" : "${var.prefix}-"}${lower(var.location)}"
+  prefix = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
 }
 
 resource "google_storage_bucket" "buckets" {
-  count              = "${length(var.names)}"
-  name               = "${var.prefix}-${lower(element(var.names, count.index))}"
-  project            = "${var.project_id}"
-  bucket_policy_only = "${lookup(var.bucket_policy_only, lower(element(var.names, count.index)), true)}"
-  location           = "${var.location}"
-  storage_class      = "${var.storage_class}"
-  labels             = "${var.labels}"
-
+  count         = length(var.names)
+  name          = "${local.prefix}${lower(element(var.names, count.index))}"
+  project       = var.project_id
+  location      = var.location
+  storage_class = var.storage_class
+  labels        = var.labels
+  force_destroy = lookup(
+    var.force_destroy,
+    lower(element(var.names, count.index)),
+    false,
+  )
+  bucket_policy_only = lookup(
+    var.bucket_policy_only,
+    lower(element(var.names, count.index)),
+    true,
+  )
   versioning {
-    enabled = "${
-      lookup(var.versioning, lower(element(var.names, count.index)), false)
-    }"
+    enabled = lookup(
+      var.versioning,
+      lower(element(var.names, count.index)),
+      false,
+    )
   }
 }
 
 resource "google_storage_bucket_iam_binding" "admins" {
-  count  = "${var.set_admin_roles ? length(var.names) : 0}"
-  bucket = "${element(google_storage_bucket.buckets.*.name, count.index)}"
+  count  = var.set_admin_roles ? length(var.names) : 0
+  bucket = element(google_storage_bucket.buckets.*.name, count.index)
   role   = "roles/storage.objectAdmin"
-
-  members = ["${compact(concat(
-    var.admins,
-    split(",",
-      lookup(var.bucket_admins, element(var.names, count.index), "")
-    )
-  ))}"]
+  members = compact(
+    concat(
+      var.admins,
+      split(
+        ",",
+        lookup(var.bucket_admins, element(var.names, count.index), ""),
+      ),
+    ),
+  )
 }
 
 resource "google_storage_bucket_iam_binding" "creators" {
-  count  = "${var.set_creator_roles ? length(var.names) : 0}"
-  bucket = "${element(google_storage_bucket.buckets.*.name, count.index)}"
+  count  = var.set_creator_roles ? length(var.names) : 0
+  bucket = element(google_storage_bucket.buckets.*.name, count.index)
   role   = "roles/storage.objectCreator"
-
-  members = ["${compact(concat(
-    var.creators,
-    split(",",
-      lookup(var.bucket_creators, element(var.names, count.index), "")
-    )
-  ))}"]
+  members = compact(
+    concat(
+      var.creators,
+      split(
+        ",",
+        lookup(var.bucket_creators, element(var.names, count.index), ""),
+      ),
+    ),
+  )
 }
 
 resource "google_storage_bucket_iam_binding" "viewers" {
-  count  = "${var.set_viewer_roles ? length(var.names) : 0}"
-  bucket = "${element(google_storage_bucket.buckets.*.name, count.index)}"
+  count  = var.set_viewer_roles ? length(var.names) : 0
+  bucket = element(google_storage_bucket.buckets.*.name, count.index)
   role   = "roles/storage.objectViewer"
-
-  members = ["${compact(concat(
-    var.viewers,
-    split(",",
-      lookup(var.bucket_viewers, element(var.names, count.index), "")
-    )
-  ))}"]
+  members = compact(
+    concat(
+      var.viewers,
+      split(
+        ",",
+        lookup(var.bucket_viewers, element(var.names, count.index), ""),
+      ),
+    ),
+  )
 }

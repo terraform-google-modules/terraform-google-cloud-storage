@@ -15,11 +15,17 @@
  */
 
 output "names" {
-  description = "The names of the buckets."
-  value       = "${module.example.names}"
+  description = "Bucket names."
+  value       = module.example.names
+}
+
+output "names_list" {
+  description = "List of bucket names."
+  value       = module.example.names_list
 }
 
 output "project_id" {
   description = "The ID of the project in which resources are provisioned."
-  value       = "${var.project_id}"
+  value       = var.project_id
 }
+

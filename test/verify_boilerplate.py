@@ -19,15 +19,21 @@
 # https://github.com/kubernetes/test-infra/blob/master/hack
 # /verify_boilerplate.py
 
-# Please note that this file was generated from
-# [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template).
-# Please make sure to contribute relevant changes upstream!
 from __future__ import print_function
+
 import argparse
 import glob
 import os
 import re
 import sys
+import time
+
+
+# These directories will be omitted from header checks
+SKIPPED_DIRS = [
+    'Godeps', 'third_party', '_gopath', '_output',
+    '.git', 'vendor', '__init__.py', 'node_modules'
+]
 
 
 def get_args():
@@ -112,28 +118,36 @@ def has_valid_header(filename, refs, regexs):
         ref = refs[extension]
     else:
         ref = refs[basename]
+
     # remove build tags from the top of Go files
     if extension == "go":
-        con = regexs["go_build_constraints"]
-        (data, found) = con.subn("", data, 1)
+        data = regexs["go_build_constraints"].sub("", data)
     # remove shebang
     elif extension == "sh" or extension == "py":
-        she = regexs["shebang"]
-        (data, found) = she.subn("", data, 1)
+        data = regexs["shebang"].sub("", data)
+    # normalize cloud-init files
+    elif basename in ("cloud-init.yaml", "cloud-config.yaml"):
+        data = regexs["cloud-init"].sub("", data)
+
+    # look for 'YEAR' string, and fail if found
+    if regexs["year"].match(data):
+        return False
+
+    # replace actual year with 'YEAR' string
+    data = regexs["years"].sub("YEAR", data)
+
     data = data.splitlines()
     # if our test file is smaller than the reference it surely fails!
     if len(ref) > len(data):
         return False
+
     # trim our file to the same number of lines as the reference file
     data = data[:len(ref)]
-    year = regexs["year"]
-    for datum in data:
-        if year.search(datum):
-            return False
 
     # if we don't match the reference at this point, fail
     if ref != data:
         return False
+
     return True
 
 
@@ -149,13 +163,6 @@ def get_file_extension(filename):
         A string containing the extension in lowercase
     """
     return os.path.splitext(filename)[1].split(".")[-1].lower()
-
-
-# These directories will be omitted from header checks
-SKIPPED_DIRS = [
-    'Godeps', 'third_party', '_gopath', '_output',
-    '.git', 'vendor', '__init__.py', 'node_modules'
-]
 
 
 def normalize_files(files):
@@ -243,15 +250,18 @@ def get_regexs():
     regexs = {}
     # Search for "YEAR" which exists in the boilerplate, but shouldn't in the
     # real thing
-    regexs["year"] = re.compile('YEAR')
+    regexs["year"] = re.compile('^# Copyright YEAR')
     # dates can be 2014, 2015, 2016 or 2017, company holder names can be
     # anything
-    regexs["date"] = re.compile('(2014|2015|2016|2017|2018)')
+    regexs["years"] = re.compile(r"(%s)" % "|".join(
+        str(s) for s in range(2014, int(time.strftime("%Y")) + 1)))
     # strip // +build \n\n build constraints
     regexs["go_build_constraints"] = re.compile(r"^(// \+build.*\n)+\n",
                                                 re.MULTILINE)
     # strip #!.* from shell/python scripts
     regexs["shebang"] = re.compile(r"^(#!.*\n)\n*", re.MULTILINE)
+    # remove top-level cloud-config comment from cloud-init yaml files
+    regexs["cloud-init"] = re.compile(r"^#cloud-config\s*", re.DOTALL)
     return regexs
 
 

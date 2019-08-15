@@ -26,8 +26,8 @@ resource "random_pet" "main" {
 
 module "example" {
   source     = "../../../examples/simple_example"
-  project_id = "${var.project_id}"
-  prefix     = "${random_pet.main.id}"
+  project_id = var.project_id
+  prefix     = random_pet.main.id
   names      = ["one", "two"]
 
   bucket_policy_only = {
@@ -35,3 +35,4 @@ module "example" {
     "two" = false
   }
 }
+

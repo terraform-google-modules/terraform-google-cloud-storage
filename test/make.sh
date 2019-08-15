@@ -62,23 +62,12 @@ function basefiles() {
   done
 }
 
-# This function runs the hadolint linter on
-# every file named 'Dockerfile'
-function docker() {
-  echo "Running hadolint on Dockerfiles"
-  find_files . -name "Dockerfile" -print0 \
-    | compat_xargs -0 hadolint
-}
-
 # This function runs 'terraform validate' and 'terraform fmt'
 # against all directory paths which contain *.tf files.
 function check_terraform() {
   set -e
   echo "Running terraform validate"
-  find_files . -name "*.tf" -print0 \
-    | compat_xargs -0 -n1 dirname \
-    | sort -u \
-    | compat_xargs -t -n1 terraform validate --check-variables=false
+  find . -name "*.tf" -not -path "./test/fixtures/shared/*" -not -path "./test/fixtures/all_examples/*" -exec bash -c 'cd $(dirname "{}") && terraform init && terraform validate ' \;
   echo "Running terraform fmt"
   find_files . -name "*.tf" -print0 \
     | compat_xargs -0 -n1 dirname \
@@ -106,7 +95,7 @@ function check_python() {
 # file ending in '.sh'
 function check_shell() {
   echo "Running shellcheck"
-  find_files . -name "*.sh" -print0 | compat_xargs -0 shellcheck -x
+  find . -name "*.sh" -exec shellcheck -x {} \;
 }
 
 # This function makes sure that there is no trailing whitespace

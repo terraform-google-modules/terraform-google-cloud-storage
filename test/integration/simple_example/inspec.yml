@@ -1,12 +1,10 @@
 name: simple_example
-depends:
-  - name: inspec-gcp
-    git: https://github.com/inspec/inspec-gcp.git
-    tag: v0.10.0
 attributes:
   - name: project_id
     required: true
     type: string
   - name: names
     required: true
+    type: hash
+  - name: names_list
     type: array
