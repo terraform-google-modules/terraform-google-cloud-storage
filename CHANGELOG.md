@@ -14,6 +14,7 @@ and this project adheres to
 ### Changed
 
 - Upgraded for usage with terraform-0.12.x [#9]
+- Added support for `force_destroy` attribute [#9]
 
 ## [0.1.0] - 2019-05-22
 
