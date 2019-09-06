@@ -26,3 +26,5 @@ and this project adheres to
 
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/releases/tag/v1.0.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/releases/tag/v0.1.0
+
+[#9]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/pull/9
