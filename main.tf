@@ -20,7 +20,7 @@ locals {
 
 resource "google_storage_bucket" "buckets" {
   count         = length(var.names)
-  name          = "${var.prefix}${lower(element(var.names, count.index))}"
+  name          = "${var.prefix}-${lower(element(var.names, count.index))}"
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
