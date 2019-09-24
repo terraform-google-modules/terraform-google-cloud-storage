@@ -19,71 +19,71 @@ locals {
 }
 
 resource "google_storage_bucket" "buckets" {
-  count         = length(var.names)
-  name          = "${local.prefix}${lower(element(var.names, count.index))}"
+  for_each      = toset(var.names)
+  name          = "${local.prefix}${each.value}"
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
   labels        = var.labels
   force_destroy = lookup(
     var.force_destroy,
-    lower(element(var.names, count.index)),
+    lower(each.value),
     false,
   )
   bucket_policy_only = lookup(
     var.bucket_policy_only,
-    lower(element(var.names, count.index)),
+    lower(each.value),
     true,
   )
   versioning {
     enabled = lookup(
       var.versioning,
-      lower(element(var.names, count.index)),
+      lower(each.value),
       false,
     )
   }
 }
 
 resource "google_storage_bucket_iam_binding" "admins" {
-  count  = var.set_admin_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
+  for_each  = var.set_admin_roles ? var.bucket_admins : {}
+  bucket = google_storage_bucket.buckets[each.key].name
   role   = "roles/storage.objectAdmin"
   members = compact(
     concat(
       var.admins,
       split(
         ",",
-        lookup(var.bucket_admins, element(var.names, count.index), ""),
+        lookup(var.bucket_admins, each.key, ""),
       ),
     ),
   )
 }
 
 resource "google_storage_bucket_iam_binding" "creators" {
-  count  = var.set_creator_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
+  for_each  = var.set_creator_roles ? var.bucket_creators : {}
+  bucket = google_storage_bucket.buckets[each.key].name
   role   = "roles/storage.objectCreator"
   members = compact(
     concat(
       var.creators,
       split(
         ",",
-        lookup(var.bucket_creators, element(var.names, count.index), ""),
+        lookup(var.bucket_creators, each.key, ""),
       ),
     ),
   )
 }
 
 resource "google_storage_bucket_iam_binding" "viewers" {
-  count  = var.set_viewer_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
+  for_each  = var.set_viewer_roles ? var.bucket_viewers : {}
+  bucket = google_storage_bucket.buckets[each.key].name
   role   = "roles/storage.objectViewer"
   members = compact(
     concat(
       var.viewers,
       split(
         ",",
-        lookup(var.bucket_viewers, element(var.names, count.index), ""),
+        lookup(var.bucket_viewers, each.key, ""),
       ),
     ),
   )
