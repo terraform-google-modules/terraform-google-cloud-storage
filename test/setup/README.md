@@ -15,14 +15,14 @@ For example:
 terraform init
 terraform apply
 mkdir -p ~/.credentials
-terraform output sa_key | base64 --decode > ~/.credentials/network-sa.json
+terraform output sa_key | base64 --decode > ~/.credentials/cloud-storage-sa.json
 ```
 
 Then, configure the environment (suggest using direnv) like so:
 
 ```bash
-export SERVICE_ACCOUNT_JSON=$(cat ${HOME}/.credentials/network-sa.json)
-export PROJECT_ID="network-module"
+export SERVICE_ACCOUNT_JSON=$(cat ${HOME}/.credentials/cloud-storage-sa.json)
+export PROJECT_ID="cloud-storage-module"
 ```
 
 With these variables set, change to the root of the module and execute the

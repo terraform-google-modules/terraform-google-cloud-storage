@@ -16,16 +16,15 @@
 
 locals {
   int_required_roles = [
-    "roles/compute.networkAdmin",
-    "roles/compute.securityAdmin",
+    "roles/storage.admin",
     "roles/iam.serviceAccountUser",
   ]
 }
 
 resource "google_service_account" "int_test" {
   project      = module.project.project_id
-  account_id   = "ci-network"
-  display_name = "ci-network"
+  account_id   = "ci-cloud-storage"
+  display_name = "ci-cloud-storage"
 }
 
 resource "google_project_iam_member" "int_test" {
