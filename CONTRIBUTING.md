@@ -2,19 +2,20 @@
 
 This document provides guidelines for contributing to the module.
 
+## Dependencies
+
+The following dependencies must be installed on the development system:
+
+- [Docker Engine][docker-engine]
+- [Google Cloud SDK][google-cloud-sdk]
+- [make]
+
 ## Generating Documentation for Inputs and Outputs
 
 The Inputs and Outputs tables in the READMEs of the root module,
 submodules, and example modules are automatically generated based on
 the `variables` and `outputs` of the respective modules. These tables
 must be refreshed if the module interfaces are changed.
-
-### Dependencies
-
-The following dependencies must be installed on the development system:
-
-- [make]
-- [terraform-docs] v0.6.0
 
 ### Execution
 
@@ -31,70 +32,58 @@ The integration tests are run using [Kitchen][kitchen],
 tools are packaged within a Docker image for convenience.
 
 The general strategy for these tests is to verify the behaviour of the
-[example modules](./examples), thus ensuring that the root module,
+[example modules](./examples/), thus ensuring that the root module,
 submodules, and example modules are all functionally correct.
 
-### Dependencies
+### Test Environment
+The easiest way to test the module is in an isolated test project. The setup for such a project is defined in [test/setup](./test/setup/) directory.
 
-The following dependencies must be installed on the development system:
+To use this setup, you need a service account with Project Creator access on a folder. Export the Service Account credentials to your environment like so:
 
-- [Docker Engine][docker-engine]
-- [Google Cloud SDK][google-cloud-sdk]
-- [make]
+```
+export SERVICE_ACCOUNT_JSON=$(< credentials.json)
+```
 
-### Inputs
+You will also need to set a few environment variables:
+```
+export TF_VAR_org_id="your_org_id"
+export TF_VAR_folder_id="your_folder_id"
+export TF_VAR_billing_account="your_billing_account_id"
+```
 
-Test instances are defined in the
-[Kitchen configuration file](./kitchen.yml). The inputs of each Kitchen
-instance may be configured with the `driver.variables` key in a
-local Kitchen configuration file located at `./kitchen.local.yml` or in
-a Terraform variables file located at
-`./test/fixtures/<instance>/variables.tfvars`.
+With these settings in place, you can prepare a test project using Docker:
+```
+make docker_test_prepare
+```
 
-### Credentials
+### Noninteractive Execution
 
-Download the key of a Service Account with the
-[required roles][required-roles] to `./credentials.json`.
+Run `make docker_test_integration` to test all of the example modules
+noninteractively, using the prepared test project.
 
 ### Interactive Execution
 
 1. Run `make docker_run` to start the testing Docker container in
    interactive mode.
 
-1. Run `kitchen create <EXAMPLE_NAME>` to initialize the working
+1. Run `kitchen_do create <EXAMPLE_NAME>` to initialize the working
    directory for an example module.
 
-1. Run `kitchen converge <EXAMPLE_NAME>` to apply the example module.
+1. Run `kitchen_do converge <EXAMPLE_NAME>` to apply the example module.
 
-1. Run `kitchen verify <EXAMPLE_NAME>` to test the example module.
+1. Run `kitchen_do verify <EXAMPLE_NAME>` to test the example module.
 
-1. Run `kitchen destroy <EXAMPLE_NAME>` to destroy the example module
+1. Run `kitchen_do destroy <EXAMPLE_NAME>` to destroy the example module
    state.
-
-### Noninteractive Execution
-
-Run `make test_integration_docker` to test all of the example modules
-noninteractively.
 
 ## Linting and Formatting
 
 Many of the files in the repository can be linted or formatted to
 maintain a standard of quality.
 
-### Dependencies
-
-The following dependencies must be installed on the development system:
-
-- [flake8]
-- [gofmt]
-- [hadolint]
-- [make]
-- [shellcheck]
-- [Terraform][terraform] v0.11
-
 ### Execution
 
-Run `make check`.
+Run `make docker_test_lint`.
 
 [docker-engine]: https://www.docker.com/products/docker-engine
 [flake8]: http://flake8.pycqa.org/en/latest/
