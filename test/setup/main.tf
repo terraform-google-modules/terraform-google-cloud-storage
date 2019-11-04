@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+provider "google" {
+  version = "~> 2.18.0"
+}
+
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 3.0"
