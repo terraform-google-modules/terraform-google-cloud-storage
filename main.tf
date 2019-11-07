@@ -24,7 +24,7 @@ resource "google_storage_bucket" "buckets" {
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
-  labels        = var.labels
+  labels        = merge(var.labels, { name = "${local.prefix}${lower(element(var.names, count.index))}" })
   force_destroy = lookup(
     var.force_destroy,
     lower(element(var.names, count.index)),
