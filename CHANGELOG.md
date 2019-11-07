@@ -9,6 +9,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Include name of bucket as label for cost analysis [#20]
+
 ## [1.0.0] - 2019-08-14
 
 ### Changed
@@ -27,4 +31,5 @@ and this project adheres to
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/releases/tag/v0.1.0
 
+[#20]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/pull/20
 [#9]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/pull/9
