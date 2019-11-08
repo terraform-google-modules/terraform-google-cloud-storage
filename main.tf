@@ -50,7 +50,7 @@ resource "google_storage_bucket_iam_binding" "creators" {
   role     = "roles/storage.objectCreator"
   members = compact(concat(
     var.creators,
-    split(",", lookup(var.bucket_creators, local.buckets[each.name]))
+    split(",", lookup(var.bucket_creators, local.buckets[each.name], ""))
   ))
 }
 
@@ -60,7 +60,7 @@ resource "google_storage_bucket_iam_binding" "viewers" {
   role     = "roles/storage.objectViewer"
   members = compact(concat(
     var.viewers,
-    split(",", lookup(var.bucket_viewers, local.buckets[each.name]))
+    split(",", lookup(var.bucket_viewers, local.buckets[each.name], ""))
   ))
 }
 
@@ -70,7 +70,7 @@ resource "google_storage_bucket_iam_binding" "hmackey_admins" {
   role     = "roles/storage.hmacKeyAdmin"
   members = compact(concat(
     var.hmackey_admins,
-    split(",", lookup(var.bucket_hmackey_admins, local.buckets[each.name]))
+    split(",", lookup(var.bucket_hmackey_admins, local.buckets[each.name], ""))
   ))
 }
 
