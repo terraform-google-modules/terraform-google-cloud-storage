@@ -15,76 +15,76 @@
  */
 
 locals {
-  prefix = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  prefix            = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  names             = toset(var.names)
+  bucket_names_list = [for b in google_storage_bucket.buckets : b.name]
+  bucket_urls_list  = [for b in google_storage_bucket.buckets : b.url]
+  bucket_names      = zipmap(var.names, local.bucket_names_list)
+  bucket_urls       = zipmap(var.names, local.bucket_urls_list)
 }
 
 resource "google_storage_bucket" "buckets" {
-  count         = length(var.names)
-  name          = "${local.prefix}${lower(element(var.names, count.index))}"
-  project       = var.project_id
-  location      = var.location
-  storage_class = var.storage_class
-  labels        = merge(var.labels, { name = "${local.prefix}${lower(element(var.names, count.index))}" })
-  force_destroy = lookup(
-    var.force_destroy,
-    lower(element(var.names, count.index)),
-    false,
-  )
-  bucket_policy_only = lookup(
-    var.bucket_policy_only,
-    lower(element(var.names, count.index)),
-    true,
-  )
+  for_each           = local.names
+  name               = "${local.prefix}${lower(each.key)}"
+  project            = var.project_id
+  location           = var.location
+  storage_class      = var.storage_class
+  force_destroy      = lookup(var.force_destroy, each.key, false)
+  bucket_policy_only = lookup(var.bucket_policy_only, each.key, true)
   versioning {
-    enabled = lookup(
-      var.versioning,
-      lower(element(var.names, count.index)),
-      false,
-    )
+    enabled = lookup(var.versioning, each.key, false)
   }
+  labels = merge(var.labels, {
+    name = "${local.prefix}${lower(each.key)}"
+  })
 }
 
 resource "google_storage_bucket_iam_binding" "admins" {
-  count  = var.set_admin_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectAdmin"
-  members = compact(
-    concat(
-      var.admins,
-      split(
-        ",",
-        lookup(var.bucket_admins, element(var.names, count.index), ""),
-      ),
-    ),
-  )
+  for_each = var.set_admin_roles ? local.names : toset([])
+  bucket   = local.bucket_names[each.key]
+  role     = "roles/storage.objectAdmin"
+  members = compact(concat(
+    var.admins,
+    split(",", lookup(var.bucket_admins, each.key, ""))
+  ))
 }
 
 resource "google_storage_bucket_iam_binding" "creators" {
-  count  = var.set_creator_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectCreator"
-  members = compact(
-    concat(
-      var.creators,
-      split(
-        ",",
-        lookup(var.bucket_creators, element(var.names, count.index), ""),
-      ),
-    ),
-  )
+  for_each = var.set_creator_roles ? local.names : toset([])
+  bucket   = local.bucket_names[each.key]
+  role     = "roles/storage.objectCreator"
+  members = compact(concat(
+    var.creators,
+    split(",", lookup(var.bucket_creators, each.key, ""))
+  ))
 }
 
 resource "google_storage_bucket_iam_binding" "viewers" {
-  count  = var.set_viewer_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectViewer"
-  members = compact(
-    concat(
-      var.viewers,
-      split(
-        ",",
-        lookup(var.bucket_viewers, element(var.names, count.index), ""),
-      ),
-    ),
-  )
+  for_each = var.set_viewer_roles ? local.names : toset([])
+  bucket   = local.bucket_names[each.key]
+  role     = "roles/storage.objectViewer"
+  members = compact(concat(
+    var.viewers,
+    split(",", lookup(var.bucket_viewers, each.key, ""))
+  ))
+}
+
+resource "google_storage_bucket_iam_binding" "hmackey_admins" {
+  for_each = var.set_hmackey_admin_roles ? local.names : toset([])
+  bucket   = local.bucket_names[each.key]
+  role     = "roles/storage.hmacKeyAdmin"
+  members = compact(concat(
+    var.hmackey_admins,
+    split(",", lookup(var.bucket_hmackey_admins, each.key, ""))
+  ))
+}
+
+resource "google_storage_bucket_iam_binding" "storage_admins" {
+  for_each = var.set_storage_admin_roles ? local.names : toset([])
+  bucket   = local.bucket_names[each.key]
+  role     = "roles/storage.admin"
+  members = compact(concat(
+    var.storage_admins,
+    split(",", lookup(var.bucket_storage_admins, each.key, ""))
+  ))
 }
