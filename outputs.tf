@@ -36,7 +36,7 @@ output "buckets" {
 
 output "names" {
   description = "Bucket names."
-  value       = zipmap(var.names, google_storage_bucket.buckets[*].name)
+  value       = local.bucket_names
 }
 
 output "urls" {
