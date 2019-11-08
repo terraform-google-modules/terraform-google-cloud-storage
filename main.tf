@@ -26,12 +26,14 @@ resource "google_storage_bucket" "buckets" {
   project            = var.project_id
   location           = var.location
   storage_class      = var.storage_class
-  labels             = merge(var.labels, { name = "${local.prefix}${lower(each.key)}" })
   force_destroy      = lookup(var.force_destroy, each.key, false)
   bucket_policy_only = lookup(var.bucket_policy_only, each.key, true)
   versioning {
     enabled = lookup(var.versioning, each.key, false)
   }
+  labels = merge(var.labels, {
+    name = "${local.prefix}${lower(each.key)}"
+  })
 }
 
 resource "google_storage_bucket_iam_binding" "admins" {
@@ -56,7 +58,7 @@ resource "google_storage_bucket_iam_binding" "creators" {
 
 resource "google_storage_bucket_iam_binding" "viewers" {
   for_each = var.set_viewer_roles ? local.names : {}
-  bucket   = local.buckets[each.key]
+  bucket   = local.bucket_names[each.key]
   role     = "roles/storage.objectViewer"
   members = compact(concat(
     var.viewers,
@@ -66,7 +68,7 @@ resource "google_storage_bucket_iam_binding" "viewers" {
 
 resource "google_storage_bucket_iam_binding" "hmackey_admins" {
   for_each = var.set_hmackey_admin_roles ? local.names : {}
-  bucket   = local.buckets[each.key]
+  bucket   = local.bucket_names[each.key]
   role     = "roles/storage.hmacKeyAdmin"
   members = compact(concat(
     var.hmackey_admins,
@@ -76,7 +78,7 @@ resource "google_storage_bucket_iam_binding" "hmackey_admins" {
 
 resource "google_storage_bucket_iam_binding" "storage_admins" {
   for_each = var.set_storage_admin_roles ? local.names : {}
-  bucket   = local.buckets[each.key]
+  bucket   = local.bucket_names[each.key]
   role     = "roles/storage.admin"
   members = compact(concat(
     var.storage_admins,
