@@ -16,17 +16,17 @@
 
 output "bucket" {
   description = "Bucket resource (for single use)."
-  value       = google_storage_bucket.buckets[0]
+  value       = length(local.bucket_names_list) > 0 ? google_storage_bucket.buckets[var.names[0]] : null
 }
 
 output "name" {
   description = "Bucket name (for single use)."
-  value       = google_storage_bucket.buckets[0].name
+  value       = lookup(local.bucket_names, var.names[0], null)
 }
 
 output "url" {
   description = "Bucket URL (for single use)."
-  value       = google_storage_bucket.buckets[0].url
+  value       = lookup(local.bucket_urls, var.names[0], null)
 }
 
 output "buckets" {
@@ -36,20 +36,20 @@ output "buckets" {
 
 output "names" {
   description = "Bucket names."
-  value       = zipmap(var.names, google_storage_bucket.buckets[*].name)
+  value       = local.bucket_names
 }
 
 output "urls" {
   description = "Bucket URLs."
-  value       = zipmap(var.names, google_storage_bucket.buckets[*].url)
+  value       = local.bucket_urls
 }
 
 output "names_list" {
   description = "List of bucket names."
-  value       = google_storage_bucket.buckets[*].name
+  value       = local.bucket_names_list
 }
 
 output "urls_list" {
   description = "List of bucket URLs."
-  value       = google_storage_bucket.buckets[*].url
+  value       = local.bucket_urls_list
 }
