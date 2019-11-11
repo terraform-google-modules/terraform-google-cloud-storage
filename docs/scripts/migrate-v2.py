@@ -5,28 +5,34 @@ import json
 import sys
 
 
-parser = argparse.ArgumentParser(description='Migrate cloud storage module.')
+parser = argparse.ArgumentParser(
+    description='Modify module resources in Terraform state to use for_each.')
 parser.add_argument('-m', '--module', required=True, help='module name')
 parser.add_argument('-n', '--names', required=True, action='append',
                     help='name in module names variable')
+parser.add_argument('-x', '--exclude', action='append', default=[],
+                    help='exclude resources with exact name matching')
 parser.add_argument('--apply-changes', action='store_true',
                     help='apply changes')
 
 
 def dump_state(state, changes):
   "Applies changes and dumps modified state to stdout."
-  for resource, indexes, keys in changes:
+  for resource, _, keys in changes:
     resource['each'] = 'map'
     for i, instance in enumerate(resource['instances']):
       instance['index_key'] = keys[i]
   json.dump(state, sys.stdout, indent=2)
 
 
-def _find_module_resources(state, mod_name):
+def _find_module_resources(state, mod_name, exclusions):
   "Find and return resources in specified module with 'each': 'list'."
   for resource in state['resources']:
-    if resource['module'] == mod_name and resource.get('each') == 'list':
-      yield resource
+    if resource['module'] != mod_name or resource.get('each') != 'list':
+      continue
+    if resource['name'] in exclusions:
+      continue
+    yield resource
 
 
 def get_args():
@@ -90,7 +96,8 @@ def show_output(changes, apply_changes=False):
 def main():
   args = get_args()
   state = load_state()
-  resources = [r for r in _find_module_resources(state, args.module)]
+  resources = [r for r in _find_module_resources(
+      state, args.module, args.exclude)]
   changes = [c for c in get_changes(args.names, resources)]
   show_output(changes, args.apply_changes)
   if not args.apply_changes:
