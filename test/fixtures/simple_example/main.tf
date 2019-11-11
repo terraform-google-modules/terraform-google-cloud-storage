@@ -18,21 +18,16 @@ provider "random" {
   version = "~> 2.0"
 }
 
-resource "random_pet" "main" {
-  length    = 1
-  prefix    = "simple-example"
-  separator = "-"
+resource "random_string" "prefix" {
+  length  = 12
+  upper   = false
+  number  = false
+  special = false
 }
 
 module "example" {
   source     = "../../../examples/simple_example"
   project_id = var.project_id
-  prefix     = random_pet.main.id
-  names      = ["one", "two"]
-
-  bucket_policy_only = {
-    "one" = true
-    "two" = false
-  }
+  prefix     = join("-", ["cft-test", random_string.prefix.result])
 }
 
