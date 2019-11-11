@@ -22,6 +22,7 @@ def dump_state(state, changes):
     resource['each'] = 'map'
     for i, instance in enumerate(resource['instances']):
       instance['index_key'] = keys[i]
+  state['serial'] += 1
   json.dump(state, sys.stdout, indent=2)
 
 
