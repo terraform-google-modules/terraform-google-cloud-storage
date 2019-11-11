@@ -19,8 +19,8 @@ locals {
   names             = toset(var.names)
   bucket_names_list = [for b in google_storage_bucket.buckets : b.name]
   bucket_urls_list  = [for b in google_storage_bucket.buckets : b.url]
-  bucket_names      = zipmap(var.names, local.bucket_names_list)
-  bucket_urls       = zipmap(var.names, local.bucket_urls_list)
+  bucket_names      = zipmap(local.names, local.bucket_names_list)
+  bucket_urls       = zipmap(local.names, local.bucket_urls_list)
 }
 
 resource "google_storage_bucket" "buckets" {
