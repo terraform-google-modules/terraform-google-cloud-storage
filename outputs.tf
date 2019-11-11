@@ -16,17 +16,17 @@
 
 output "bucket" {
   description = "Bucket resource (for single use)."
-  value       = length(local.bucket_names_list) > 0 ? google_storage_bucket.buckets[var.names[0]] : null
+  value       = length(var.names) > 0 ? google_storage_bucket.buckets[var.names[0]] : null
 }
 
 output "name" {
   description = "Bucket name (for single use)."
-  value       = lookup(local.bucket_names, var.names[0], null)
+  value       = length(var.names) > 0 ? google_storage_bucket.buckets[var.names[0]].name : null
 }
 
 output "url" {
   description = "Bucket URL (for single use)."
-  value       = lookup(local.bucket_urls, var.names[0], null)
+  value       = length(var.names) > 0 ? google_storage_bucket.buckets[var.names[0]].url : null
 }
 
 output "buckets" {
@@ -36,20 +36,20 @@ output "buckets" {
 
 output "names" {
   description = "Bucket names."
-  value       = local.bucket_names
+  value       = { for name in var.names : name => google_storage_bucket.buckets[name].name }
 }
 
 output "urls" {
   description = "Bucket URLs."
-  value       = local.bucket_urls
+  value       = { for name in var.names : name => google_storage_bucket.buckets[name].url }
 }
 
 output "names_list" {
   description = "List of bucket names."
-  value       = local.bucket_names_list
+  value       = [for bucket in local.buckets_list : bucket.name]
 }
 
 output "urls_list" {
   description = "List of bucket URLs."
-  value       = local.bucket_urls_list
+  value       = [for bucket in local.buckets_list : bucket.url]
 }

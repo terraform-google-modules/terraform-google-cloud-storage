@@ -15,12 +15,9 @@
  */
 
 locals {
-  prefix            = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
-  names             = toset(var.names)
-  bucket_names_list = [for b in google_storage_bucket.buckets : b.name]
-  bucket_urls_list  = [for b in google_storage_bucket.buckets : b.url]
-  bucket_names      = zipmap(local.names, local.bucket_names_list)
-  bucket_urls       = zipmap(local.names, local.bucket_urls_list)
+  prefix       = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  names        = toset(var.names)
+  buckets_list = [for name in var.names : google_storage_bucket.buckets[name]]
 }
 
 resource "google_storage_bucket" "buckets" {
@@ -41,7 +38,7 @@ resource "google_storage_bucket" "buckets" {
 
 resource "google_storage_bucket_iam_binding" "admins" {
   for_each = var.set_admin_roles ? local.names : toset([])
-  bucket   = local.bucket_names[each.key]
+  bucket   = google_storage_bucket.buckets[each.key].name
   role     = "roles/storage.objectAdmin"
   members = compact(concat(
     var.admins,
@@ -51,7 +48,7 @@ resource "google_storage_bucket_iam_binding" "admins" {
 
 resource "google_storage_bucket_iam_binding" "creators" {
   for_each = var.set_creator_roles ? local.names : toset([])
-  bucket   = local.bucket_names[each.key]
+  bucket   = google_storage_bucket.buckets[each.key].name
   role     = "roles/storage.objectCreator"
   members = compact(concat(
     var.creators,
@@ -61,7 +58,7 @@ resource "google_storage_bucket_iam_binding" "creators" {
 
 resource "google_storage_bucket_iam_binding" "viewers" {
   for_each = var.set_viewer_roles ? local.names : toset([])
-  bucket   = local.bucket_names[each.key]
+  bucket   = google_storage_bucket.buckets[each.key].name
   role     = "roles/storage.objectViewer"
   members = compact(concat(
     var.viewers,
@@ -71,7 +68,7 @@ resource "google_storage_bucket_iam_binding" "viewers" {
 
 resource "google_storage_bucket_iam_binding" "hmackey_admins" {
   for_each = var.set_hmackey_admin_roles ? local.names : toset([])
-  bucket   = local.bucket_names[each.key]
+  bucket   = google_storage_bucket.buckets[each.key].name
   role     = "roles/storage.hmacKeyAdmin"
   members = compact(concat(
     var.hmackey_admins,
@@ -81,7 +78,7 @@ resource "google_storage_bucket_iam_binding" "hmackey_admins" {
 
 resource "google_storage_bucket_iam_binding" "storage_admins" {
   for_each = var.set_storage_admin_roles ? local.names : toset([])
-  bucket   = local.bucket_names[each.key]
+  bucket   = google_storage_bucket.buckets[each.key].name
   role     = "roles/storage.admin"
   members = compact(concat(
     var.storage_admins,
