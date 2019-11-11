@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 
 import argparse
-import collections
 import json
 import sys
 
-
-Resource = collections.namedtuple('Resource', 'module type name each items')
 
 parser = argparse.ArgumentParser(description='Migrate cloud storage module.')
 parser.add_argument('-m', '--module', required=True, help='module name')
