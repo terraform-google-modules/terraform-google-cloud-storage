@@ -126,5 +126,3 @@ Then review current state by running a plan. If you run into issues, you can rev
 ```shell
 terraform state pull |grep '"serial": '
 ```
-
-`

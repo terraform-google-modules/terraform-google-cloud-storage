@@ -43,24 +43,30 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list | `<list>` | no |
-| bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins. | map | `<map>` | no |
-| bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators. | map | `<map>` | no |
-| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map | `<map>` | no |
-| bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers. | map | `<map>` | no |
-| creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list | `<list>` | no |
-| force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
-| labels | Labels to be attached to the buckets | map | `<map>` | no |
+| admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list(string) | `<list>` | no |
+| bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket object admins. | map(string) | `<map>` | no |
+| bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket object creators. | map(string) | `<map>` | no |
+| bucket\_hmackey\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket hmacKey admins. | map(string) | `<map>` | no |
+| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map(bool) | `<map>` | no |
+| bucket\_storage\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style bucket storage admins. | map(string) | `<map>` | no |
+| bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket object viewers. | map(string) | `<map>` | no |
+| creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list(string) | `<list>` | no |
+| force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map(bool) | `<map>` | no |
+| hmackey\_admins | IAM-style members who will be granted roles/storage.hmacKeyAdmin on all buckets. | list(string) | `<list>` | no |
+| labels | Labels to be attached to the buckets | map(string) | `<map>` | no |
 | location | Bucket location. | string | `"EU"` | no |
 | names | Bucket name suffixes. | list(string) | n/a | yes |
 | prefix | Prefix used to generate the bucket name. | string | n/a | yes |
 | project\_id | Bucket project id. | string | n/a | yes |
-| set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | string | `"false"` | no |
-| set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | string | `"false"` | no |
-| set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | string | `"false"` | no |
+| set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | bool | `"false"` | no |
+| set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | bool | `"false"` | no |
+| set\_hmackey\_admin\_roles | Grant roles/storage.hmacKeyAdmin role to storage_admins and bucket_storage_admins. | bool | `"false"` | no |
+| set\_storage\_admin\_roles | Grant roles/storage.admin role to storage_admins and bucket_storage_admins. | bool | `"false"` | no |
+| set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | bool | `"false"` | no |
+| storage\_admins | IAM-style members who will be granted roles/storage.admin on all buckets. | list(string) | `<list>` | no |
 | storage\_class | Bucket storage class. | string | `"MULTI_REGIONAL"` | no |
-| versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
-| viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list | `<list>` | no |
+| versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map(bool) | `<map>` | no |
+| viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list(string) | `<list>` | no |
 
 ## Outputs
 
