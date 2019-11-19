@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 2.18.0"
-}
-
 terraform {
   required_version = ">= 0.12"
 }

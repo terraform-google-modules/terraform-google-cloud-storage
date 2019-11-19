@@ -15,7 +15,7 @@
  */
 
 provider "google" {
-  version = "~> 2.0"
+  version = "~> 2.18.0"
 }
 
 module "cloud_storage" {
