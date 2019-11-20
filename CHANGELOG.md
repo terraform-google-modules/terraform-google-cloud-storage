@@ -9,6 +9,16 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.1.0] - 2019-11-20
+
+### Added
+
+- Include name of bucket as label for cost analysis [#20]
+
+### Fixed
+
+- Error from the `names` and `urls` outputs caused by removing elements from the `names` variable. [#23]
+
 ## [1.0.0] - 2019-08-14
 
 ### Changed
@@ -22,9 +32,11 @@ and this project adheres to
 
 - Initial release
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.0.0...HEAD
-
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/releases/tag/v0.1.0
 
+[#23]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/pull/23
+[#20]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/pull/20
 [#9]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/pull/9
