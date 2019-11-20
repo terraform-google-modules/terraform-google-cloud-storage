@@ -104,3 +104,14 @@ variable "set_viewer_roles" {
   default     = false
 }
 
+variable "lifecycle_rules" {
+  type = set(object({
+    action = object({
+      type          = string
+      storage_class = string
+    })
+    condition = map(string)
+  }))
+  default     = []
+  description = "List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string."
+}

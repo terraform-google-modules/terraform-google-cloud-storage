@@ -35,4 +35,3 @@ module "example" {
     "two" = false
   }
 }
-
