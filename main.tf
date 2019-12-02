@@ -15,7 +15,10 @@
  */
 
 locals {
-  prefix = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  prefix       = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  names_set    = toset(var.names)
+  buckets_list = [for name in var.names : google_storage_bucket.buckets[name]]
+  first_bucket = local.buckets_list[0]
   folder_list = flatten([
     for bucket, folders in var.folders : [
       for folder in folders : {
@@ -27,26 +30,27 @@ locals {
 }
 
 resource "google_storage_bucket" "buckets" {
-  count         = length(var.names)
-  name          = "${local.prefix}${lower(element(var.names, count.index))}"
+  for_each = local.names_set
+
+  name          = "${local.prefix}${lower(each.value)}"
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
-  labels        = merge(var.labels, { name = replace("${local.prefix}${lower(element(var.names, count.index))}", ".", "-") })
+  labels        = merge(var.labels, { name = replace("${local.prefix}${lower(each.value)}", ".", "-") })
   force_destroy = lookup(
     var.force_destroy,
-    lower(element(var.names, count.index)),
+    lower(each.value),
     false,
   )
   uniform_bucket_level_access = lookup(
     var.bucket_policy_only,
-    lower(element(var.names, count.index)),
+    lower(each.value),
     true,
   )
   versioning {
     enabled = lookup(
       var.versioning,
-      lower(element(var.names, count.index)),
+      lower(each.value),
       false,
     )
   }
@@ -54,12 +58,12 @@ resource "google_storage_bucket" "buckets" {
   # There is no enabled = false attribute available to ask terraform to ignore the block
   dynamic "encryption" {
     # If an encryption key name is set for this bucket name -> Create a single encryption block
-    for_each = trimspace(lookup(var.encryption_key_names, lower(element(var.names, count.index)), "")) != "" ? [true] : []
+    for_each = trimspace(lookup(var.encryption_key_names, lower(each.value), "")) != "" ? [true] : []
     content {
       default_kms_key_name = trimspace(
         lookup(
           var.encryption_key_names,
-          lower(element(var.names, count.index)),
+          lower(each.value),
           "Error retrieving kms key name", # Should be unreachable due to the for_each check
           # Omitting default is deprecated & can help show if there was a bug
           # https://www.terraform.io/docs/configuration/functions/lookup.html
@@ -68,7 +72,7 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "cors" {
-    for_each = lookup(var.cors, element(var.names, count.index), {}) != {} ? { v = lookup(var.cors, element(var.names, count.index)) } : {}
+    for_each = lookup(var.cors, each.value, {}) != {} ? { v = lookup(var.cors, each.value) } : {}
     content {
       origin          = lookup(cors.value, "origin", null)
       method          = lookup(cors.value, "method", null)
@@ -77,7 +81,7 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "website" {
-    for_each = lookup(var.website, element(var.names, count.index), {}) != {} ? { v = lookup(var.website, element(var.names, count.index)) } : {}
+    for_each = lookup(var.website, each.value, {}) != {} ? { v = lookup(var.website, each.value) } : {}
     content {
       main_page_suffix = lookup(website.value, "main_page_suffix", null)
       not_found_page   = lookup(website.value, "not_found_page", null)
@@ -105,45 +109,45 @@ resource "google_storage_bucket" "buckets" {
 }
 
 resource "google_storage_bucket_iam_binding" "admins" {
-  count  = var.set_admin_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectAdmin"
+  for_each = var.set_admin_roles ? local.names_set : []
+  bucket   = google_storage_bucket.buckets[each.value].name
+  role     = "roles/storage.objectAdmin"
   members = compact(
     concat(
       var.admins,
       split(
         ",",
-        lookup(var.bucket_admins, element(var.names, count.index), ""),
+        lookup(var.bucket_admins, each.value, ""),
       ),
     ),
   )
 }
 
 resource "google_storage_bucket_iam_binding" "creators" {
-  count  = var.set_creator_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectCreator"
+  for_each = var.set_creator_roles ? local.names_set : toset([])
+  bucket   = google_storage_bucket.buckets[each.value].name
+  role     = "roles/storage.objectCreator"
   members = compact(
     concat(
       var.creators,
       split(
         ",",
-        lookup(var.bucket_creators, element(var.names, count.index), ""),
+        lookup(var.bucket_creators, each.value, ""),
       ),
     ),
   )
 }
 
 resource "google_storage_bucket_iam_binding" "viewers" {
-  count  = var.set_viewer_roles ? length(var.names) : 0
-  bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectViewer"
+  for_each = var.set_viewer_roles ? local.names_set : toset([])
+  bucket   = google_storage_bucket.buckets[each.value].name
+  role     = "roles/storage.objectViewer"
   members = compact(
     concat(
       var.viewers,
       split(
         ",",
-        lookup(var.bucket_viewers, element(var.names, count.index), ""),
+        lookup(var.bucket_viewers, each.value, ""),
       ),
     ),
   )
@@ -151,7 +155,7 @@ resource "google_storage_bucket_iam_binding" "viewers" {
 
 resource "google_storage_bucket_object" "folders" {
   for_each = { for obj in local.folder_list : "${obj.bucket}_${obj.folder}" => obj }
-  bucket   = element(google_storage_bucket.buckets.*.name, index(var.names, each.value.bucket))
+  bucket   = google_storage_bucket.buckets[each.value.bucket].name
   name     = "${each.value.folder}/" # Declaring an object with a trailing '/' creates a directory
   content  = "foo"                   # Note that the content string isn't actually used, but is only there since the resource requires it
 }

@@ -75,7 +75,8 @@ Functional examples are included in the
 | Name | Description |
 |------|-------------|
 | bucket | Bucket resource (for single use). |
-| buckets | Bucket resources. |
+| buckets | Bucket resources as list. |
+| buckets\_map | Bucket resources by name. |
 | name | Bucket name (for single use). |
 | names | Bucket names. |
 | names\_list | List of bucket names. |
