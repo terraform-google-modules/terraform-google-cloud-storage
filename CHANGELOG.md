@@ -9,6 +9,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.2.0] - 2019-12-06
+
+### Added
+
+- Added support for setting lifecycle rules [#19](https://github.com/terraform-google-modules/terraform-google-cloud-storage/pull/19)
+
 ## [1.1.0] - 2019-11-20
 
 ### Added
@@ -32,7 +38,8 @@ and this project adheres to
 
 - Initial release
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-cloud-storage/releases/tag/v0.1.0
