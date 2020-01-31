@@ -16,10 +16,13 @@
 
 variable "project_id" {
   description = "Bucket project id."
+  type        = string
 }
 
 variable "prefix" {
   description = "Prefix used to generate the bucket name."
+  default     = ""
+  type        = string
 }
 
 variable "names" {
@@ -30,11 +33,13 @@ variable "names" {
 variable "location" {
   description = "Bucket location."
   default     = "EU"
+  type        = string
 }
 
 variable "storage_class" {
   description = "Bucket storage class."
   default     = "MULTI_REGIONAL"
+  type        = string
 }
 
 variable "force_destroy" {
@@ -53,18 +58,39 @@ variable "bucket_policy_only" {
 }
 
 variable "admins" {
-  description = "IAM-style members who will be granted roles/storage.objectAdmin on all buckets."
+  description = "IAM-style members who will be granted roles/storage.objectAdmin (or our custom_role defined on admins_custom_role) on all buckets."
   default     = []
+  type        = list(string)
+}
+
+variable "admins_custom_role" {
+  description = "The role that should be applied. Note that custom roles must be of the format [projects|organizations]/{parent-name}/roles/{role-name}"
+  default     = ""
+  type        = string
 }
 
 variable "creators" {
-  description = "IAM-style members who will be granted roles/storage.objectCreators on all buckets."
+  description = "IAM-style members who will be granted roles/storage.objectCreators (or our custom_role defined on creators_custom_role) on all buckets."
   default     = []
+  type        = list(string)
+}
+
+variable "creators_custom_role" {
+  description = "The role that should be applied. Note that custom roles must be of the format [projects|organizations]/{parent-name}/roles/{role-name}"
+  default     = ""
+  type        = string
 }
 
 variable "viewers" {
-  description = "IAM-style members who will be granted roles/storage.objectViewer on all buckets."
+  description = "IAM-style members who will be granted roles/storage.objectViewer (or our custom_role defined on viewers_custom_role) on all buckets."
   default     = []
+  type        = list(string)
+}
+
+variable "viewers_custom_role" {
+  description = "The role that should be applied. Note that custom roles must be of the format [projects|organizations]/{parent-name}/roles/{role-name}"
+  default     = ""
+  type        = string
 }
 
 variable "bucket_admins" {
@@ -92,16 +118,19 @@ variable "labels" {
 variable "set_admin_roles" {
   description = "Grant roles/storage.objectAdmin role to admins and bucket_admins."
   default     = false
+  type        = bool
 }
 
 variable "set_creator_roles" {
   description = "Grant roles/storage.objectCreator role to creators and bucket_creators."
   default     = false
+  type        = bool
 }
 
 variable "set_viewer_roles" {
   description = "Grant roles/storage.objectViewer role to viewers and bucket_viewers."
   default     = false
+  type        = bool
 }
 
 variable "lifecycle_rules" {

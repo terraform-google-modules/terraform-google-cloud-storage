@@ -65,7 +65,7 @@ resource "google_storage_bucket" "buckets" {
 resource "google_storage_bucket_iam_binding" "admins" {
   count  = var.set_admin_roles ? length(var.names) : 0
   bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectAdmin"
+  role   = var.admins_custom_role == "" ? "roles/storage.objectAdmin" : var.admins_custom_role
   members = compact(
     concat(
       var.admins,
@@ -80,7 +80,7 @@ resource "google_storage_bucket_iam_binding" "admins" {
 resource "google_storage_bucket_iam_binding" "creators" {
   count  = var.set_creator_roles ? length(var.names) : 0
   bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectCreator"
+  role   = var.creators_custom_role == "" ? "roles/storage.objectCreator" : var.creators_custom_role
   members = compact(
     concat(
       var.creators,
@@ -95,7 +95,7 @@ resource "google_storage_bucket_iam_binding" "creators" {
 resource "google_storage_bucket_iam_binding" "viewers" {
   count  = var.set_viewer_roles ? length(var.names) : 0
   bucket = element(google_storage_bucket.buckets.*.name, count.index)
-  role   = "roles/storage.objectViewer"
+  role   = var.viewers_custom_role == "" ? "roles/storage.objectViewer" : var.viewers_custom_role
   members = compact(
     concat(
       var.viewers,
