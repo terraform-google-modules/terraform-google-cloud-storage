@@ -30,4 +30,3 @@ module "example" {
   project_id = var.project_id
   prefix     = join("-", ["cft-test", random_string.prefix.result])
 }
-
