@@ -47,7 +47,7 @@ variable "versioning" {
   default     = {}
 }
 
-variable "encryption" {
+variable "encryption_key_names" {
   description = "Optional map of lowercase unprefixed name => string, empty strings are ignored."
   default     = {}
 }

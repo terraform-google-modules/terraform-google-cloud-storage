@@ -46,11 +46,11 @@ resource "google_storage_bucket" "buckets" {
   # There is no enabled = false attribute available to ask terraform to ignore the block
   dynamic "encryption" {
     # If an encryption key name is set for this bucket name -> Create a single encryption block
-    for_each = trimspace(lookup(var.encryption, lower(element(var.names, count.index)), "")) != "" ? [true] : []
+    for_each = trimspace(lookup(var.encryption_key_names, lower(element(var.names, count.index)), "")) != "" ? [true] : []
     content {
       default_kms_key_name = trimspace(
         lookup(
-          var.encryption,
+          var.encryption_key_names,
           lower(element(var.names, count.index)),
           "Error retrieving kms key name", # Should be unreachable due to the for_each check
           # Omitting default is deprecated & can help show if there was a bug

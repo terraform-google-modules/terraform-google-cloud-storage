@@ -49,7 +49,7 @@ Functional examples are included in the
 | bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map | `<map>` | no |
 | bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers. | map | `<map>` | no |
 | creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list | `<list>` | no |
-| encryption | Optional map of lowercase unprefixed name => string, empty strings are ignored. | map | `<map>` | no |
+| encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | map | `<map>` | no |
 | force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
 | labels | Labels to be attached to the buckets | map | `<map>` | no |
 | lifecycle\_rules | List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string. | object | `<list>` | no |
