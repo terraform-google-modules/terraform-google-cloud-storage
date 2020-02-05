@@ -86,7 +86,8 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.11
+- [Terraform][terraform] v0.12
+  - For Terraform v0.11 see the [Compatibility](#compatibility) section above
 - [Terraform Provider for GCP][terraform-provider-gcp] plugin v2.0
 
 ### Service Account
