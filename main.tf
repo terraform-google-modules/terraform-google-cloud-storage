@@ -42,6 +42,23 @@ resource "google_storage_bucket" "buckets" {
       false,
     )
   }
+  # Having a permanent encryption block with default_kms_key_name = "" works but results in terraform applying a change every run
+  # There is no enabled = false attribute available to ask terraform to ignore the block
+  dynamic "encryption" {
+    # If an encryption key name is set for this bucket name -> Create a single encryption block
+    for_each = trimspace(lookup(var.encryption, lower(element(var.names, count.index)), "")) != "" ? [true] : []
+    content {
+      default_kms_key_name = trimspace(
+        lookup(
+          var.encryption,
+          lower(element(var.names, count.index)),
+          "Error retrieving kms key name", # Should be unreachable due to the for_each check
+          # Ommitted default is depricated & can help show if there was a bug
+          # https://www.terraform.io/docs/configuration/functions/lookup.html
+        )
+      )
+    }
+  }
   dynamic "lifecycle_rule" {
     for_each = var.lifecycle_rules
     content {
