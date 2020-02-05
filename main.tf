@@ -53,7 +53,7 @@ resource "google_storage_bucket" "buckets" {
           var.encryption,
           lower(element(var.names, count.index)),
           "Error retrieving kms key name", # Should be unreachable due to the for_each check
-          # Ommitted default is depricated & can help show if there was a bug
+          # Omitting default is deprecated & can help show if there was a bug
           # https://www.terraform.io/docs/configuration/functions/lookup.html
         )
       )
