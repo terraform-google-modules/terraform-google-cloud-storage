@@ -7,6 +7,9 @@ The resources/services/activations/deletions that this module will create/trigge
 - One or more GCS buckets
 - Zero or more IAM bindings for those buckets
 
+If you only wish to create a single bucket, consider using the
+[simple bucket](modules/simple_bucket) submodule instead.
+
 ## Compatibility
 
  This module is meant for use with Terraform 0.12. If you haven't [upgraded](https://www.terraform.io/upgrade-guides/0-12.html)
@@ -120,4 +123,3 @@ information on contributing to this module.
 [project-factory-module]: https://registry.terraform.io/modules/terraform-google-modules/project-factory/google
 [terraform-provider-gcp]: https://www.terraform.io/docs/providers/google/index.html
 [terraform]: https://www.terraform.io/downloads.html
-
