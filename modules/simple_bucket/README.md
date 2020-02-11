@@ -47,7 +47,7 @@ Functional examples are included in the
 | labels | A set of key/value label pairs to assign to the bucket. | map(string) | `"null"` | no |
 | location | The location of the bucket. | string | n/a | yes |
 | name | The name of the bucket. | string | n/a | yes |
-| project | The ID of the project in which the resource belongs. | string | n/a | yes |
+| project_id | The ID of the project in which the resource belongs. | string | n/a | yes |
 | retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | object | `"null"` | no |
 | storage\_class | The Storage Class of the new bucket. | string | `"null"` | no |
 | versioning | While set to true, versioning is fully enabled for this bucket. | bool | `"true"` | no |

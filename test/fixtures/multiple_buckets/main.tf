@@ -25,7 +25,7 @@ resource "random_pet" "main" {
 }
 
 module "example" {
-  source     = "../../../examples/simple_example"
+  source     = "../../../examples/multiple_buckets"
   project_id = var.project_id
   prefix     = random_pet.main.id
   names      = ["one", "two"]

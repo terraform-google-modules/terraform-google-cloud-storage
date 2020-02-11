@@ -17,9 +17,9 @@
 module "bucket" {
   source = "../../modules/simple_bucket"
 
-  name     = "example-bucket"
-  project  = "example-project"
-  location = "us-east1"
+  name       = "example-bucket"
+  project_id = "example-project"
+  location   = "us-east1"
   iam_members = [{
     role   = "roles/storage.viewer"
     member = "user:example-user@example.com"
