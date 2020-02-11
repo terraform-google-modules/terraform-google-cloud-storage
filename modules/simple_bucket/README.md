@@ -4,14 +4,12 @@ This module makes it easy to create a GCS bucket, and assign basic permissions o
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
-- One GCS buckets
-- Zero or more IAM bindings for those buckets
+- One GCS bucket
+- Zero or more IAM bindings for that bucket
 
 ## Compatibility
 
- This module is meant for use with Terraform 0.12. If you haven't [upgraded](https://www.terraform.io/upgrade-guides/0-12.html)
-  and need a Terraform 0.11.x-compatible version of this module, the last released version intended for
-  Terraform 0.11.x is [0.1.0](https://registry.terraform.io/modules/terraform-google-modules/cloud-storage/google/0.1.0).
+This module is meant for use with Terraform 0.12.
 
 ## Usage
 
@@ -63,8 +61,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v0.12
-  - For Terraform v0.11 see the [Compatibility](#compatibility) section above
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v2.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
 
 ### Service Account
 
