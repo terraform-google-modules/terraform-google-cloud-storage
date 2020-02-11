@@ -20,7 +20,7 @@ provider "random" {
 
 resource "random_pet" "main" {
   length    = 1
-  prefix    = "simple-example"
+  prefix    = "multiple-buckets"
   separator = "-"
 }
 
