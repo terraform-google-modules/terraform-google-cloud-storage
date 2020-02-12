@@ -40,12 +40,12 @@ Functional examples are included in the
 |------|-------------|:----:|:-----:|:-----:|
 | bucket\_policy\_only | Enables Bucket Policy Only access to a bucket. | bool | `"true"` | no |
 | encryption | A Cloud KMS key that will be used to encrypt objects inserted into this bucket | object | `"null"` | no |
-| force\_destroy | When deleting a bucket, this boolean option will delete all contained objects. If you try to delete a bucket that contains objects, Terraform will fail that run. | bool | `"false"` | no |
+| force\_destroy | When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects. | bool | `"false"` | no |
 | iam\_members | The list of IAM members to grant permissions on the bucket. | object | `<list>` | no |
 | labels | A set of key/value label pairs to assign to the bucket. | map(string) | `"null"` | no |
 | location | The location of the bucket. | string | n/a | yes |
 | name | The name of the bucket. | string | n/a | yes |
-| project\_id | The ID of the project in which the resource belongs. | string | n/a | yes |
+| project\_id | The ID of the project to create the bucket in. | string | n/a | yes |
 | retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | object | `"null"` | no |
 | storage\_class | The Storage Class of the new bucket. | string | `"null"` | no |
 | versioning | While set to true, versioning is fully enabled for this bucket. | bool | `"true"` | no |
