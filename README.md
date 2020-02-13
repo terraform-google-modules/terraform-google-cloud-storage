@@ -23,7 +23,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "gcs_buckets" {
   source  = "terraform-google-modules/cloud-storage/google"
-  version = "~> 0.1"
+  version = "~> 1.3"
   project_id  = "<PROJECT ID>"
   names = ["first", "second"]
   prefix = "my-unique-prefix"
