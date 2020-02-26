@@ -50,6 +50,12 @@ Functional examples are included in the
 | storage\_class | The Storage Class of the new bucket. | string | `"null"` | no |
 | versioning | While set to true, versioning is fully enabled for this bucket. | bool | `"true"` | no |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| bucket | The created storage bucket |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
