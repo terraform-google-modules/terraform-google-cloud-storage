@@ -41,7 +41,6 @@ variable "labels" {
   default     = null
 }
 
-
 variable "bucket_policy_only" {
   description = "Enables Bucket Policy Only access to a bucket."
   type        = bool

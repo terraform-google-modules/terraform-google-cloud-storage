@@ -11,6 +11,7 @@ This example illustrates how to use the `cloud-storage` module.
 | names | Names of the buckets to create. | list(string) | n/a | yes |
 | prefix | Prefix used to generate bueckt names. | string | n/a | yes |
 | project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
+| silly\_label | Sample label for bucket. | string | n/a | yes |
 
 ## Outputs
 

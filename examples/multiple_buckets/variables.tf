@@ -33,3 +33,8 @@ variable "bucket_policy_only" {
   description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
   type        = map(string)
 }
+
+variable "silly_label" {
+  description = "Sample label for bucket."
+  type        = string
+}

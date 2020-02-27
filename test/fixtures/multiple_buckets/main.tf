@@ -25,10 +25,11 @@ resource "random_pet" "main" {
 }
 
 module "example" {
-  source     = "../../../examples/multiple_buckets"
-  project_id = var.project_id
-  prefix     = random_pet.main.id
-  names      = ["one", "two"]
+  source      = "../../../examples/multiple_buckets"
+  project_id  = var.project_id
+  prefix      = random_pet.main.id
+  names       = ["one", "two"]
+  silly_label = "awesome"
 
   bucket_policy_only = {
     "one" = true

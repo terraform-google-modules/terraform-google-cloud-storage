@@ -27,6 +27,11 @@ variable "names" {
   type        = list(string)
 }
 
+variable "silly_label" {
+  description = "Sample label for bucket."
+  type        = string
+}
+
 variable "location" {
   description = "Bucket location."
   default     = "EU"

@@ -36,6 +36,48 @@ control "gsutil" do
     its(:stdout) { should include "Enabled: False" }
   end
 
+  describe command("gsutil label get gs://#{attribute("names_list")[0]}") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+
+    let!(:data) do
+      if subject.exit_status == 0
+          JSON.parse(subject.stdout)
+      else
+          {}
+      end
+    end
+
+    describe "bucket_1" do
+    it "has label" do
+        data.each do |bucket|
+            expect(data["silly"]).to include("awesome")
+        end
+      end
+    end
+  end
+
+  describe command("gsutil label get gs://#{attribute("names_list")[1]}") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+
+    let!(:data) do
+      if subject.exit_status == 0
+          JSON.parse(subject.stdout)
+      else
+          {}
+      end
+    end
+
+    describe "bucket_2" do
+    it "has label" do
+        data.each do |bucket|
+            expect(data["silly"]).to include("awesome")
+        end
+      end
+    end
+  end
+
   get_lifecycle_0_out = command("gsutil lifecycle get gs://#{attribute("names_list")[0]}")
   rule = JSON.parse(get_lifecycle_0_out.stdout)['rule'][0]
 
