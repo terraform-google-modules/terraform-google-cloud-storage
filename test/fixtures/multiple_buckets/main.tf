@@ -19,7 +19,7 @@ provider "random" {
 }
 
 resource "random_pet" "main" {
-  length    = 1
+  length    = 2
   prefix    = "multiple-buckets"
   separator = "-"
 }
