@@ -19,7 +19,7 @@ provider "random" {
 }
 
 resource "random_id" "main" {
-  length = 2
+  byte_length = 2
 }
 
 module "example" {
