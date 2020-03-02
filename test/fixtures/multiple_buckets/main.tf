@@ -18,16 +18,16 @@ provider "random" {
   version = "~> 2.0"
 }
 
-resource "random_pet" "main" {
-  length    = 1
-  prefix    = "multiple-buckets"
-  separator = "-"
+resource "random_string" "prefix" {
+  length  = 4
+  upper   = false
+  special = false
 }
 
 module "example" {
   source     = "../../../examples/multiple_buckets"
   project_id = var.project_id
-  prefix     = random_pet.main.id
+  prefix     = "multiple-buckets-${random_string.prefix.result}"
   names      = ["one", "two"]
 
   bucket_policy_only = {
