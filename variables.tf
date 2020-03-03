@@ -136,6 +136,5 @@ variable "lifecycle_rules" {
     condition = map(string)
   }))
   description = "List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string."
-  type        = list(string)
   default     = []
 }
