@@ -88,3 +88,17 @@ resource "google_storage_bucket_iam_binding" "viewers" {
     ),
   )
 }
+resource "google_storage_bucket_iam_binding" "storage_admins" {
+  count  = var.set_viewer_roles ? length(var.names) : 0
+  bucket = element(google_storage_bucket.buckets.*.name, count.index)
+  role   = "roles/storage.admin" 
+  members = compact(
+    concat(
+      var.viewers,
+      split(
+        ",",
+        lookup(var.bucket_viewers, element(var.names, count.index), ""),
+      ),
+    ),
+  )
+}

@@ -67,6 +67,16 @@ variable "viewers" {
   default     = []
 }
 
+variable "storage_admins" {
+  description = "IAM-style members who will be granted roles/storage.admin on all buckets."
+  default     = []
+}
+
+variable "bucket_storage_admins" {
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style storage admins."
+  default     = {}
+}
+
 variable "bucket_admins" {
   description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins."
   default     = {}
