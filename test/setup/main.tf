@@ -14,25 +14,20 @@
  * limitations under the License.
  */
 
-provider "random" {
-  version = "~> 2.0"
+module "project" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 3.0"
+
+  name              = "ci-cloud-storage"
+  random_project_id = "true"
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
+
+  activate_apis = [
+    "storage-api.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "compute.googleapis.com",
+    "serviceusage.googleapis.com"
+  ]
 }
-
-resource "random_pet" "main" {
-  length    = 1
-  prefix    = "simple-example"
-  separator = "-"
-}
-
-module "example" {
-  source     = "../../../examples/simple_example"
-  project_id = var.project_id
-  prefix     = random_pet.main.id
-  names      = ["one", "two"]
-
-  bucket_policy_only = {
-    "one" = true
-    "two" = false
-  }
-}
-

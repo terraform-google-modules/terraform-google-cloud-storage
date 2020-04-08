@@ -7,6 +7,9 @@ The resources/services/activations/deletions that this module will create/trigge
 - One or more GCS buckets
 - Zero or more IAM bindings for those buckets
 
+If you only wish to create a single bucket, consider using the
+[simple bucket](modules/simple_bucket) submodule instead.
+
 ## Compatibility
 
  This module is meant for use with Terraform 0.12. If you haven't [upgraded](https://www.terraform.io/upgrade-guides/0-12.html)
@@ -20,7 +23,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "gcs_buckets" {
   source  = "terraform-google-modules/cloud-storage/google"
-  version = "~> 0.1"
+  version = "~> 1.4"
   project_id  = "<PROJECT ID>"
   names = ["first", "second"]
   prefix = "my-unique-prefix"
@@ -43,24 +46,26 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list | `<list>` | no |
+| admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list(string) | `<list>` | no |
 | bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins. | map | `<map>` | no |
 | bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators. | map | `<map>` | no |
 | bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map | `<map>` | no |
 | bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers. | map | `<map>` | no |
-| creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list | `<list>` | no |
+| creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list(string) | `<list>` | no |
+| encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | map | `<map>` | no |
 | force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
 | labels | Labels to be attached to the buckets | map | `<map>` | no |
+| lifecycle\_rules | List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string. | object | `<list>` | no |
 | location | Bucket location. | string | `"EU"` | no |
 | names | Bucket name suffixes. | list(string) | n/a | yes |
 | prefix | Prefix used to generate the bucket name. | string | n/a | yes |
 | project\_id | Bucket project id. | string | n/a | yes |
-| set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | string | `"false"` | no |
-| set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | string | `"false"` | no |
-| set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | string | `"false"` | no |
+| set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | bool | `"false"` | no |
+| set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | bool | `"false"` | no |
+| set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | bool | `"false"` | no |
 | storage\_class | Bucket storage class. | string | `"MULTI_REGIONAL"` | no |
 | versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
-| viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list | `<list>` | no |
+| viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list(string) | `<list>` | no |
 
 ## Outputs
 
@@ -85,7 +90,8 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.11
+- [Terraform][terraform] v0.12
+  - For Terraform v0.11 see the [Compatibility](#compatibility) section above
 - [Terraform Provider for GCP][terraform-provider-gcp] plugin v2.0
 
 ### Service Account
@@ -117,4 +123,3 @@ information on contributing to this module.
 [project-factory-module]: https://registry.terraform.io/modules/terraform-google-modules/project-factory/google
 [terraform-provider-gcp]: https://www.terraform.io/docs/providers/google/index.html
 [terraform]: https://www.terraform.io/downloads.html
-

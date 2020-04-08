@@ -26,13 +26,13 @@ platforms:
   - name: default
 
 suites:
-  - name: simple_example
+  - name: multiple_buckets
     driver:
-      root_module_directory: test/fixtures/simple_example/
+      root_module_directory: test/fixtures/multiple_buckets/
     verifier:
       color: false
       systems:
-        - name: simple_example local
+        - name: multiple_buckets local
           backend: local
           controls:
             - gsutil

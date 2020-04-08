@@ -13,24 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = string
+variable "org_id" {
+  description = "The numeric organization id"
 }
 
-variable "names" {
-  description = "Names of the buckets to create."
-  type        = list(string)
+variable "folder_id" {
+  description = "The folder to deploy in"
 }
 
-variable "prefix" {
-  description = "Prefix used to generate bueckt names."
-  type        = string
+variable "billing_account" {
+  description = "The billing account id associated with the project, e.g. XXXXXX-YYYYYY-ZZZZZZ"
 }
-
-variable "bucket_policy_only" {
-  description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
-  type        = map(string)
-}
-

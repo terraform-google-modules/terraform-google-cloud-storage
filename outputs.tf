@@ -36,12 +36,12 @@ output "buckets" {
 
 output "names" {
   description = "Bucket names."
-  value       = zipmap(var.names, google_storage_bucket.buckets[*].name)
+  value       = zipmap(var.names, slice(google_storage_bucket.buckets[*].name, 0, length(var.names)))
 }
 
 output "urls" {
   description = "Bucket URLs."
-  value       = zipmap(var.names, google_storage_bucket.buckets[*].url)
+  value       = zipmap(var.names, slice(google_storage_bucket.buckets[*].url, 0, length(var.names)))
 }
 
 output "names_list" {

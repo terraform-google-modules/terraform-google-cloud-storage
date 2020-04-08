@@ -1,4 +1,4 @@
-name: simple_example
+name: multiple_buckets
 attributes:
   - name: project_id
     required: true

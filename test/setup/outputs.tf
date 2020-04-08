@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = string
+output "project_id" {
+  value = module.project.project_id
 }
 
+output "sa_key" {
+  value     = google_service_account_key.int_test.private_key
+  sensitive = true
+}

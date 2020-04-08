@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 2.0"
-}
+module "bucket" {
+  source = "../../modules/simple_bucket"
 
-module "cloud_storage" {
-  source             = "../.."
-  project_id         = var.project_id
-  prefix             = var.prefix
-  names              = var.names
-  bucket_policy_only = var.bucket_policy_only
+  name       = "example-bucket"
+  project_id = "example-project"
+  location   = "us-east1"
+  iam_members = [{
+    role   = "roles/storage.viewer"
+    member = "user:example-user@example.com"
+  }]
 }
-

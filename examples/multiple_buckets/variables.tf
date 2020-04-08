@@ -1,5 +1,5 @@
 /**
- * Copyright YEAR Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,3 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+variable "project_id" {
+  description = "The ID of the project in which to provision resources."
+  type        = string
+}
+
+variable "names" {
+  description = "Names of the buckets to create."
+  type        = list(string)
+}
+
+variable "prefix" {
+  description = "Prefix used to generate bueckt names."
+  type        = string
+}
+
+variable "bucket_policy_only" {
+  description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
+  type        = map(string)
+}
