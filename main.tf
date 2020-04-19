@@ -123,3 +123,21 @@ resource "google_storage_bucket_iam_binding" "viewers" {
     ),
   )
 }
+
+locals {
+  bucket_names = zipmap(var.names, slice(google_storage_bucket.buckets[*].name, 0, length(var.names)))
+  notification_configs = {
+    for name, topic in var.pubsub_topics :
+    name => {
+      bucket = local.bucket_names[name]
+      topic  = topic
+    }
+  }
+}
+
+module "notifications" {
+  source = "./modules/notifications"
+
+  project_id     = var.project_id
+  bucket_configs = local.notification_configs
+}

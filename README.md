@@ -60,6 +60,7 @@ Functional examples are included in the
 | names | Bucket name suffixes. | list(string) | n/a | yes |
 | prefix | Prefix used to generate the bucket name. | string | n/a | yes |
 | project\_id | Bucket project id. | string | n/a | yes |
+| pubsub\_topics | Map of bucket=>topic to configure pubsub notifications. | map(string) | `<map>` | no |
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | bool | `"false"` | no |
 | set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | bool | `"false"` | no |
 | set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | bool | `"false"` | no |
