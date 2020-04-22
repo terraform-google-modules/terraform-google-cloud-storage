@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.4.0...v1.5.0) (2020-04-22)
+
+
+### Features
+
+* add support for lifecycle rules in simple bucket ([#49](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/49)) ([b39e2cd](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/b39e2cdf0848b59d00dd7fe65c917a5bf4a1176a))
+
 ## [1.4.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.3.0...v1.4.0) (2020-03-04)
 
 
