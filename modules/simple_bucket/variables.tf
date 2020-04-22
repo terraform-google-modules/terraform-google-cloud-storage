@@ -91,8 +91,7 @@ variable "lifecycle_rules" {
   type = list(object({
     # Object with keys:
     # - type - The type of the action of this Lifecycle Rule. Supported values: Delete and SetStorageClass.
-    # - storage_class - (Required if action type is SetStorageClass) The target Storage Class of objects
-    #   affected by this Lifecycle Rule.
+    # - storage_class - (Required if action type is SetStorageClass) The target Storage Class of objects affected by this Lifecycle Rule.
     action = any
 
     # Object with keys:
