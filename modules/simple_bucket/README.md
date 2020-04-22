@@ -43,6 +43,7 @@ Functional examples are included in the
 | force\_destroy | When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects. | bool | `"false"` | no |
 | iam\_members | The list of IAM members to grant permissions on the bucket. | object | `<list>` | no |
 | labels | A set of key/value label pairs to assign to the bucket. | map(string) | `"null"` | no |
+| lifecycle\_rules | The bucket's Lifecycle Rules configuration. | object | `<list>` | no |
 | location | The location of the bucket. | string | n/a | yes |
 | name | The name of the bucket. | string | n/a | yes |
 | project\_id | The ID of the project to create the bucket in. | string | n/a | yes |
