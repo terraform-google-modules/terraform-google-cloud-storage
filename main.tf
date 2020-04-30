@@ -64,7 +64,7 @@ resource "google_storage_bucket" "buckets" {
     content {
       action {
         type          = lifecycle_rule.value.action.type
-        storage_class = lifecycle_rule.value.action.storage_class
+        storage_class = lookup(lifecycle_rule.value.action, "storage_class", null)
       }
       condition {
         age                   = lookup(lifecycle_rule.value.condition, "age", null)
