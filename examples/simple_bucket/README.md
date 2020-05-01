@@ -7,7 +7,7 @@ This example illustrates how to use the `simple-bucket` submodule.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| name | Names of the buckets to create. | list(string) | n/a | yes |
+| name | Name of the buckets to create. | string | n/a | yes |
 | project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
