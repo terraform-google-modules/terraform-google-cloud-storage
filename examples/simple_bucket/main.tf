@@ -17,8 +17,8 @@
 module "bucket" {
   source = "../../modules/simple_bucket"
 
-  name       = "example-bucket"
-  project_id = "example-project"
+  name       = var.name
+  project_id = var.project_id
   location   = "us-east1"
 
   lifecycle_rules = [{
