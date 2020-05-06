@@ -24,7 +24,7 @@ module "cloud_storage" {
   prefix             = var.prefix
   names              = var.names
   bucket_policy_only = var.bucket_policy_only
-
+  silly_label        = "awesome"
   lifecycle_rules = [{
     action = {
       type          = "SetStorageClass"

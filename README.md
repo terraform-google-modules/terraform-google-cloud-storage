@@ -63,6 +63,7 @@ Functional examples are included in the
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | bool | `"false"` | no |
 | set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | bool | `"false"` | no |
 | set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | bool | `"false"` | no |
+| silly\_label | Sample label for bucket. | string | n/a | yes |
 | storage\_class | Bucket storage class. | string | `"MULTI_REGIONAL"` | no |
 | versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
 | viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list(string) | `<list>` | no |
