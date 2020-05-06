@@ -44,3 +44,4 @@ test/source.sh
 **/*.tfvars
 
 credentials.json
+cft.json
