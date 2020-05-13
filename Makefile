@@ -15,7 +15,7 @@
 # Make will use bash instead of sh
 SHELL := /usr/bin/env bash
 
-DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0.6.0
+DOCKER_TAG_VERSION_DEVELOPER_TOOLS := 0.10.0
 DOCKER_IMAGE_DEVELOPER_TOOLS := cft/developer-tools
 REGISTRY_URL := gcr.io/cloud-foundation-cicd
 
@@ -68,6 +68,15 @@ docker_test_lint:
 		-v $(CURDIR):/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/usr/local/bin/test_lint.sh
+
+# Execute lint tests in github actions
+.PHONY: docker_test_lint_gha
+docker_test_lint_gha:
+	docker run --rm \
+		-v $(CURDIR):/workspace \
+		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
+		/usr/local/bin/test_lint.sh --markdown --contrib-guide=https://github.com/terraform-google-modules/terraform-google-cloud-storage/blob/master/CONTRIBUTING.md
+
 
 # Generate documentation
 .PHONY: docker_generate_docs
