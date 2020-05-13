@@ -75,7 +75,7 @@ docker_test_lint_gha:
 	docker run --rm \
 		-v $(CURDIR):/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
-		/usr/local/bin/test_lint.sh --markdown --contrib-guide=https://github.com/terraform-google-modules/terraform-google-cloud-storage/blob/master/CONTRIBUTING.md
+		/usr/local/bin/test_lint.sh --markdown --contrib-guide=../blob/master/CONTRIBUTING.md
 
 
 # Generate documentation
