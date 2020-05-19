@@ -24,6 +24,13 @@ control "gsutil" do
     its(:stdout) { should include attribute('names').values[1] }
   end
 
+  describe command("gsutil ls gs://#{attribute("names_list")[1]}") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    its(:stdout) { should include "gs://#{attribute("names_list")[1]}/dev/" }
+    its(:stdout) { should include "gs://#{attribute("names_list")[1]}/prod/" }
+  end
+
   describe command("gsutil bucketpolicyonly get gs://#{attribute("names_list")[0]}") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }

@@ -24,6 +24,7 @@ module "cloud_storage" {
   prefix             = var.prefix
   names              = var.names
   bucket_policy_only = var.bucket_policy_only
+  folders            = var.folders
 
   lifecycle_rules = [{
     action = {

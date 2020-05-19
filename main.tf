@@ -16,6 +16,14 @@
 
 locals {
   prefix = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  folder_list = flatten([
+    for bucket, folders in var.folders : [
+      for folder in folders : {
+        bucket = bucket,
+        folder = folder
+      }
+    ]
+  ])
 }
 
 resource "google_storage_bucket" "buckets" {
@@ -122,4 +130,11 @@ resource "google_storage_bucket_iam_binding" "viewers" {
       ),
     ),
   )
+}
+
+resource "google_storage_bucket_object" "folders" {
+  for_each = { for obj in local.folder_list : "${obj.bucket}_${obj.folder}" => obj }
+  bucket   = element(google_storage_bucket.buckets.*.name, index(var.names, each.value.bucket))
+  name     = "${each.value.folder}/"
+  content  = "none"
 }

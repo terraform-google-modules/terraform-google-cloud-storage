@@ -29,6 +29,9 @@ module "example" {
   project_id = var.project_id
   prefix     = "multiple-buckets-${random_string.prefix.result}"
   names      = ["one", "two"]
+  folders = {
+    "two" = ["dev", "prod"]
+  }
 
   bucket_policy_only = {
     "one" = true
