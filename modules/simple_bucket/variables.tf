@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-variable "name" {
+variable "names" {
   description = "The name of the bucket."
   type        = string
 }
