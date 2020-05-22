@@ -135,6 +135,6 @@ resource "google_storage_bucket_iam_binding" "viewers" {
 resource "google_storage_bucket_object" "folders" {
   for_each = { for obj in local.folder_list : "${obj.bucket}_${obj.folder}" => obj }
   bucket   = element(google_storage_bucket.buckets.*.name, index(var.names, each.value.bucket))
-  name     = "${each.value.folder}/"
-  content  = "none"
+  name     = "${each.value.folder}/" # Declaring an object with a trailing '/' creates a directory
+  content  = "foo"                   # Note that the content string isn't actually used, but is only there since the resource requires it
 }
