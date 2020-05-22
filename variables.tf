@@ -107,6 +107,12 @@ variable "labels" {
   default     = {}
 }
 
+variable "folders" {
+  description = "Map of lowercase unprefixed name => list of top level folder objects."
+  type        = map
+  default     = {}
+}
+
 # we need flags to allow member lists to contain dynamic elements
 
 variable "set_admin_roles" {
