@@ -1,4 +1,4 @@
-# Simple Example
+# Simple Examples
 
 This example illustrates how to use the `simple-bucket` submodule.
 
