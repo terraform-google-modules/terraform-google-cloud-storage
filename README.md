@@ -60,7 +60,7 @@ Functional examples are included in the
 | lifecycle\_rules | List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string. | object | `<list>` | no |
 | location | Bucket location. | string | `"EU"` | no |
 | names | Bucket name suffixes. | list(string) | n/a | yes |
-| prefix | Prefix used to generate the bucket name. | string | n/a | yes |
+| prefix | Prefix used to generate the bucket name. | string | `""` | no |
 | project\_id | Bucket project id. | string | n/a | yes |
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | bool | `"false"` | no |
 | set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | bool | `"false"` | no |
