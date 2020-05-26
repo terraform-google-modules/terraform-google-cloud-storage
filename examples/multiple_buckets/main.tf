@@ -18,10 +18,17 @@ provider "google" {
   version = "~> 2.18.0"
 }
 
+resource "random_string" "prefix" {
+  length  = 4
+  upper   = false
+  special = false
+}
+
 module "cloud_storage" {
-  source             = "../.."
-  project_id         = var.project_id
-  prefix             = var.prefix
+  source     = "../.."
+  project_id = var.project_id
+  prefix     = "multiple-buckets-${random_string.prefix.result}"
+
   names              = var.names
   bucket_policy_only = var.bucket_policy_only
   folders            = var.folders

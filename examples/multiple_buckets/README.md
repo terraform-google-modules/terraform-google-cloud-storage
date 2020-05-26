@@ -7,10 +7,9 @@ This example illustrates how to use the `cloud-storage` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map(string) | n/a | yes |
-| folders | Top level bucket folders. Map of lowercase unprefixed name => list of folders to create. | map | n/a | yes |
-| names | Names of the buckets to create. | list(string) | n/a | yes |
-| prefix | Prefix used to generate bueckt names. | string | n/a | yes |
+| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map(string) | `<map>` | no |
+| folders | Top level bucket folders. Map of lowercase unprefixed name => list of folders to create. | map | `<map>` | no |
+| names | Names of the buckets to create. | list(string) | `<list>` | no |
 | project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
 
 ## Outputs
