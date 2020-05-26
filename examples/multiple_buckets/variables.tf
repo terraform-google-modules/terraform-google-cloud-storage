@@ -22,7 +22,7 @@ variable "project_id" {
 variable "names" {
   description = "Names of the buckets to create."
   type        = list(string)
-  default     = ["one", "see"]
+  default     = ["one", "two"]
 }
 
 variable "bucket_policy_only" {
