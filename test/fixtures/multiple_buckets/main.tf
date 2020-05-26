@@ -21,7 +21,7 @@ provider "random" {
 module "example" {
   source     = "../../../examples/multiple_buckets"
   project_id = var.project_id
-  names      = ["one", "two"]
+
   folders = {
     "two" = ["dev", "prod"]
   }
