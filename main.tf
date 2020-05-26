@@ -67,6 +67,23 @@ resource "google_storage_bucket" "buckets" {
       )
     }
   }
+  dynamic "cors" {
+    for_each = lookup(var.cors, element(var.names, count.index), {}) != {} ? { v = lookup(var.cors, element(var.names, count.index)) } : {}
+    content {
+      origin          = lookup(cors.value, "origin", null)
+      method          = lookup(cors.value, "method", null)
+      response_header = lookup(cors.value, "response_header", null)
+      max_age_seconds = lookup(cors.value, "max_age_seconds", null)
+    }
+  }
+  dynamic "website" {
+    for_each = lookup(var.website, element(var.names, count.index), {}) != {} ? { v = lookup(var.website, element(var.names, count.index)) } : {}
+    content {
+      main_page_suffix = lookup(website.value, "main_page_suffix", null)
+      not_found_page   = lookup(website.value, "not_found_page", null)
+    }
+  }
+
   dynamic "lifecycle_rule" {
     for_each = var.lifecycle_rules
     content {

@@ -51,6 +51,7 @@ Functional examples are included in the
 | bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators. | map | `<map>` | no |
 | bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map | `<map>` | no |
 | bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers. | map | `<map>` | no |
+| cors | Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors | any | `<map>` | no |
 | creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list(string) | `<list>` | no |
 | encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | map | `<map>` | no |
 | folders | Map of lowercase unprefixed name => list of top level folder objects. | map | `<map>` | no |
@@ -67,6 +68,7 @@ Functional examples are included in the
 | storage\_class | Bucket storage class. | string | `"MULTI_REGIONAL"` | no |
 | versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
 | viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list(string) | `<list>` | no |
+| website | Map of website values. Supported attributes: main_page_suffix, not_found_page | any | `<map>` | no |
 
 ## Outputs
 

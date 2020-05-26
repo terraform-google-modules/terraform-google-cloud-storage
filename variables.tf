@@ -151,3 +151,15 @@ variable "lifecycle_rules" {
   description = "List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string."
   default     = []
 }
+
+variable "cors" {
+  description = "Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
+  type        = any
+  default     = {}
+}
+
+variable "website" {
+  type        = any
+  default     = {}
+  description = "Map of website values. Supported attributes: main_page_suffix, not_found_page"
+}
