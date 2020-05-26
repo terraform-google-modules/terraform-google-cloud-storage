@@ -7,6 +7,19 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.5.0...v1.6.0) (2020-05-26)
+
+
+### Features
+
+* Add support for cors and website config in variables ([#63](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/63)) ([69dafb3](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/69dafb3b3c532013919f4da416fa72aa009621a3))
+* Add support for creating folders in buckets with folders variable ([#59](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/59)) ([0fa0689](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/0fa068980e4d01b66f5f0f2d923f6fae730b1151))
+
+
+### Bug Fixes
+
+* convert lifecycle action object to map ([#52](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/52)) ([f2e6ea3](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/f2e6ea3e1954c8311ff326d7c512756db1dd5ae9))
+
 ## [1.5.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.4.0...v1.5.0) (2020-04-22)
 
 
