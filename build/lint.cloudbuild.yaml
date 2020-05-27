@@ -19,6 +19,7 @@ steps:
 - id: 'lint-gh-pr-comment'
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && post_lint_status_pr_comment']
+  waitFor: ['-']
   env:
   - _PR_NUMBER=$_PR_NUMBER
   - REPO_NAME=$REPO_NAME
