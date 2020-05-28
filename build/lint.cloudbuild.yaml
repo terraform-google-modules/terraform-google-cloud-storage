@@ -13,6 +13,12 @@
 # limitations under the License.
 
 steps:
+- id: 'lint-gh-pr-comment'
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && post_lint_status_pr_comment']
+  env:
+  - _PR_NUMBER=$_PR_NUMBER
+  - REPO_NAME=$REPO_NAME
 - id: 'lint-tests'
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/usr/local/bin/test_lint.sh']
@@ -21,4 +27,4 @@ tags:
 - 'lint'
 substitutions:
   _DOCKER_IMAGE_DEVELOPER_TOOLS: 'cft/developer-tools'
-  _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '0.6.0'
+  _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '0.11.0'
