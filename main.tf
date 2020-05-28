@@ -14,7 +14,7 @@
  */
 
 locals {
-  prefixs = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  prefix = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
   folder_list = flatten([
     for bucket, folders in var.folders : [
       for folder in folders : {
