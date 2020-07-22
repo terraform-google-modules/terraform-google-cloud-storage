@@ -84,6 +84,12 @@ variable "viewers" {
   default     = []
 }
 
+variable "readers" {
+  description = "IAM-style members who will be granted roles/storage.legacyObjectReader on all buckets."
+  type        = list(string)
+  default     = []
+}
+
 variable "bucket_admins" {
   description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins."
   type        = map
@@ -101,6 +107,13 @@ variable "bucket_viewers" {
   type        = map
   default     = {}
 }
+
+variable "bucket_readers" {
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket legacy readers."
+  type        = map
+  default     = {}
+}
+
 
 variable "labels" {
   description = "Labels to be attached to the buckets"
@@ -134,6 +147,11 @@ variable "set_viewer_roles" {
   default     = false
 }
 
+variable "set_reader_roles" {
+  description = "Grant roles/storage.legacyObjectReader role to readers and bucket_readers."
+  type        = bool
+  default     = false
+}
 variable "lifecycle_rules" {
   type = set(object({
     # Object with keys:

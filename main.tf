@@ -149,9 +149,25 @@ resource "google_storage_bucket_iam_binding" "viewers" {
   )
 }
 
+resource "google_storage_bucket_iam_binding" "readers" {
+  count  = var.set_reader_roles ? length(var.names) : 0
+  bucket = element(google_storage_bucket.buckets.*.name, count.index)
+  role   = "roles/storage.legacyObjectReader"
+  members = compact(
+    concat(
+      var.readers,
+      split(
+        ",",
+        lookup(var.bucket_readers, element(var.names, count.index), ""),
+      ),
+    ),
+  )
+}
+
 resource "google_storage_bucket_object" "folders" {
   for_each = { for obj in local.folder_list : "${obj.bucket}_${obj.folder}" => obj }
   bucket   = element(google_storage_bucket.buckets.*.name, index(var.names, each.value.bucket))
   name     = "${each.value.folder}/" # Declaring an object with a trailing '/' creates a directory
   content  = "foo"                   # Note that the content string isn't actually used, but is only there since the resource requires it
 }
+
