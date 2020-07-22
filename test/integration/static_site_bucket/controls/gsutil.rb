@@ -23,10 +23,30 @@ control "gsutil" do
     its(:stdout) { should include attribute('names_list')[0] }
   end
 
-  get_bucket_0_cors = command("gsutil cors get gs://#{attribute("names_list")[0]}")
-  describe get_bucket_0_cors do
+  describe command("gsutil cors get gs://#{attribute("names_list")[0]}") do
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq "" }
+  end
+
+  describe command("gsutil web get gs://#{attribute("names_list")[0]}") do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq "" }
+    let!(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout)
+      else
+        {}
+      end
+    end
+
+   describe "website" do
+     it "website set index.html and 404.html" do
+       expect(data).to include(
+         "mainPageSuffix" => "index.html",
+         "notFoundPage" => "404.html"
+         )
+     end
+   end
   end
 
   describe command("gsutil iam get gs://#{attribute("names_list")[0]}") do
@@ -54,3 +74,4 @@ control "gsutil" do
   end
 
 end
+

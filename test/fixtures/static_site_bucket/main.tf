@@ -18,9 +18,41 @@ provider "random" {
   version = "~> 2.0"
 }
 
+locals {
+  fqdn = "example-${random_string.suffix.result}"
+}
+
+resource "random_string" "suffix" {
+  length  = 4
+  upper   = false
+  special = false
+}
 
 module "example" {
-  source     = "../../../examples/static_site_bucket"
-  project_id = var.project_id
-  prefix     = ""
+  source           = "../../../examples/static_site_bucket"
+  project_id       = var.project_id
+  prefix           = ""
+  names            = [local.fqdn]
+  set_reader_roles = true
+
+  bucket_readers = {
+    "${local.fqdn}" = "allUsers"
+  }
+
+  website = {
+    "${local.fqdn}" = {
+      main_page_suffix = "index.html"
+      not_found_page   = "404.html"
+    },
+  }
+
+  cors = {
+    "${local.fqdn}" = {
+      origin          = ["http://${local.fqdn}"]
+      method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
+      response_header = ["*"]
+      max_age_seconds = 3600
+    },
+  }
+
 }

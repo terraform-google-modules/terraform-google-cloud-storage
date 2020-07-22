@@ -30,3 +30,33 @@ variable "prefix" {
   type        = string
   default     = ""
 }
+
+variable "names" {
+  description = "Bucket name suffixes."
+  type        = list(string)
+}
+
+variable "set_reader_roles" {
+  description = "Grant roles/storage.legacyObjectReader role to readers and bucket_readers."
+  type        = bool
+  default     = false
+}
+
+variable "bucket_readers" {
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket legacy readers."
+  type        = map
+  default     = {}
+}
+
+variable "website" {
+  type        = any
+  default     = {}
+  description = "Map of website values. Supported attributes: main_page_suffix, not_found_page"
+}
+
+variable "cors" {
+  description = "Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
+  type        = any
+  default     = {}
+}
+
