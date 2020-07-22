@@ -22,7 +22,6 @@ variable "project_id" {
 variable "prefix" {
   description = "Prefix used to generate the bucket name."
   type        = string
-  default     = ""
 }
 
 variable "names" {
@@ -152,6 +151,7 @@ variable "set_reader_roles" {
   type        = bool
   default     = false
 }
+
 variable "lifecycle_rules" {
   type = set(object({
     # Object with keys:
