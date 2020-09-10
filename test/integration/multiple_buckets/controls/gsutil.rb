@@ -55,7 +55,6 @@ control "gsutil" do
     it { expect(action['storageClass']).to eq("NEARLINE") }
     it { expect(action['type']).to eq("SetStorageClass") }
     it { expect(condition['age']).to eq(10) }
-    it { expect(condition['isLive']).to eq(false) }
     it { expect(condition['matchesStorageClass']).to eq(%w(MULTI_REGIONAL STANDARD DURABLE_REDUCED_AVAILABILITY)) }
   end
 
@@ -71,7 +70,6 @@ control "gsutil" do
     it { expect(action['storageClass']).to eq("NEARLINE") }
     it { expect(action['type']).to eq("SetStorageClass") }
     it { expect(condition['age']).to eq(10) }
-    it { expect(condition['isLive']).to eq(false) }
     it { expect(condition['matchesStorageClass']).to eq(%w(MULTI_REGIONAL STANDARD DURABLE_REDUCED_AVAILABILITY)) }
   end
 

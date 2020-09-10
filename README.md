@@ -95,7 +95,7 @@ The following dependencies must be available:
 
 - [Terraform][terraform] v0.12
   - For Terraform v0.11 see the [Compatibility](#compatibility) section above
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v2.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
 
 ### Service Account
 
