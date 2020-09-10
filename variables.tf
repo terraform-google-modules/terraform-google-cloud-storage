@@ -60,9 +60,15 @@ variable "encryption_key_names" {
 }
 
 variable "bucket_policy_only" {
-  description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
+  description = "Deprecated. Use uniform_bucket_level_access. Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
   type        = map
   default     = {}
+}
+
+variable "uniform_bucket_level_access" {
+  description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
+  type        = map
+  default     = null
 }
 
 variable "admins" {
