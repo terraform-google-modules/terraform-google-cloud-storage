@@ -38,7 +38,7 @@ resource "google_storage_bucket" "buckets" {
     lower(element(var.names, count.index)),
     false,
   )
-  bucket_policy_only = lookup(
+  uniform_bucket_level_access = lookup(
     var.bucket_policy_only,
     lower(element(var.names, count.index)),
     true,
