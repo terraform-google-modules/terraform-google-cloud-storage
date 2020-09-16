@@ -59,7 +59,7 @@ variable "encryption_key_names" {
   default     = {}
 }
 
-variable "bucket_policy_only" {
+variable "uniform_bucket_level_access" {
   description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
   type        = map
   default     = {}

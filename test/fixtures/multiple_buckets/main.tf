@@ -26,7 +26,7 @@ module "example" {
     "two" = ["dev", "prod"]
   }
 
-  bucket_policy_only = {
+  uniform_bucket_level_access = {
     "one" = true
     "two" = false
   }

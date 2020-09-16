@@ -29,9 +29,9 @@ module "cloud_storage" {
   project_id = var.project_id
   prefix     = "multiple-buckets-${random_string.prefix.result}"
 
-  names              = var.names
-  bucket_policy_only = var.bucket_policy_only
-  folders            = var.folders
+  names                       = var.names
+  uniform_bucket_level_access = var.uniform_bucket_level_access
+  folders                     = var.folders
 
   lifecycle_rules = [{
     action = {
