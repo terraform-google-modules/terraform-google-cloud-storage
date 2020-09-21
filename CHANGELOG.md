@@ -9,6 +9,10 @@ and this project adheres to
 
 ## [1.7.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.6.0...v1.7.0) (2020-09-16)
 
+### ⚠ BREAKING CHANGES
+
+* Minimum Google provider version increased to [3.38.0](https://github.com/hashicorp/terraform-provider-google/blob/master/CHANGELOG.md#3380-september-08-2020)
+
 
 ### Features
 
@@ -18,6 +22,8 @@ and this project adheres to
 ### Bug Fixes
 
 * Use uniform_bucket_level_access flag instead due to deprecation ([#80](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/80)) ([f287581](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/f287581701bdcb0af996a26a8b922788cf686f57))
+
+
 
 ## [1.6.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.5.0...v1.6.0) (2020-05-26)
 
