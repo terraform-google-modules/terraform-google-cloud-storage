@@ -98,8 +98,9 @@ resource "google_storage_bucket" "buckets" {
       condition {
         age                   = lookup(lifecycle_rule.value.condition, "age", null)
         created_before        = lookup(lifecycle_rule.value.condition, "created_before", null)
-        with_state            = lookup(lifecycle_rule.value.condition, "with_state", null)
-        is_live               = lookup(lifecycle_rule.value.condition, "is_live", null)
+        // provide backwards compatibility for those using is_live in this module and google provider > 3.41.0
+        // https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/89
+        with_state            = lookup(lifecycle_rule.value.condition, "with_state", lookup(lifecycle_rule.value.condition, "is_live", false) ? "LIVE" : null)
         matches_storage_class = contains(keys(lifecycle_rule.value.condition), "matches_storage_class") ? split(",", lifecycle_rule.value.condition["matches_storage_class"]) : null
         num_newer_versions    = lookup(lifecycle_rule.value.condition, "num_newer_versions", null)
       }
