@@ -152,6 +152,36 @@ resource "google_storage_bucket_iam_binding" "viewers" {
   )
 }
 
+resource "google_storage_bucket_iam_binding" "hmac_key_admins" {
+  for_each = var.set_hmac_key_admin_roles ? local.names_set : toset([])
+  bucket   = google_storage_bucket.buckets[each.key].name
+  role     = "roles/storage.hmacKeyAdmin"
+  members = compact(
+    concat(
+      var.hmac_key_admins,
+      split(
+        ",",
+        lookup(var.bucket_hmac_key_admins, each.key, ""),
+      ),
+    ),
+  )
+}
+
+resource "google_storage_bucket_iam_binding" "storage_admins" {
+  for_each = var.set_storage_admin_roles ? local.names_set : toset([])
+  bucket   = google_storage_bucket.buckets[each.value].name
+  role     = "roles/storage.admin"
+  members = compact(
+    concat(
+      var.storage_admins,
+      split(
+        ",",
+        lookup(var.bucket_storage_admins, each.value, ""),
+      ),
+    ),
+  )
+}
+
 resource "google_storage_bucket_object" "folders" {
   for_each = { for obj in local.folder_list : "${obj.bucket}_${obj.folder}" => obj }
   bucket   = google_storage_bucket.buckets[each.value.bucket].name
