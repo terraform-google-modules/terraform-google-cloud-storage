@@ -24,6 +24,8 @@ module "project" {
   folder_id         = var.folder_id
   billing_account   = var.billing_account
 
+  skip_gcloud_download = true
+
   activate_apis = [
     "storage-api.googleapis.com",
     "cloudresourcemanager.googleapis.com",
