@@ -133,7 +133,7 @@ variable "labels" {
 
 variable "folders" {
   description = "Map of lowercase unprefixed name => list of top level folder objects."
-  type        = map(string)
+  type        = map(list(string))
   default     = {}
 }
 
