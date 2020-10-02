@@ -27,6 +27,7 @@ module "project" {
   skip_gcloud_download = true
 
   activate_apis = [
+    "iam.googleapis.com",
     "storage-api.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
