@@ -56,7 +56,7 @@ Functional examples are included in the
 | cors | Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors | any | `<map>` | no |
 | creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list(string) | `<list>` | no |
 | encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | map(string) | `<map>` | no |
-| folders | Map of lowercase unprefixed name => list of top level folder objects. | map(string) | `<map>` | no |
+| folders | Map of lowercase unprefixed name => list of top level folder objects. | map(list(string)) | `<map>` | no |
 | force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map(bool) | `<map>` | no |
 | hmac\_key\_admins | IAM-style members who will be granted roles/storage.hmacKeyAdmin on all buckets. | list(string) | `<list>` | no |
 | labels | Labels to be attached to the buckets | map(string) | `<map>` | no |
