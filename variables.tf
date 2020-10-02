@@ -43,25 +43,25 @@ variable "storage_class" {
 
 variable "force_destroy" {
   description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
-  type        = map
+  type        = map(bool)
   default     = {}
 }
 
 variable "versioning" {
   description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
-  type        = map
+  type        = map(bool)
   default     = {}
 }
 
 variable "encryption_key_names" {
   description = "Optional map of lowercase unprefixed name => string, empty strings are ignored."
-  type        = map
+  type        = map(string)
   default     = {}
 }
 
 variable "bucket_policy_only" {
   description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
-  type        = map
+  type        = map(bool)
   default     = {}
 }
 
@@ -96,20 +96,20 @@ variable "storage_admins" {
 }
 
 variable "bucket_admins" {
-  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins."
-  type        = map
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket admins."
+  type        = map(string)
   default     = {}
 }
 
 variable "bucket_creators" {
-  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators."
-  type        = map
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket creators."
+  type        = map(string)
   default     = {}
 }
 
 variable "bucket_viewers" {
-  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers."
-  type        = map
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket viewers."
+  type        = map(string)
   default     = {}
 }
 
@@ -127,13 +127,13 @@ variable "bucket_storage_admins" {
 
 variable "labels" {
   description = "Labels to be attached to the buckets"
-  type        = map
+  type        = map(string)
   default     = {}
 }
 
 variable "folders" {
   description = "Map of lowercase unprefixed name => list of top level folder objects."
-  type        = map
+  type        = map(string)
   default     = {}
 }
 
