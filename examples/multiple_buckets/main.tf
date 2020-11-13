@@ -15,7 +15,7 @@
  */
 
 provider "google" {
-  version = "~> 3.47.0"
+  version = "~> 3.43.0"
 }
 
 resource "random_string" "prefix" {
