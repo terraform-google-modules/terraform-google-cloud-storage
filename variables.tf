@@ -43,25 +43,25 @@ variable "storage_class" {
 
 variable "force_destroy" {
   description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
-  type        = map
+  type        = map(bool)
   default     = {}
 }
 
 variable "versioning" {
   description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
-  type        = map
+  type        = map(bool)
   default     = {}
 }
 
 variable "encryption_key_names" {
   description = "Optional map of lowercase unprefixed name => string, empty strings are ignored."
-  type        = map
+  type        = map(string)
   default     = {}
 }
 
 variable "bucket_policy_only" {
   description = "Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean"
-  type        = map
+  type        = map(bool)
   default     = {}
 }
 
@@ -83,33 +83,57 @@ variable "viewers" {
   default     = []
 }
 
+variable "hmac_key_admins" {
+  description = "IAM-style members who will be granted roles/storage.hmacKeyAdmin on all buckets."
+  type        = list(string)
+  default     = []
+}
+
+variable "storage_admins" {
+  description = "IAM-style members who will be granted roles/storage.admin on all buckets."
+  type        = list(string)
+  default     = []
+}
+
 variable "bucket_admins" {
-  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins."
-  type        = map
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket admins."
+  type        = map(string)
   default     = {}
 }
 
 variable "bucket_creators" {
-  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators."
-  type        = map
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket creators."
+  type        = map(string)
   default     = {}
 }
 
 variable "bucket_viewers" {
-  description = "Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers."
-  type        = map
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket viewers."
+  type        = map(string)
+  default     = {}
+}
+
+variable "bucket_hmac_key_admins" {
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket HMAC Key admins."
+  type        = map(string)
+  default     = {}
+}
+
+variable "bucket_storage_admins" {
+  description = "Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket storage admins."
+  type        = map(string)
   default     = {}
 }
 
 variable "labels" {
   description = "Labels to be attached to the buckets"
-  type        = map
+  type        = map(string)
   default     = {}
 }
 
 variable "folders" {
   description = "Map of lowercase unprefixed name => list of top level folder objects."
-  type        = map
+  type        = map(list(string))
   default     = {}
 }
 
@@ -129,6 +153,18 @@ variable "set_creator_roles" {
 
 variable "set_viewer_roles" {
   description = "Grant roles/storage.objectViewer role to viewers and bucket_viewers."
+  type        = bool
+  default     = false
+}
+
+variable "set_hmac_key_admin_roles" {
+  description = "Grant roles/storage.hmacKeyAdmin role to hmac_key_admins and bucket_hmac_key_admins."
+  type        = bool
+  default     = false
+}
+
+variable "set_storage_admin_roles" {
+  description = "Grant roles/storage.admin role to storage_admins and bucket_storage_admins."
   type        = bool
   default     = false
 }

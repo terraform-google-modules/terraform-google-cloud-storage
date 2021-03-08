@@ -47,16 +47,19 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list(string) | `<list>` | no |
-| bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style bucket admins. | map | `<map>` | no |
-| bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style bucket creators. | map | `<map>` | no |
-| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map | `<map>` | no |
-| bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style bucket viewers. | map | `<map>` | no |
+| bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket admins. | map(string) | `<map>` | no |
+| bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket creators. | map(string) | `<map>` | no |
+| bucket\_hmac\_key\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket HMAC Key admins. | map(string) | `<map>` | no |
+| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map(bool) | `<map>` | no |
+| bucket\_storage\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket storage admins. | map(string) | `<map>` | no |
+| bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket viewers. | map(string) | `<map>` | no |
 | cors | Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors | any | `<map>` | no |
 | creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list(string) | `<list>` | no |
-| encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | map | `<map>` | no |
-| folders | Map of lowercase unprefixed name => list of top level folder objects. | map | `<map>` | no |
-| force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
-| labels | Labels to be attached to the buckets | map | `<map>` | no |
+| encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | map(string) | `<map>` | no |
+| folders | Map of lowercase unprefixed name => list of top level folder objects. | map(list(string)) | `<map>` | no |
+| force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map(bool) | `<map>` | no |
+| hmac\_key\_admins | IAM-style members who will be granted roles/storage.hmacKeyAdmin on all buckets. | list(string) | `<list>` | no |
+| labels | Labels to be attached to the buckets | map(string) | `<map>` | no |
 | lifecycle\_rules | List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string. | object | `<list>` | no |
 | location | Bucket location. | string | `"EU"` | no |
 | names | Bucket name suffixes. | list(string) | n/a | yes |
@@ -64,9 +67,12 @@ Functional examples are included in the
 | project\_id | Bucket project id. | string | n/a | yes |
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | bool | `"false"` | no |
 | set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | bool | `"false"` | no |
+| set\_hmac\_key\_admin\_roles | Grant roles/storage.hmacKeyAdmin role to hmac_key_admins and bucket_hmac_key_admins. | bool | `"false"` | no |
+| set\_storage\_admin\_roles | Grant roles/storage.admin role to storage_admins and bucket_storage_admins. | bool | `"false"` | no |
 | set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | bool | `"false"` | no |
+| storage\_admins | IAM-style members who will be granted roles/storage.admin on all buckets. | list(string) | `<list>` | no |
 | storage\_class | Bucket storage class. | string | `"MULTI_REGIONAL"` | no |
-| versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map | `<map>` | no |
+| versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map(bool) | `<map>` | no |
 | viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list(string) | `<list>` | no |
 | website | Map of website values. Supported attributes: main_page_suffix, not_found_page | any | `<map>` | no |
 
