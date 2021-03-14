@@ -37,19 +37,19 @@ Functional examples are included in the
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| bucket\_policy\_only | Enables Bucket Policy Only access to a bucket. | bool | `"true"` | no |
-| encryption | A Cloud KMS key that will be used to encrypt objects inserted into this bucket | object | `"null"` | no |
-| force\_destroy | When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects. | bool | `"false"` | no |
-| iam\_members | The list of IAM members to grant permissions on the bucket. | object | `<list>` | no |
-| labels | A set of key/value label pairs to assign to the bucket. | map(string) | `"null"` | no |
-| lifecycle\_rules | The bucket's Lifecycle Rules configuration. | object | `<list>` | no |
-| location | The location of the bucket. | string | n/a | yes |
-| name | The name of the bucket. | string | n/a | yes |
-| project\_id | The ID of the project to create the bucket in. | string | n/a | yes |
-| retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | object | `"null"` | no |
-| storage\_class | The Storage Class of the new bucket. | string | `"null"` | no |
-| versioning | While set to true, versioning is fully enabled for this bucket. | bool | `"true"` | no |
+|------|-------------|------|---------|:--------:|
+| bucket\_policy\_only | Enables Bucket Policy Only access to a bucket. | `bool` | `true` | no |
+| encryption | A Cloud KMS key that will be used to encrypt objects inserted into this bucket | <pre>object({<br>    default_kms_key_name = string<br>  })</pre> | `null` | no |
+| force\_destroy | When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects. | `bool` | `false` | no |
+| iam\_members | The list of IAM members to grant permissions on the bucket. | <pre>list(object({<br>    role   = string<br>    member = string<br>  }))</pre> | `[]` | no |
+| labels | A set of key/value label pairs to assign to the bucket. | `map(string)` | `null` | no |
+| lifecycle\_rules | The bucket's Lifecycle Rules configuration. | <pre>list(object({<br>    # Object with keys:<br>    # - type - The type of the action of this Lifecycle Rule. Supported values: Delete and SetStorageClass.<br>    # - storage_class - (Required if action type is SetStorageClass) The target Storage Class of objects affected by this Lifecycle Rule.<br>    action = any<br><br>    # Object with keys:<br>    # - age - (Optional) Minimum age of an object in days to satisfy this condition.<br>    # - created_before - (Optional) Creation date of an object in RFC 3339 (e.g. 2017-06-13) to satisfy this condition.<br>    # - with_state - (Optional) Match to live and/or archived objects. Supported values include: "LIVE", "ARCHIVED", "ANY".<br>    # - matches_storage_class - (Optional) Storage Class of objects to satisfy this condition. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD, DURABLE_REDUCED_AVAILABILITY.<br>    # - num_newer_versions - (Optional) Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.<br>    condition = any<br>  }))</pre> | `[]` | no |
+| location | The location of the bucket. | `string` | n/a | yes |
+| name | The name of the bucket. | `string` | n/a | yes |
+| project\_id | The ID of the project to create the bucket in. | `string` | n/a | yes |
+| retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | <pre>object({<br>    is_locked        = bool<br>    retention_period = number<br>  })</pre> | `null` | no |
+| storage\_class | The Storage Class of the new bucket. | `string` | `null` | no |
+| versioning | While set to true, versioning is fully enabled for this bucket. | `bool` | `true` | no |
 
 ## Outputs
 

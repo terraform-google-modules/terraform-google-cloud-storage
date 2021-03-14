@@ -11,10 +11,10 @@ If you only wish to create a single bucket, consider using the
 [simple bucket](modules/simple_bucket) submodule instead.
 
 ## Compatibility
-
- This module is meant for use with Terraform 0.12. If you haven't [upgraded](https://www.terraform.io/upgrade-guides/0-12.html)
-  and need a Terraform 0.11.x-compatible version of this module, the last released version intended for
-  Terraform 0.11.x is [0.1.0](https://registry.terraform.io/modules/terraform-google-modules/cloud-storage/google/0.1.0).
+This module is meant for use with Terraform 0.13. If you haven't
+[upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
+0.12.x-compatible version of this module, the last released version
+intended for Terraform 0.12.x is [v1.7.1](https://registry.terraform.io/modules/terraform-google-modules/-cloud-storage/google/v1.7.1).
 
 ## Usage
 
@@ -45,36 +45,36 @@ Functional examples are included in the
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | list(string) | `<list>` | no |
-| bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket admins. | map(string) | `<map>` | no |
-| bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket creators. | map(string) | `<map>` | no |
-| bucket\_hmac\_key\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket HMAC Key admins. | map(string) | `<map>` | no |
-| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | map(bool) | `<map>` | no |
-| bucket\_storage\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket storage admins. | map(string) | `<map>` | no |
-| bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket viewers. | map(string) | `<map>` | no |
-| cors | Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors | any | `<map>` | no |
-| creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | list(string) | `<list>` | no |
-| encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | map(string) | `<map>` | no |
-| folders | Map of lowercase unprefixed name => list of top level folder objects. | map(list(string)) | `<map>` | no |
-| force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | map(bool) | `<map>` | no |
-| hmac\_key\_admins | IAM-style members who will be granted roles/storage.hmacKeyAdmin on all buckets. | list(string) | `<list>` | no |
-| labels | Labels to be attached to the buckets | map(string) | `<map>` | no |
-| lifecycle\_rules | List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string. | object | `<list>` | no |
-| location | Bucket location. | string | `"EU"` | no |
-| names | Bucket name suffixes. | list(string) | n/a | yes |
-| prefix | Prefix used to generate the bucket name. | string | n/a | yes |
-| project\_id | Bucket project id. | string | n/a | yes |
-| set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket_admins. | bool | `"false"` | no |
-| set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket_creators. | bool | `"false"` | no |
-| set\_hmac\_key\_admin\_roles | Grant roles/storage.hmacKeyAdmin role to hmac_key_admins and bucket_hmac_key_admins. | bool | `"false"` | no |
-| set\_storage\_admin\_roles | Grant roles/storage.admin role to storage_admins and bucket_storage_admins. | bool | `"false"` | no |
-| set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket_viewers. | bool | `"false"` | no |
-| storage\_admins | IAM-style members who will be granted roles/storage.admin on all buckets. | list(string) | `<list>` | no |
-| storage\_class | Bucket storage class. | string | `"MULTI_REGIONAL"` | no |
-| versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | map(bool) | `<map>` | no |
-| viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | list(string) | `<list>` | no |
-| website | Map of website values. Supported attributes: main_page_suffix, not_found_page | any | `<map>` | no |
+|------|-------------|------|---------|:--------:|
+| admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | `list(string)` | `[]` | no |
+| bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket admins. | `map(string)` | `{}` | no |
+| bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket creators. | `map(string)` | `{}` | no |
+| bucket\_hmac\_key\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket HMAC Key admins. | `map(string)` | `{}` | no |
+| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | `map(bool)` | `{}` | no |
+| bucket\_storage\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket storage admins. | `map(string)` | `{}` | no |
+| bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket viewers. | `map(string)` | `{}` | no |
+| cors | Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors | `any` | `{}` | no |
+| creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | `list(string)` | `[]` | no |
+| encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | `map(string)` | `{}` | no |
+| folders | Map of lowercase unprefixed name => list of top level folder objects. | `map(list(string))` | `{}` | no |
+| force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
+| hmac\_key\_admins | IAM-style members who will be granted roles/storage.hmacKeyAdmin on all buckets. | `list(string)` | `[]` | no |
+| labels | Labels to be attached to the buckets | `map(string)` | `{}` | no |
+| lifecycle\_rules | List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches\_storage\_class should be a comma delimited string. | <pre>set(object({<br>    # Object with keys:<br>    # - type - The type of the action of this Lifecycle Rule. Supported values: Delete and SetStorageClass.<br>    # - storage_class - (Required if action type is SetStorageClass) The target Storage Class of objects affected by this Lifecycle Rule.<br>    action = map(string)<br><br>    # Object with keys:<br>    # - age - (Optional) Minimum age of an object in days to satisfy this condition.<br>    # - created_before - (Optional) Creation date of an object in RFC 3339 (e.g. 2017-06-13) to satisfy this condition.<br>    # - with_state - (Optional) Match to live and/or archived objects. Supported values include: "LIVE", "ARCHIVED", "ANY".<br>    # - matches_storage_class - (Optional) Comma delimited string for storage class of objects to satisfy this condition. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD, DURABLE_REDUCED_AVAILABILITY.<br>    # - num_newer_versions - (Optional) Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.<br>    condition = map(string)<br>  }))</pre> | `[]` | no |
+| location | Bucket location. | `string` | `"EU"` | no |
+| names | Bucket name suffixes. | `list(string)` | n/a | yes |
+| prefix | Prefix used to generate the bucket name. | `string` | n/a | yes |
+| project\_id | Bucket project id. | `string` | n/a | yes |
+| set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket\_admins. | `bool` | `false` | no |
+| set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket\_creators. | `bool` | `false` | no |
+| set\_hmac\_key\_admin\_roles | Grant roles/storage.hmacKeyAdmin role to hmac\_key\_admins and bucket\_hmac\_key\_admins. | `bool` | `false` | no |
+| set\_storage\_admin\_roles | Grant roles/storage.admin role to storage\_admins and bucket\_storage\_admins. | `bool` | `false` | no |
+| set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket\_viewers. | `bool` | `false` | no |
+| storage\_admins | IAM-style members who will be granted roles/storage.admin on all buckets. | `list(string)` | `[]` | no |
+| storage\_class | Bucket storage class. | `string` | `"MULTI_REGIONAL"` | no |
+| versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
+| viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | `list(string)` | `[]` | no |
+| website | Map of website values. Supported attributes: main\_page\_suffix, not\_found\_page | `any` | `{}` | no |
 
 ## Outputs
 
@@ -100,7 +100,7 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.12
+- [Terraform](https://www.terraform.io/downloads.html) >= 0.13.0
   - For Terraform v0.11 see the [Compatibility](#compatibility) section above
 - [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
 
