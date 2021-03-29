@@ -6,9 +6,13 @@ This example illustrates how to use the `simple-bucket` submodule.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| name | Name of the buckets to create. | string | n/a | yes |
-| project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| name | Name of the buckets to create. | `string` | n/a | yes |
+| project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
