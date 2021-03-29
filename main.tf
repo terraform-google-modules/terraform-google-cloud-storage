@@ -15,7 +15,7 @@
  */
 
 locals {
-  prefix       = var.prefix == "" ? "" : join("-", list(var.prefix, lower(var.location), ""))
+  prefix       = var.prefix == "" ? "" : join("-", [var.prefix, lower(var.location), ""])
   names_set    = toset(var.names)
   buckets_list = [for name in var.names : google_storage_bucket.buckets[name]]
   first_bucket = local.buckets_list[0]
