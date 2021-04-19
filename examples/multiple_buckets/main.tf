@@ -33,6 +33,9 @@ module "cloud_storage" {
   bucket_policy_only = var.bucket_policy_only
   folders            = var.folders
 
+  // CODELAB: Add "silly_label" as an example to main.tf.
+  silly_label        = "awesome"
+
   lifecycle_rules = [{
     action = {
       type          = "SetStorageClass"
