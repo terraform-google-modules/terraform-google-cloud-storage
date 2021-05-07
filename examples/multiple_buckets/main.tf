@@ -32,6 +32,7 @@ module "cloud_storage" {
   names              = var.names
   bucket_policy_only = var.bucket_policy_only
   folders            = var.folders
+  silly_label        = "awesome"
 
   lifecycle_rules = [{
     action = {
