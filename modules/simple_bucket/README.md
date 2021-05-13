@@ -24,7 +24,7 @@ module "bucket" {
   project_id = "example-project"
   location   = "us-east1"
   iam_members = [{
-    role   = "roles/storage.viewer"
+    role   = "roles/storage.objectViewer"
     member = "user:example-user@example.com"
   }]
 }
