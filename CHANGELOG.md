@@ -12,8 +12,8 @@ and this project adheres to
 
 ### ⚠ BREAKING CHANGES
 
-* add Terraform 0.13 constraint and module attribution (#105)
-* The resource state locations have changed to use for_each, please see the upgrade guide for details.
+* Added Terraform 0.13 constraint and module attribution (#105)
+* The resource state locations have changed to use for_each, please see the [upgrade guide](https://github.com/terraform-google-modules/terraform-google-cloud-storage/blob/master/docs/upgrading_to_v2.0.md) for details.
 
 ### Features
 
