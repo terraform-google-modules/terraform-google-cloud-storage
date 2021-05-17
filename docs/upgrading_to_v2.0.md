@@ -18,12 +18,12 @@ module "cloud_storage" {
 will produce the following output during plan:
 
 ```bash
-module.module.cloud_storage.google_storage_bucket.buckets will be destroyed
-module.module.cloud_storage.google_storage_bucket.buckets[1] will be destroyed
+module.cloud_storage.google_storage_bucket.buckets will be destroyed
+module.cloud_storage.google_storage_bucket.buckets[1] will be destroyed
   .
   .
-module.module.cloud_storage.google_storage_bucket.buckets["one"]
-module.module.cloud_storage.google_storage_bucket.buckets["two"]
+module.cloud_storage.google_storage_bucket.buckets["one"]
+module.cloud_storage.google_storage_bucket.buckets["two"]
   .
   .
 Plan: 2 to add, 0 to change, 2 to destroy.
@@ -32,8 +32,8 @@ Plan: 2 to add, 0 to change, 2 to destroy.
 To prevent bucket recreation, it is recommended to migrate the statefile as shown below
 
 ```shell
-terraform state mv module.module.cloud_storage.google_storage_bucket.buckets[0] 'module.module.cloud_storage.google_storage_bucket.buckets["one"]'
-terraform state mv module.module.cloud_storage.google_storage_bucket.buckets[1] 'module.module.cloud_storage.google_storage_bucket.buckets["two"]'
+terraform state mv module.cloud_storage.google_storage_bucket.buckets[0] 'module.cloud_storage.google_storage_bucket.buckets["one"]'
+terraform state mv module.cloud_storage.google_storage_bucket.buckets[1] 'module.cloud_storage.google_storage_bucket.buckets["two"]'
 ```
 
 Re running the plan should show that the storage bucket resources are no longer targeted.
