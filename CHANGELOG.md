@@ -7,6 +7,27 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.7.1...v2.0.0) (2021-05-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* add Terraform 0.13 constraint and module attribution (#105)
+* The resource state locations have changed to use for_each, please see the upgrade guide for details.
+
+### Features
+
+* add Terraform 0.13 constraint and module attribution ([#105](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/105)) ([b33d674](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/b33d67417d2e4309e9774811e0e14c612c300f6c))
+* Allow setting storage.admin and storage.hmacKeyAdmin roles ([#95](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/95)) ([9f6085e](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/9f6085e671eea558585f4c5027bd94f1bcdd4a11))
+* Use for_each instead of count to create resource ([#86](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/86)) ([af73533](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/af735332c091c6fe5de082562c8d59f979421611))
+
+
+### Bug Fixes
+
+* Fix deprecation of is_live lifecycle rule ([#91](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/91)) ([f73041b](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/f73041b904d8f5c7020efb84737d54869e394738))
+* Remove deprecated list() function usage ([#107](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/107)) ([1fe315a](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/1fe315a8ab722d7f91b60e1c209bf938724eb371))
+* Use correct IAM view role in example ([#115](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/115)) ([4a9931d](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/4a9931dc339216fc5edb815c681168fd7063424c))
+
 ### [1.7.2](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.7.1...v1.7.2) (2020-09-30)
 
 ### Bug Fixes
