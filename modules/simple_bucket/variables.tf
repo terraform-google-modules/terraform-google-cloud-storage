@@ -104,3 +104,12 @@ variable "lifecycle_rules" {
   }))
   default = []
 }
+
+variable "logging" {
+  description = "Configuration of the bucket's access and storage logs. If log_object_prefix is set to the empty string, the name of the bucket will be used."
+  type = object({
+    log_bucket        = string
+    log_object_prefix = string
+  })
+  default = null
+}
