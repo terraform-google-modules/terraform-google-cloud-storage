@@ -105,11 +105,14 @@ variable "lifecycle_rules" {
   default = []
 }
 
-variable "logging" {
-  description = "Configuration of the bucket's access and storage logs. If log_object_prefix is set to the empty string, the name of the bucket will be used."
-  type = object({
-    log_bucket        = string
-    log_object_prefix = string
-  })
-  default = null
+variable "log_bucket" {
+  description = "The bucket that will receive log objects."
+  type        = string
+  default     = null
+}
+
+variable "log_object_prefix" {
+  description = "The object prefix for log objects. If it's not provided, by default GCS sets this to this bucket's name"
+  type        = string
+  default     = null
 }
