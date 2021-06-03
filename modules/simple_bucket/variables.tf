@@ -104,3 +104,15 @@ variable "lifecycle_rules" {
   }))
   default = []
 }
+
+variable "log_bucket" {
+  description = "The bucket that will receive log objects."
+  type        = string
+  default     = null
+}
+
+variable "log_object_prefix" {
+  description = "The object prefix for log objects. If it's not provided, by default GCS sets this to this bucket's name"
+  type        = string
+  default     = null
+}

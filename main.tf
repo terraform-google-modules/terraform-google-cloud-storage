@@ -105,6 +105,13 @@ resource "google_storage_bucket" "buckets" {
     }
   }
 
+  dynamic "logging" {
+    for_each = lookup(var.logging, each.value, {}) != {} ? { v = lookup(var.logging, each.value) } : {}
+    content {
+      log_bucket        = lookup(logging.value, "log_bucket", null)
+      log_object_prefix = lookup(logging.value, "log_object_prefix", null)
+    }
+  }
 }
 
 resource "google_storage_bucket_iam_binding" "admins" {

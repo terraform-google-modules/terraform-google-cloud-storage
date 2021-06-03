@@ -199,3 +199,9 @@ variable "website" {
   default     = {}
   description = "Map of website values. Supported attributes: main_page_suffix, not_found_page"
 }
+
+variable "logging" {
+  description = "Map of lowercase unprefixed name => bucket logging config object. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#logging"
+  type        = any
+  default     = {}
+}
