@@ -101,6 +101,7 @@ resource "google_storage_bucket" "buckets" {
         with_state            = lookup(lifecycle_rule.value.condition, "with_state", lookup(lifecycle_rule.value.condition, "is_live", false) ? "LIVE" : null)
         matches_storage_class = contains(keys(lifecycle_rule.value.condition), "matches_storage_class") ? split(",", lifecycle_rule.value.condition["matches_storage_class"]) : null
         num_newer_versions    = lookup(lifecycle_rule.value.condition, "num_newer_versions", null)
+        days_since_custom_time = lookup(lifecycle_rule.value.condition, "days_since_custom_time", null)
       }
     }
   }
