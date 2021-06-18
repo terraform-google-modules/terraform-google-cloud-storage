@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v2.0.0...v2.1.0) (2021-06-15)
+
+
+### Features
+
+* add support for days_since_custom_time ([#120](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/120)) ([0247454](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/02474541f50146ae8dff3aa146ff6f8f278e041c))
+* Add support for log bucket configuration ([#117](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/117)) ([eca9c57](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/eca9c57551e48e4fff635df8c59d2797b78c6652))
+
 ## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v1.7.1...v2.0.0) (2021-05-17)
 
 
