@@ -68,11 +68,17 @@ resource "google_storage_bucket" "bucket" {
   }
 }
 
-resource "google_storage_bucket_iam_member" "members" {
-  for_each = {
+locals {
+  iam_members = var.iam_members_use_index_key ? {
+    for m in range(length(var.iam_members)) : "${var.iam_members[m].role} ${m}" => var.iam_members[m]
+    } : {
     for m in var.iam_members : "${m.role} ${m.member}" => m
   }
-  bucket = google_storage_bucket.bucket.name
-  role   = each.value.role
-  member = each.value.member
+}
+
+resource "google_storage_bucket_iam_member" "members" {
+  for_each = local.iam_members
+  bucket   = google_storage_bucket.bucket.name
+  role     = each.value.role
+  member   = each.value.member
 }

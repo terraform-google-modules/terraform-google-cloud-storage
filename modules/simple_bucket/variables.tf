@@ -69,6 +69,12 @@ variable "iam_members" {
   default = []
 }
 
+variable "iam_members_use_index_key" {
+  description = "if set to true use the index as key, to prevent unknown instances when use resource attributes as member"
+  type        = bool
+  default     = false
+}
+
 variable "retention_policy" {
   description = "Configuration of the bucket's data retention policy for how long objects in the bucket should be retained."
   type = object({
