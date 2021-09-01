@@ -78,6 +78,17 @@ variable "retention_policy" {
   default = null
 }
 
+variable "cors" {
+  description = "Configuration of CORS for bucket with structure as defined in https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#cors."
+  type = list(object({
+    origin          = string
+    method          = string
+    response_header = string
+    max_age_seconds = number
+  }))
+  default = []
+}
+
 variable "encryption" {
   description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket"
   type = object({

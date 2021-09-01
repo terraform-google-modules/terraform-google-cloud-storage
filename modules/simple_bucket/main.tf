@@ -42,6 +42,16 @@ resource "google_storage_bucket" "bucket" {
     }
   }
 
+  dynamic "cors" {
+    for_each = var.corse == null ? [] : [var.corse]
+    content {
+      origin          = lookup(cors.value, "origin", null)
+      method          = lookup(cors.value, "method", null)
+      response_header = lookup(cors.value, "response_header", null)
+      max_age_seconds = lookup(cors.value, "max_age_seconds", null)
+    }
+  }
+
   dynamic "lifecycle_rule" {
     for_each = var.lifecycle_rules
     content {
