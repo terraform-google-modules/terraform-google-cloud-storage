@@ -76,6 +76,7 @@ Functional examples are included in the
 | versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
 | viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | `list(string)` | `[]` | no |
 | website | Map of website values. Supported attributes: main\_page\_suffix, not\_found\_page | `any` | `{}` | no |
+| retention_policy | Map of retention_policy values. Supported attributes: is\_locked, retention\_period | `any` | `{}` | no |
 
 ## Outputs
 
