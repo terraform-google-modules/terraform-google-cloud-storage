@@ -66,6 +66,7 @@ Functional examples are included in the
 | names | Bucket name suffixes. | `list(string)` | n/a | yes |
 | prefix | Prefix used to generate the bucket name. | `string` | n/a | yes |
 | project\_id | Bucket project id. | `string` | n/a | yes |
+| retention\_policy | Map of retention policy values. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#retention_policy | `any` | `{}` | no |
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket\_admins. | `bool` | `false` | no |
 | set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket\_creators. | `bool` | `false` | no |
 | set\_hmac\_key\_admin\_roles | Grant roles/storage.hmacKeyAdmin role to hmac\_key\_admins and bucket\_hmac\_key\_admins. | `bool` | `false` | no |
@@ -76,7 +77,6 @@ Functional examples are included in the
 | versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
 | viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | `list(string)` | `[]` | no |
 | website | Map of website values. Supported attributes: main\_page\_suffix, not\_found\_page | `any` | `{}` | no |
-| retention\_policy | Map of retention policy values. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#retention_policy | `any` | `{}` | no |
 
 ## Outputs
 
