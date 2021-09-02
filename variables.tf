@@ -201,6 +201,12 @@ variable "website" {
   description = "Map of website values. Supported attributes: main_page_suffix, not_found_page"
 }
 
+variable "retention_policy" {
+  type        = any
+  default     = {}
+  description = "Map of retention policy values. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#retention_policy"
+}
+
 variable "logging" {
   description = "Map of lowercase unprefixed name => bucket logging config object. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#logging"
   type        = any
