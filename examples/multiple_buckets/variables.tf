@@ -33,6 +33,6 @@ variable "bucket_policy_only" {
 
 variable "folders" {
   description = "Top level bucket folders. Map of lowercase unprefixed name => list of folders to create."
-  type        = map
+  type        = map(any)
   default     = {}
 }

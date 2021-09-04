@@ -80,13 +80,8 @@ variable "retention_policy" {
 
 variable "cors" {
   description = "Configuration of CORS for bucket with structure as defined in https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#cors."
-  type = list(object({
-    origin          = string
-    method          = string
-    response_header = string
-    max_age_seconds = number
-  }))
-  default = []
+  type        = any
+  default     = []
 }
 
 variable "encryption" {
