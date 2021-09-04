@@ -43,7 +43,7 @@ resource "google_storage_bucket" "bucket" {
   }
 
   dynamic "cors" {
-    for_each = var.cors == null ? [] : [var.cors]
+    for_each = var.cors == null ? [] : var.cors
     content {
       origin          = lookup(cors.value, "origin", null)
       method          = lookup(cors.value, "method", null)
