@@ -88,6 +88,14 @@ resource "google_storage_bucket" "buckets" {
     }
   }
 
+  dynamic "retention_policy" {
+    for_each = lookup(var.retention_policy, each.value, {}) != {} ? [var.retention_policy[each.value]] : []
+    content {
+      is_locked        = lookup(retention_policy.value, "is_locked", null)
+      retention_period = lookup(retention_policy.value, "retention_period", null)
+    }
+  }
+
   dynamic "lifecycle_rule" {
     for_each = var.lifecycle_rules
     content {
