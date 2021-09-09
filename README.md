@@ -66,6 +66,7 @@ Functional examples are included in the
 | names | Bucket name suffixes. | `list(string)` | n/a | yes |
 | prefix | Prefix used to generate the bucket name. | `string` | n/a | yes |
 | project\_id | Bucket project id. | `string` | n/a | yes |
+| randomize\_suffix | Adds an identical, but randomized 4-character suffix to all bucket names | `bool` | `false` | no |
 | retention\_policy | Map of retention policy values. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#retention_policy | `any` | `{}` | no |
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket\_admins. | `bool` | `false` | no |
 | set\_creator\_roles | Grant roles/storage.objectCreator role to creators and bucket\_creators. | `bool` | `false` | no |

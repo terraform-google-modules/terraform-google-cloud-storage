@@ -29,6 +29,12 @@ variable "names" {
   type        = list(string)
 }
 
+variable "randomize_suffix" {
+  description = "Adds an identical, but randomized 4-character suffix to all bucket names"
+  type        = bool
+  default     = false
+}
+
 variable "location" {
   description = "Bucket location."
   type        = string
