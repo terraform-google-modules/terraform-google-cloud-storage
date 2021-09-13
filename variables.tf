@@ -196,9 +196,9 @@ variable "lifecycle_rules" {
 }
 
 variable "cors" {
-  description = "Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
-  type        = map(any)
-  default     = {}
+  description = "Set of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
+  type        = set(any)
+  default     = []
 }
 
 variable "website" {

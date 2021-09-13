@@ -80,7 +80,7 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "cors" {
-    for_each = values(var.cors)
+    for_each = var.cors
     content {
       origin          = lookup(cors.value, "origin", null)
       method          = lookup(cors.value, "method", null)
