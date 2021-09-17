@@ -80,7 +80,7 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "cors" {
-    for_each = lookup(var.cors, each.value, {}) != {} ? { v = lookup(var.cors, each.value) } : {}
+    for_each = var.cors
     content {
       origin          = lookup(cors.value, "origin", null)
       method          = lookup(cors.value, "method", null)
@@ -89,7 +89,7 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "website" {
-    for_each = lookup(var.website, each.value, {}) != {} ? { v = lookup(var.website, each.value) } : {}
+    for_each = length(keys(var.website)) == 0 ? toset([]) : toset([var.website])
     content {
       main_page_suffix = lookup(website.value, "main_page_suffix", null)
       not_found_page   = lookup(website.value, "not_found_page", null)
