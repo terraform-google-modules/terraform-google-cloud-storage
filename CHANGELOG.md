@@ -7,6 +7,20 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v2.1.0...v2.2.0) (2021-09-17)
+
+
+### Features
+
+* Add ability to append a randomized suffix to all bucket names ([#130](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/130)) ([93ff75f](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/93ff75fb291c998c7d495c55342aea3b461fcc1a))
+* Add support for retention policy ([#127](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/127)) ([a0982c9](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/a0982c94f92df37d903af0a85e7ee5fe1e655d1e))
+* Support for CORS in simple bucket ([#128](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/128)) ([e6559e9](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/e6559e9f4721d5b67eec1644ebbefac852cf55e8))
+
+
+### Bug Fixes
+
+* Correct behavior of website and cors variables. ([#132](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/132)) ([3e6e7f4](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/3e6e7f405dc4d3698f1dabfd23440d67908f2e2f))
+
 ## [2.1.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v2.0.0...v2.1.0) (2021-06-15)
 
 

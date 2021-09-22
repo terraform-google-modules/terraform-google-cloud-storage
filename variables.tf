@@ -29,6 +29,12 @@ variable "names" {
   type        = list(string)
 }
 
+variable "randomize_suffix" {
+  description = "Adds an identical, but randomized 4-character suffix to all bucket names"
+  type        = bool
+  default     = false
+}
+
 variable "location" {
   description = "Bucket location."
   type        = string
@@ -190,15 +196,21 @@ variable "lifecycle_rules" {
 }
 
 variable "cors" {
-  description = "Map of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
-  type        = any
-  default     = {}
+  description = "Set of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
+  type        = set(any)
+  default     = []
 }
 
 variable "website" {
-  type        = any
+  type        = map(any)
   default     = {}
   description = "Map of website values. Supported attributes: main_page_suffix, not_found_page"
+}
+
+variable "retention_policy" {
+  type        = any
+  default     = {}
+  description = "Map of retention policy values. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#retention_policy"
 }
 
 variable "logging" {

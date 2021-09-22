@@ -14,8 +14,16 @@
  * limitations under the License.
  */
 
+/******************************************
+  Bucket random id suffix configuration
+ *****************************************/
+resource "random_id" "bucket_suffix" {
+  byte_length = 2
+}
+
 locals {
   prefix       = var.prefix == "" ? "" : join("-", [var.prefix, lower(var.location), ""])
+  suffix       = var.randomize_suffix ? "-${random_id.bucket_suffix.hex}" : ""
   names_set    = toset(var.names)
   buckets_list = [for name in var.names : google_storage_bucket.buckets[name]]
   first_bucket = local.buckets_list[0]
@@ -32,7 +40,7 @@ locals {
 resource "google_storage_bucket" "buckets" {
   for_each = local.names_set
 
-  name          = "${local.prefix}${lower(each.value)}"
+  name          = "${local.prefix}${lower(each.value)}${local.suffix}"
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
@@ -72,7 +80,7 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "cors" {
-    for_each = lookup(var.cors, each.value, {}) != {} ? { v = lookup(var.cors, each.value) } : {}
+    for_each = var.cors
     content {
       origin          = lookup(cors.value, "origin", null)
       method          = lookup(cors.value, "method", null)
@@ -81,10 +89,18 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "website" {
-    for_each = lookup(var.website, each.value, {}) != {} ? { v = lookup(var.website, each.value) } : {}
+    for_each = length(keys(var.website)) == 0 ? toset([]) : toset([var.website])
     content {
       main_page_suffix = lookup(website.value, "main_page_suffix", null)
       not_found_page   = lookup(website.value, "not_found_page", null)
+    }
+  }
+
+  dynamic "retention_policy" {
+    for_each = lookup(var.retention_policy, each.value, {}) != {} ? [var.retention_policy[each.value]] : []
+    content {
+      is_locked        = lookup(retention_policy.value, "is_locked", null)
+      retention_period = lookup(retention_policy.value, "retention_period", null)
     }
   }
 
