@@ -44,7 +44,7 @@ variable "location" {
 variable "storage_class" {
   description = "Bucket storage class."
   type        = string
-  default     = "MULTI_REGIONAL"
+  default     = "STANDARD"
 }
 
 variable "force_destroy" {
