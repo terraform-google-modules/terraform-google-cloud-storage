@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v2.2.0...v2.3.0) (2021-09-27)
+
+
+### Features
+
+* add additional lifecycle conditions: custom_time_before, days_since_noncurrent_time, noncurrent_time_before ([#135](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/135)) ([bd1d1e7](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/bd1d1e7bae83e9cc1d64019f06d2ca1b9d50a67f))
+
 ## [2.2.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v2.1.0...v2.2.0) (2021-09-17)
 
 
