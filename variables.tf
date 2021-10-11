@@ -35,6 +35,11 @@ variable "randomize_suffix" {
   default     = false
 }
 
+variable "silly_label" {
+  description = "Sample label for bucket."
+  type        = string
+}
+
 variable "location" {
   description = "Bucket location."
   type        = string
