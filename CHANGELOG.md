@@ -7,6 +7,22 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v2.2.0...v3.0.0) (2021-09-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* The default storage class has been changed from `MULTI_REGIONAL` to `STANDARD`. This new default is [recommended](https://cloud.google.com/storage/docs/storage-classes#standard) and can be used for multi-regional storage.
+
+### Features
+
+* add additional lifecycle conditions: custom_time_before, days_since_noncurrent_time, noncurrent_time_before ([#135](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/135)) ([bd1d1e7](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/bd1d1e7bae83e9cc1d64019f06d2ca1b9d50a67f))
+
+
+### Bug Fixes
+
+* Change default storage class to `STANDARD` ([#137](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/issues/137)) ([af10280](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/commit/af10280a5055dcf8823a4fe09052e94a97eb0688))
+
 ## [2.2.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v2.1.0...v2.2.0) (2021-09-17)
 
 
