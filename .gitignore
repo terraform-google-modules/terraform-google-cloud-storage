@@ -44,3 +44,6 @@ test/source.sh
 **/*.tfvars
 
 credentials.json
+
+# tf lock file
+.terraform.lock.hcl
