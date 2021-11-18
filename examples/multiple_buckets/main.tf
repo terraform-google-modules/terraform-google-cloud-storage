@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 3.53.0"
-}
-
 resource "random_string" "prefix" {
   length  = 4
   upper   = false

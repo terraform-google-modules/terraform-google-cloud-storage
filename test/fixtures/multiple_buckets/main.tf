@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-provider "random" {
-  version = "~> 2.0"
-}
-
 module "example" {
   source     = "../../../examples/multiple_buckets"
   project_id = var.project_id
