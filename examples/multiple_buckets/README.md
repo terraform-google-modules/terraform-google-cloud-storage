@@ -7,9 +7,6 @@ This example illustrates how to use the `cloud-storage` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| bucket\_policy\_only | Disable ad-hoc ACLs on specified buckets. Defaults to true. Map of lowercase unprefixed name => boolean | `map(string)` | `{}` | no |
-| folders | Top level bucket folders. Map of lowercase unprefixed name => list of folders to create. | `map(any)` | `{}` | no |
-| names | Names of the buckets to create. | `list(string)` | <pre>[<br>  "one",<br>  "two"<br>]</pre> | no |
 | project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
 
 ## Outputs
@@ -18,6 +15,7 @@ This example illustrates how to use the `cloud-storage` module.
 |------|-------------|
 | names | Bucket names. |
 | names\_list | List of bucket names. |
+| project\_id | The ID of the project in which resources are provisioned. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
