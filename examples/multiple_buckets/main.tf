@@ -25,9 +25,14 @@ module "cloud_storage" {
   project_id = var.project_id
   prefix     = "multiple-buckets-${random_string.prefix.result}"
 
-  names              = var.names
-  bucket_policy_only = var.bucket_policy_only
-  folders            = var.folders
+  names = ["one", "two"]
+  bucket_policy_only = {
+    "one" = true
+    "two" = false
+  }
+  folders = {
+    "two" = ["dev", "prod"]
+  }
 
   lifecycle_rules = [{
     action = {
