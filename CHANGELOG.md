@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.1.0...v3.2.0) (2022-03-04)
+
+
+### Features
+
+* add support for website configuration to simple_bucket submodule ([#150](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/150)) ([839a18c](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/839a18c4de5d7c00c74a54dfde51280862f4e8b5))
+
 ## [3.1.0](https://www.github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.0.0...v3.1.0) (2021-11-18)
 
 
