@@ -42,6 +42,14 @@ resource "google_storage_bucket" "bucket" {
     }
   }
 
+  dynamic "website" {
+    for_each = length(keys(var.website)) == 0 ? toset([]) : toset([var.website])
+    content {
+      main_page_suffix = lookup(website.value, "main_page_suffix", null)
+      not_found_page   = lookup(website.value, "not_found_page", null)
+    }
+  }
+
   dynamic "cors" {
     for_each = var.cors == null ? [] : var.cors
     content {

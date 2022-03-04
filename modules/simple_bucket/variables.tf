@@ -122,3 +122,9 @@ variable "log_object_prefix" {
   type        = string
   default     = null
 }
+
+variable "website" {
+  type        = map(any)
+  default     = {}
+  description = "Map of website values. Supported attributes: main_page_suffix, not_found_page"
+}

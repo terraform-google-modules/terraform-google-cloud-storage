@@ -53,6 +53,7 @@ Functional examples are included in the
 | retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | <pre>object({<br>    is_locked        = bool<br>    retention_period = number<br>  })</pre> | `null` | no |
 | storage\_class | The Storage Class of the new bucket. | `string` | `null` | no |
 | versioning | While set to true, versioning is fully enabled for this bucket. | `bool` | `true` | no |
+| website | Map of website values. Supported attributes: main\_page\_suffix, not\_found\_page | `map(any)` | `{}` | no |
 
 ## Outputs
 
