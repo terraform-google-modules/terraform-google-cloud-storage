@@ -44,6 +44,7 @@ func TestMultipleBuckets(t *testing.T) {
 			assert.Equal("NEARLINE", lifecycle.Get("action.storageClass").String(), "lifecycle action sets NEARLINE storageClass")
 			assert.Equal("SetStorageClass", lifecycle.Get("action.type").String(), "lifecycle action is SetStorageClass")
 			assert.Equal("10", lifecycle.Get("condition.age").String(), "lifecycle condition is age 10")
+			assert.Equal("awesome", op.Get("metadata.labels.silly").String(), "should have silly label set to awesome")
 			assert.ElementsMatch([]string{"MULTI_REGIONAL", "STANDARD", "DURABLE_REDUCED_AVAILABILITY"}, utils.GetResultStrSlice(lifecycle.Get("condition.matchesStorageClass").Array()), "lifecycle conditions match")
 
 			bucketSuffix := bucketName[strings.LastIndex(bucketName, "-")+1:]
