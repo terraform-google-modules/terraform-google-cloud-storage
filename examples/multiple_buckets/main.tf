@@ -21,9 +21,10 @@ resource "random_string" "prefix" {
 }
 
 module "cloud_storage" {
-  source     = "../.."
-  project_id = var.project_id
-  prefix     = "multiple-buckets-${random_string.prefix.result}"
+  source      = "../.."
+  project_id  = var.project_id
+  prefix      = "multiple-buckets-${random_string.prefix.result}"
+  silly_label = "awesome"
 
   names = ["one", "two"]
   bucket_policy_only = {
