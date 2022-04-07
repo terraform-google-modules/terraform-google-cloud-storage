@@ -30,8 +30,8 @@ variable "names" {
 }
 
 variable "silly_label" {
- description = "Sample label for bucket."
- type        = string
+  description = "Sample label for bucket."
+  type        = string
 }
 
 variable "randomize_suffix" {
