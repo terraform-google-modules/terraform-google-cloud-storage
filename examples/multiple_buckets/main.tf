@@ -25,8 +25,8 @@ module "cloud_storage" {
   project_id = var.project_id
   prefix     = "multiple-buckets-${random_string.prefix.result}"
   // CODELAB: Add "silly_label" as an example to main.tf.
-  silly_label        = "awesome"
-  names = ["one", "two"]
+  silly_label = "awesome"
+  names       = ["one", "two"]
   bucket_policy_only = {
     "one" = true
     "two" = false
