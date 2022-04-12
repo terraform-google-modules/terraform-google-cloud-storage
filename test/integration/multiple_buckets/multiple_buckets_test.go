@@ -38,7 +38,6 @@ func TestMultipleBuckets(t *testing.T) {
 			// alpha command to list buckets has --json instead of format=json
 			gcloudArgs := gcloud.WithCommonArgs([]string{"--project", projectID, "--json"})
 			op := gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s", bucketName), gcloudArgs).Array()[0]
-			
 			// verify silly label on each bucket
 			assert.Equal("awesome", op.Get("metadata.labels.silly").String(), "should have silly label set to awesome")
 
