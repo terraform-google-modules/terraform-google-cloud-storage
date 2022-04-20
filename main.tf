@@ -44,7 +44,6 @@ resource "google_storage_bucket" "buckets" {
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
-  labels        = merge(var.labels, { name = replace("${local.prefix}${lower(each.value)}", ".", "-") })
   force_destroy = lookup(
     var.force_destroy,
     lower(each.value),
@@ -54,6 +53,12 @@ resource "google_storage_bucket" "buckets" {
     var.bucket_policy_only,
     lower(each.value),
     true,
+  )
+  labels = merge(
+    lookup(
+      var.labels, lower(each.value),
+    { test = "123" }),
+    { name = replace("${local.prefix}${lower(each.value)}", ".", "-") }
   )
   versioning {
     enabled = lookup(
