@@ -57,7 +57,7 @@ resource "google_storage_bucket" "buckets" {
   labels = merge(
     lookup(
       var.labels, lower(each.value),
-    { test = "123" }),
+    {}),
     { name = replace("${local.prefix}${lower(each.value)}", ".", "-") }
   )
   versioning {
