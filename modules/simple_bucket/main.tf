@@ -90,11 +90,9 @@ resource "google_storage_bucket" "bucket" {
   }
 }
 
-resource "google_storage_bucket_iam_member" "members" {
-  for_each = {
-    for m in var.iam_members : "${m.role} ${m.member}" => m
-  }
-  bucket = google_storage_bucket.bucket.name
-  role   = each.value.role
-  member = each.value.member
+resource "google_storage_bucket_iam_binding" "binding" {
+  for_each = var.iam_members
+  bucket   = google_storage_bucket.bucket.name
+  role     = each.key
+  members  = each.value
 }

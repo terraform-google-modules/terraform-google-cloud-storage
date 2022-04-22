@@ -31,8 +31,7 @@ module "bucket" {
     }
   }]
 
-  iam_members = [{
-    role   = "roles/storage.objectViewer"
-    member = "group:test-gcp-ops@test.infra.cft.tips"
-  }]
+  iam_members = {
+    "roles/storage.objectViewer" = ["group:test-gcp-ops@test.infra.cft.tips"]
+  }
 }
