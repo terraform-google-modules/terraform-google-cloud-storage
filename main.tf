@@ -44,7 +44,8 @@ resource "google_storage_bucket" "buckets" {
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
-  labels        = merge(var.labels, { name = replace("${local.prefix}${lower(each.value)}", ".", "-") })
+  // CODELAB: Add silly label in labels variable
+  labels        = merge(var.labels, { name = replace("${local.prefix}${lower(each.value)}", ".", "-") }, {"silly" = var.silly_label})
   force_destroy = lookup(
     var.force_destroy,
     lower(each.value),
