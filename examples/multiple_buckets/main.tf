@@ -44,4 +44,8 @@ module "cloud_storage" {
       matches_storage_class = "MULTI_REGIONAL,STANDARD,DURABLE_REDUCED_AVAILABILITY"
     }
   }]
+
+  default_event_based_hold = {
+    "two" = true
+  }
 }
