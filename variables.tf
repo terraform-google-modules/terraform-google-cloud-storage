@@ -71,6 +71,12 @@ variable "bucket_policy_only" {
   default     = {}
 }
 
+variable "default_event_based_hold" {
+  description = "Enable event based hold to new objects added to specific bucket. Defaults to false. Map of lowercase unprefixed name => boolean"
+  type        = map(bool)
+  default     = {}
+}
+
 variable "admins" {
   description = "IAM-style members who will be granted roles/storage.objectAdmin on all buckets."
   type        = list(string)
