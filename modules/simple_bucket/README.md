@@ -60,6 +60,8 @@ Functional examples are included in the
 | Name | Description |
 |------|-------------|
 | bucket | The created storage bucket |
+| name | Bucket name. |
+| url | Bucket URL. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
