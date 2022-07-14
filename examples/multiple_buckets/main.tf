@@ -46,6 +46,6 @@ module "cloud_storage" {
   }]
 
   default_event_based_hold = {
-    "two" = true
+    "one" = true
   }
 }
