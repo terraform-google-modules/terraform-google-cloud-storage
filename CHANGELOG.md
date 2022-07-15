@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.2.0...v3.3.0) (2022-07-15)
+
+
+### Features
+
+* add name and url outputs on simple_bucket module ([#175](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/175)) ([d76ffa3](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/d76ffa3f2f147042527d98333397355a387d6701))
+* Add option to enable default_event_based_hold argument ([#178](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/178)) ([2ab4888](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/2ab4888d135014b4c74c296da7e2e381aa58f766))
+
 ## [3.2.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.1.0...v3.2.0) (2022-03-04)
 
 
