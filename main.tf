@@ -62,6 +62,11 @@ resource "google_storage_bucket" "buckets" {
       false,
     )
   }
+  default_event_based_hold = lookup(
+    var.default_event_based_hold,
+    lower(each.value),
+    false,
+  )
   # Having a permanent encryption block with default_kms_key_name = "" works but results in terraform applying a change every run
   # There is no enabled = false attribute available to ask terraform to ignore the block
   dynamic "encryption" {

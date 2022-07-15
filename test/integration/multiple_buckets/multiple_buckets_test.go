@@ -51,9 +51,11 @@ func TestMultipleBuckets(t *testing.T) {
 			case "one":
 				// bucket with suffix one
 				assert.True(op.Get("metadata.iamConfiguration.bucketPolicyOnly.enabled").Bool(), "bucketPolicyOnly is enabled")
+				assert.True(op.Get("metadata.defaultEventBasedHold").Bool(), "defaultEventBasedHold is enabled")
 			case "two":
 				// bucket with suffix two
 				assert.False(op.Get("metadata.iamConfiguration.bucketPolicyOnly.enabled").Bool(), "bucketPolicyOnly is disabled")
+				assert.False(op.Get("metadata.defaultEventBasedHold").Bool(), "defaultEventBasedHold is disabled")
 				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/dev/", bucketName), gcloudArgs)
 				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/prod/", bucketName), gcloudArgs)
 			default:
