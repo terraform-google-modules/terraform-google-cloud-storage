@@ -220,3 +220,9 @@ resource "google_storage_bucket_object" "folders" {
   name     = "${each.value.folder}/" # Declaring an object with a trailing '/' creates a directory
   content  = "foo"                   # Note that the content string isn't actually used, but is only there since the resource requires it
 }
+
+resource "google_storage_hmac_key" "hmac_keys" {
+  for_each = var.set_hmac_access ? var.hmac_service_accounts : {}
+  service_account_email = each.key
+  state = each.value
+}

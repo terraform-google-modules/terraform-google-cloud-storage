@@ -227,3 +227,15 @@ variable "logging" {
   type        = any
   default     = {}
 }
+
+variable "set_hmac_access" {
+  description = "Set HMAC access to GCS."
+  type        = bool
+  default     = false
+}
+
+variable "hmac_service_accounts" {
+  description = "List of HMAC service accounts to grant access to GCS."
+  type        = map(string)
+  default     = {}
+}

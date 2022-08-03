@@ -62,3 +62,9 @@ output "urls_list" {
   description = "List of bucket URLs."
   value       = local.buckets_list[*].url
 }
+
+output "hmac_keys" {
+  description = "List of HMAC keys."
+  value = google_storage_hmac_key.hmac_keys[*]
+  sensitive   = true
+}
