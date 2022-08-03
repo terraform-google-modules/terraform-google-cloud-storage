@@ -65,6 +65,6 @@ output "urls_list" {
 
 output "hmac_keys" {
   description = "List of HMAC keys."
-  value = google_storage_hmac_key.hmac_keys[*]
+  value       = google_storage_hmac_key.hmac_keys[*]
   sensitive   = true
 }
