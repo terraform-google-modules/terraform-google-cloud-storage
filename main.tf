@@ -110,7 +110,7 @@ resource "google_storage_bucket" "buckets" {
   }
 
   dynamic "lifecycle_rule" {
-    for_each = var.lifecycle_rules
+    for_each = setunion(var.lifecycle_rules, lookup(var.bucket_lifecycle_rules, each.value, toset([])))
     content {
       action {
         type          = lifecycle_rule.value.action.type
