@@ -45,6 +45,17 @@ module "cloud_storage" {
     }
   }]
 
+  bucket_lifecycle_rules = {
+    "one" = [{
+      action = {
+        type = "Delete"
+      }
+      condition = {
+        age = "90"
+      }
+    }]
+  }
+
   default_event_based_hold = {
     "one" = true
   }
