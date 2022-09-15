@@ -18,7 +18,7 @@
   Bucket random id suffix configuration
  *****************************************/
 resource "random_id" "bucket_suffix" {
-  count = var.randomize_suffix ? 1 : 0
+  count       = var.randomize_suffix ? 1 : 0
   byte_length = 2
 }
 
