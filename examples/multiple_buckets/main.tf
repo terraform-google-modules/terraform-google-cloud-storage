@@ -33,9 +33,21 @@ module "cloud_storage" {
     "two" = false
   }
 
-  folders = {
-    "two" = ["dev", "prod"]
-  }
+  # FIXME: This doesn't work:
+  #
+  # │ Error: Invalid index
+  # │
+  # │   on ../../main.tf line 220, in resource "google_storage_bucket_object" "folders":
+  # │  220:   bucket   = google_storage_bucket.buckets[each.value.bucket].name
+  # │     ├────────────────
+  # │     │ each.value.bucket is "two"
+  # │     │ google_storage_bucket.buckets is object with 1 attribute "one"
+  # │
+  # │ The given key does not identify an element in this collection value.
+  #
+  # folders = {
+  #   "two" = ["dev", "prod"]
+  # }
 
   lifecycle_rules = [
     {
