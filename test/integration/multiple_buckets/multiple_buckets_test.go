@@ -52,12 +52,17 @@ func TestMultipleBuckets(t *testing.T) {
 				// bucket with suffix one
 				assert.True(op.Get("metadata.iamConfiguration.bucketPolicyOnly.enabled").Bool(), "bucketPolicyOnly is enabled")
 				assert.True(op.Get("metadata.defaultEventBasedHold").Bool(), "defaultEventBasedHold is enabled")
+				bucket_lifecycle := op.Get("metadata.lifecycle.rule").Array()[1]
+				assert.Equal("Delete", bucket_lifecycle.Get("action.type").String(), "bucket lifecycle action is Delete")
+				assert.Equal("90", bucket_lifecycle.Get("condition.age").String(), "bucket lifecycle condition is age 90")
 			case "two":
 				// bucket with suffix two
 				assert.False(op.Get("metadata.iamConfiguration.bucketPolicyOnly.enabled").Bool(), "bucketPolicyOnly is disabled")
 				assert.False(op.Get("metadata.defaultEventBasedHold").Bool(), "defaultEventBasedHold is disabled")
 				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/dev/", bucketName), gcloudArgs)
 				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/prod/", bucketName), gcloudArgs)
+				bucket_lifecycles := op.Get("metadata.lifecycle.rule").Array()
+				assert.Equal(1, len(bucket_lifecycles), "Bucket 'two' has 1 lifecycle rule")
 			default:
 				// fail test if unknown suffix
 				t.Fatalf("Only expected two buckets with suffixes one and two. Found: %s", bucketName)
