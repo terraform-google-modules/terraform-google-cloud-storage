@@ -198,6 +198,8 @@ variable "lifecycle_rules" {
     # - days_since_custom_time - (Optional) The number of days from the Custom-Time metadata attribute after which this condition becomes true.
     # - days_since_noncurrent_time - (Optional) Relevant only for versioned objects. Number of days elapsed since the noncurrent timestamp of an object.
     # - noncurrent_time_before - (Optional) Relevant only for versioned objects. The date in RFC 3339 (e.g. 2017-06-13) when the object became nonconcurrent.
+    # - matches_prefix - (Optional) One or more matching name prefixes to satisfy this condition.
+    # - matches_suffix - (Optional) One or more matching name suffixes to satisfy this condition.
     condition = map(string)
   }))
   description = "List of lifecycle rules to configure. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#lifecycle_rule except condition.matches_storage_class should be a comma delimited string."
