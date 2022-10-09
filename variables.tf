@@ -223,7 +223,7 @@ variable "bucket_lifecycle_rules" {
     # - noncurrent_time_before - (Optional) Relevant only for versioned objects. The date in RFC 3339 (e.g. 2017-06-13) when the object became nonconcurrent.
     condition = map(string)
   })))
-  description = "Additionnal lifecycle_rules for specific buckets. Map of lowercase unprefixed name => list of lifecycle rules to configure."
+  description = "Additional lifecycle_rules for specific buckets. Map of lowercase unprefixed name => list of lifecycle rules to configure."
   default     = {}
 }
 
