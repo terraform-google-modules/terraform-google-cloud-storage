@@ -48,5 +48,9 @@ test/source.sh
 
 credentials.json
 
+# avoid versioning of credentials generated in codelab
+# https://codelabs.developers.google.com/cft-onboarding?hl=en#3
+cft.json
+
 # tf lock file
 .terraform.lock.hcl
