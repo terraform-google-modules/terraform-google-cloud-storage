@@ -222,6 +222,7 @@ resource "google_storage_bucket_object" "folders" {
 }
 
 resource "google_storage_hmac_key" "hmac_keys" {
+  project               = var.project_id
   for_each              = var.set_hmac_access ? var.hmac_service_accounts : {}
   service_account_email = each.key
   state                 = each.value
