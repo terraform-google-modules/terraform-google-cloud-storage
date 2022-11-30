@@ -105,6 +105,8 @@ variable "lifecycle_rules" {
     # - created_before - (Optional) Creation date of an object in RFC 3339 (e.g. 2017-06-13) to satisfy this condition.
     # - with_state - (Optional) Match to live and/or archived objects. Supported values include: "LIVE", "ARCHIVED", "ANY".
     # - matches_storage_class - (Optional) Storage Class of objects to satisfy this condition. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD, DURABLE_REDUCED_AVAILABILITY.
+    # - matches_prefix - (Optional) One or more matching name prefixes to satisfy this condition.
+    # - matches_suffix - (Optional) One or more matching name suffixes to satisfy this condition
     # - num_newer_versions - (Optional) Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
     condition = any
   }))
