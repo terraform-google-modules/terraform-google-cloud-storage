@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
@@ -26,8 +27,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// Retry if these errors are encountered.
+var retryErrors = map[string]string{
+	// https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/204
+	".*Provider produced inconsistent final plan.*": "Provider bug, retry",
+}
+
 func TestMultipleBuckets(t *testing.T) {
-	buckets := tft.NewTFBlueprintTest(t)
+	buckets := tft.NewTFBlueprintTest(t, tft.WithRetryableTerraformErrors(retryErrors, 5, time.Minute))
 
 	buckets.DefineVerify(func(assert *assert.Assertions) {
 		buckets.DefaultVerify(assert)
