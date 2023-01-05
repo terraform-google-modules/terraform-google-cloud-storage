@@ -25,12 +25,12 @@ terraform {
 
     random = {
       source  = "hashicorp/random"
-      version = "~> 3.0"
+      version = ">= 2.1"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-cloud-storage/v3.4.0"
+    module_name = "blueprints/terraform/terraform-google-cloud-storage/v3.4.1"
   }
 
 }
