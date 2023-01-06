@@ -22,8 +22,7 @@ resource "random_id" "bucket_suffix" {
 }
 
 locals {
-  prefix       = var.prefix == "" ? "" : join("-", [var.prefix, lower(var.location), ""])
-  suffix       = var.randomize_suffix ? "-${random_id.bucket_suffix.hex}" : ""
+  suffix       = var.randomize_suffix ? random_id.bucket_suffix.hex : ""
   names_set    = toset(var.names)
   buckets_list = [for name in var.names : google_storage_bucket.buckets[name]]
   first_bucket = local.buckets_list[0]
@@ -40,11 +39,11 @@ locals {
 resource "google_storage_bucket" "buckets" {
   for_each = local.names_set
 
-  name          = "${local.prefix}${lower(each.value)}${local.suffix}"
+  name          = join("-", compact([var.prefix, each.value, local.suffix]))
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
-  labels        = merge(var.labels, { name = replace("${local.prefix}${lower(each.value)}", ".", "-") })
+  labels        = merge(var.labels, { name = replace(join("-", compact([var.prefix, each.value])), ".", "-") })
   force_destroy = lookup(
     var.force_destroy,
     lower(each.value),
