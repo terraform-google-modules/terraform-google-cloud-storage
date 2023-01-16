@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.4.0...v3.4.1) (2023-01-04)
+
+
+### Bug Fixes
+
+* fixes lint issues and generates metadata ([#207](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/207)) ([f038511](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/f038511fc58371f51255cc8921d31b0da82094f5))
+* relax random provider version ([#212](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/212)) ([2d7da45](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/2d7da4521ea639977d177f6fd5f4f51444a09543))
+
 ## [3.4.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.3.0...v3.4.0) (2022-09-12)
 
 
