@@ -67,7 +67,7 @@ Functional examples are included in the
 | location | Bucket location. | `string` | `"EU"` | no |
 | logging | Map of lowercase unprefixed name => bucket logging config object. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#logging | `any` | `{}` | no |
 | names | Bucket name suffixes. | `list(string)` | n/a | yes |
-| prefix | Prefix used to generate the bucket name. | `string` | n/a | yes |
+| prefix | Prefix used to generate the bucket name. | `string` | `""` | no |
 | project\_id | Bucket project id. | `string` | n/a | yes |
 | randomize\_suffix | Adds an identical, but randomized 4-character suffix to all bucket names | `bool` | `false` | no |
 | retention\_policy | Map of retention policy values. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#retention_policy | `any` | `{}` | no |
