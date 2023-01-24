@@ -69,6 +69,7 @@ Functional examples are included in the
 | names | Bucket name suffixes. | `list(string)` | n/a | yes |
 | prefix | Prefix used to generate the bucket name. | `string` | `""` | no |
 | project\_id | Bucket project id. | `string` | n/a | yes |
+| public\_access\_prevention | Prevents public access to a bucket. Acceptable values are inherited or enforced. If inherited, the bucket uses public access prevention, only if the bucket is subject to the public access prevention organization policy constraint. | `string` | `"inherited"` | no |
 | randomize\_suffix | Adds an identical, but randomized 4-character suffix to all bucket names | `bool` | `false` | no |
 | retention\_policy | Map of retention policy values. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#retention_policy | `any` | `{}` | no |
 | set\_admin\_roles | Grant roles/storage.objectAdmin role to admins and bucket\_admins. | `bool` | `false` | no |

@@ -50,6 +50,7 @@ Functional examples are included in the
 | log\_object\_prefix | The object prefix for log objects. If it's not provided, by default GCS sets this to this bucket's name | `string` | `null` | no |
 | name | The name of the bucket. | `string` | n/a | yes |
 | project\_id | The ID of the project to create the bucket in. | `string` | n/a | yes |
+| public\_access\_prevention | Prevents public access to a bucket. Acceptable values are inherited or enforced. If inherited, the bucket uses public access prevention, only if the bucket is subject to the public access prevention organization policy constraint. | `string` | `"inherited"` | no |
 | retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | <pre>object({<br>    is_locked        = bool<br>    retention_period = number<br>  })</pre> | `null` | no |
 | storage\_class | The Storage Class of the new bucket. | `string` | `null` | no |
 | versioning | While set to true, versioning is fully enabled for this bucket. | `bool` | `true` | no |
