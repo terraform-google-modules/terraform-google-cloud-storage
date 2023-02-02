@@ -24,7 +24,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "gcs_buckets" {
   source  = "terraform-google-modules/cloud-storage/google"
-  version = "~> 3.4"
+  version = "~> 4.0"
   project_id  = "<PROJECT ID>"
   names = ["first", "second"]
   prefix = "my-unique-prefix"
@@ -109,7 +109,7 @@ The following dependencies must be available:
 
 - [Terraform](https://www.terraform.io/downloads.html) >= 0.13.0
   - For Terraform v0.11 see the [Compatibility](#compatibility) section above
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin >= v4.42
 
 ### Service Account
 
