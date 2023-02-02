@@ -9,7 +9,7 @@ The resources/services/activations/deletions that this module will create/trigge
 
 ## Compatibility
 
-This module is meant for use with Terraform 0.12.
+This module is meant for use with Terraform 0.13+.
 
 ## Usage
 
@@ -18,7 +18,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 3.4"
+  version = "~> 4.0"
 
   name       = "example-bucket"
   project_id = "example-project"
@@ -74,8 +74,8 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.12
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
+- [Terraform][terraform] >= 0.13.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin >= v4.42
 
 ### Service Account
 
