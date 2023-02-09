@@ -39,11 +39,14 @@ locals {
 resource "google_storage_bucket" "buckets" {
   for_each = local.names_set
 
+
   name          = join("-", compact([var.prefix, each.value, local.suffix]))
   project       = var.project_id
   location      = var.location
   storage_class = var.storage_class
   labels        = merge(var.labels, { name = replace(join("-", compact([var.prefix, each.value])), ".", "-") }, {"silly" = var.silly_label})
+  public_access_prevention = var.public_access_prevention
+
   force_destroy = lookup(
     var.force_destroy,
     lower(each.value),

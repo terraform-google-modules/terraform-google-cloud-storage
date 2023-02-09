@@ -9,7 +9,7 @@ The resources/services/activations/deletions that this module will create/trigge
 
 ## Compatibility
 
-This module is meant for use with Terraform 0.12.
+This module is meant for use with Terraform 0.13+.
 
 ## Usage
 
@@ -18,7 +18,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 3.4"
+  version = "~> 4.0"
 
   name       = "example-bucket"
   project_id = "example-project"
@@ -50,6 +50,7 @@ Functional examples are included in the
 | log\_object\_prefix | The object prefix for log objects. If it's not provided, by default GCS sets this to this bucket's name | `string` | `null` | no |
 | name | The name of the bucket. | `string` | n/a | yes |
 | project\_id | The ID of the project to create the bucket in. | `string` | n/a | yes |
+| public\_access\_prevention | Prevents public access to a bucket. Acceptable values are inherited or enforced. If inherited, the bucket uses public access prevention, only if the bucket is subject to the public access prevention organization policy constraint. | `string` | `"inherited"` | no |
 | retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | <pre>object({<br>    is_locked        = bool<br>    retention_period = number<br>  })</pre> | `null` | no |
 | storage\_class | The Storage Class of the new bucket. | `string` | `null` | no |
 | versioning | While set to true, versioning is fully enabled for this bucket. | `bool` | `true` | no |
@@ -73,8 +74,8 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.12
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
+- [Terraform][terraform] >= 0.13.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin >= v4.42
 
 ### Service Account
 
