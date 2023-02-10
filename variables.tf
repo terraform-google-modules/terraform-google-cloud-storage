@@ -253,7 +253,7 @@ variable "logging" {
   type        = any
   default     = {}
 }
-   
+
 variable "set_hmac_access" {
   description = "Set HMAC access to GCS."
   type        = bool
@@ -265,7 +265,7 @@ variable "hmac_service_accounts" {
   type        = map(string)
   default     = {}
 }
-  
+
 variable "public_access_prevention" {
   description = "Prevents public access to a bucket. Acceptable values are inherited or enforced. If inherited, the bucket uses public access prevention, only if the bucket is subject to the public access prevention organization policy constraint."
   type        = string
