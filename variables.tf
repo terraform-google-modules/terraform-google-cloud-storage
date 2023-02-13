@@ -255,7 +255,7 @@ variable "logging" {
 }
 
 variable "set_hmac_access" {
-  description = "Set HMAC access to GCS."
+  description = "Set S3 compatible access to GCS."
   type        = bool
   default     = false
 }
