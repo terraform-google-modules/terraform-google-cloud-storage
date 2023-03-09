@@ -22,6 +22,7 @@ variable "project_id" {
 variable "prefix" {
   description = "Prefix used to generate the bucket name."
   type        = string
+  default     = ""
 }
 
 variable "names" {
@@ -255,4 +256,10 @@ variable "logging" {
   description = "Map of lowercase unprefixed name => bucket logging config object. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#logging"
   type        = any
   default     = {}
+}
+
+variable "public_access_prevention" {
+  description = "Prevents public access to a bucket. Acceptable values are inherited or enforced. If inherited, the bucket uses public access prevention, only if the bucket is subject to the public access prevention organization policy constraint."
+  type        = string
+  default     = "inherited"
 }
