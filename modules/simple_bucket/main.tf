@@ -61,6 +61,13 @@ resource "google_storage_bucket" "bucket" {
     }
   }
 
+  dynamic "custom_placement_config" {
+    for_each = var.custom_placement_config == null ? [] : [var.custom_placement_config]
+    content {
+      data_locations = var.custom_placement_config.data_locations
+    }
+  }
+
   dynamic "lifecycle_rule" {
     for_each = var.lifecycle_rules
     content {

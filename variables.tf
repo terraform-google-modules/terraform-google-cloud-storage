@@ -248,6 +248,12 @@ variable "retention_policy" {
   description = "Map of retention policy values. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#retention_policy"
 }
 
+variable "custom_placement_config" {
+  type        = any
+  default     = {}
+  description = "Map of lowercase unprefixed name => custom placement config object. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#custom_placement_config"
+}
+
 variable "logging" {
   description = "Map of lowercase unprefixed name => bucket logging config object. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#logging"
   type        = any

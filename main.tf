@@ -110,6 +110,13 @@ resource "google_storage_bucket" "buckets" {
     }
   }
 
+  dynamic "custom_placement_config" {
+    for_each = lookup(var.custom_placement_config, each.value, {}) != {} ? [var.custom_placement_config[each.value]] : []
+    content {
+      data_locations = lookup(custom_placement_config.value, "data_locations", null)
+    }
+  }
+
   dynamic "lifecycle_rule" {
     for_each = setunion(var.lifecycle_rules, lookup(var.bucket_lifecycle_rules, each.value, toset([])))
     content {

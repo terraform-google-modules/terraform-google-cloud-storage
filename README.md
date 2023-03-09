@@ -57,6 +57,7 @@ Functional examples are included in the
 | bucket\_viewers | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket viewers. | `map(string)` | `{}` | no |
 | cors | Set of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors | `set(any)` | `[]` | no |
 | creators | IAM-style members who will be granted roles/storage.objectCreators on all buckets. | `list(string)` | `[]` | no |
+| custom\_placement\_config | Map of lowercase unprefixed name => custom placement config object. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket#custom_placement_config | `any` | `{}` | no |
 | default\_event\_based\_hold | Enable event based hold to new objects added to specific bucket. Defaults to false. Map of lowercase unprefixed name => boolean | `map(bool)` | `{}` | no |
 | encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | `map(string)` | `{}` | no |
 | folders | Map of lowercase unprefixed name => list of top level folder objects. | `map(list(string))` | `{}` | no |
