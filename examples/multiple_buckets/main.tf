@@ -31,12 +31,6 @@ module "cloud_storage" {
     "two" = false
   }
 
-  custom_placement_config = {
-    "one" = {
-      data_locations : ["europe-north1", "europe-west1"]
-    }
-  }
-
   folders = {
     "two" = ["dev", "prod"]
   }

@@ -19,7 +19,7 @@ module "bucket" {
 
   name       = "${var.project_id}-bucket"
   project_id = var.project_id
-  location   = "us-east1"
+  location   = "us"
 
   lifecycle_rules = [{
     action = {
@@ -31,6 +31,10 @@ module "bucket" {
       matches_prefix = var.project_id
     }
   }]
+
+  custom_placement_config = {
+    data_locations : ["US-EAST4", "US-WEST1"]
+  }
 
   iam_members = [{
     role   = "roles/storage.objectViewer"
