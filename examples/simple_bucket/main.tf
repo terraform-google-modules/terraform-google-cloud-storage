@@ -38,6 +38,6 @@ module "bucket" {
 
   iam_members = [{
     role   = "roles/storage.objectViewer"
-    member = "group:test-gcp-ops@test.infra.cft.tips"
+    member = "group:test-gcp-ops@test.blueprints.joonix.net"
   }]
 }
