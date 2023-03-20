@@ -36,6 +36,12 @@ variable "randomize_suffix" {
   default     = false
 }
 
+// CODELAB: Add "silly_label" variable to variables.tf between "names" and "location"
+variable "silly_label" {
+  description = "Sample label for bucket."
+  type        = string
+}
+
 variable "location" {
   description = "Bucket location."
   type        = string
