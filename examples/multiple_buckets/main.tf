@@ -30,6 +30,7 @@ module "cloud_storage" {
     "one" = true
     "two" = false
   }
+
   folders = {
     "two" = ["dev", "prod"]
   }

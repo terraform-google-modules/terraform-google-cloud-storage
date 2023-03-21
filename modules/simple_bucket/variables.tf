@@ -78,6 +78,14 @@ variable "retention_policy" {
   default = null
 }
 
+variable "custom_placement_config" {
+  description = "Configuration of the bucket's custom location in a dual-region bucket setup. If the bucket is designated a single or multi-region, the variable are null."
+  type = object({
+    data_locations = list(string)
+  })
+  default = null
+}
+
 variable "cors" {
   description = "Configuration of CORS for bucket with structure as defined in https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#cors."
   type        = any
