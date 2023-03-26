@@ -39,7 +39,7 @@ locals {
 resource "google_storage_bucket" "buckets" {
   for_each = local.names_set
 
-  name                     = join("-", compact([var.prefix, each.value, local.suffix]))
+  name                     = join("-changess-", compact([var.prefix, each.value, local.suffix]))
   project                  = var.project_id
   location                 = var.location
   storage_class            = var.storage_class
