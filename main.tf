@@ -64,6 +64,14 @@ resource "google_storage_bucket" "buckets" {
       false,
     )
   }
+
+  autoclass {
+    enabled = lookup(
+      var.autoclass,
+      lower(each.value),
+      false,
+    )
+  }
   default_event_based_hold = lookup(
     var.default_event_based_hold,
     lower(each.value),

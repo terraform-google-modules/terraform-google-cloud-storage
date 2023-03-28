@@ -35,12 +35,17 @@ variable "storage_class" {
   default     = null
 }
 
+variable "autoclass" {
+  description = "While set to true, the bucket will automatically be assigned a Storage Class based on the content and access patterns of the objects."
+  type        = bool
+  default     = false
+}
+
 variable "labels" {
   description = "A set of key/value label pairs to assign to the bucket."
   type        = map(string)
   default     = null
 }
-
 
 variable "bucket_policy_only" {
   description = "Enables Bucket Policy Only access to a bucket."

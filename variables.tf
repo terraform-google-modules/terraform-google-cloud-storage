@@ -48,6 +48,12 @@ variable "storage_class" {
   default     = "STANDARD"
 }
 
+variable "autoclass" {
+    description = "While set to true, the bucket will automatically be assigned a Storage Class based on the content and access patterns of the objects."
+    type        = bool
+    default     = false
+}
+
 variable "force_destroy" {
   description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
   type        = map(bool)
