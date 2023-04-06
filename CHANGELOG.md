@@ -7,6 +7,24 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.4.1...v4.0.0) (2023-04-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* add support for custom_placement_config ([#231](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/231))
+* **TPG >= 4.42:** add support for public_access_prevention ([#218](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/218))
+* location inverse control in bucket name prefix ([#186](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/186))
+* Add matches_prefix and matches_suffix conditions ([#202](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/202))
+
+### Features
+
+* Add matches_prefix and matches_suffix conditions ([#202](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/202)) ([8db2eb3](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/8db2eb352c3998b4981553e2bdeb72c2c7c34f5b))
+* add support for custom_placement_config ([#231](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/231)) ([a0bbdbd](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/a0bbdbdbafa4732c8b3aa1a7760216fd48df43f3))
+* Hmac access ([#181](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/181)) ([e5e4909](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/e5e49094165ce876479f6a852889b17726807caa))
+* location inverse control in bucket name prefix ([#186](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/186)) ([dbd3c35](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/dbd3c3528332fc84bc599348279eaf501826a0f0))
+* **TPG >= 4.42:** add support for public_access_prevention ([#218](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/218)) ([4469954](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/4469954690e29f8145d185ecb7ec345cd9f9abab))
+
 ## [3.4.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.4.0...v3.4.1) (2023-01-04)
 
 
