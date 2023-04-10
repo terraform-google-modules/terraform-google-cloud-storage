@@ -23,7 +23,7 @@ resource "random_id" "bucket_suffix" {
 }
 
 locals {
-  suffix       = var.randomize_suffix ? random_id.bucket_suffix.0.hex : ""
+  suffix       = var.randomize_suffix ? random_id.bucket_suffix[0].hex : ""
   names_set    = toset(var.names)
   buckets_list = [for name in var.names : google_storage_bucket.buckets[name]]
   first_bucket = local.buckets_list[0]
