@@ -3,6 +3,7 @@
 The v4.0 release of the terraform-google-cloud-storage module is a backwards incompatible release, due to the following breaking changes:
 
 - The bucket doesn't have location as mandatory part of the name prefix.
+- The minimum Terraform Google Provider version was increased to 4.42.
 
 ## Migration Instructions
 
