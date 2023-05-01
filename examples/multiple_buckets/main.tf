@@ -25,7 +25,7 @@ module "cloud_storage" {
   project_id = var.project_id
 
   prefix           = "multiple-buckets-${random_string.prefix.result}"
-  names            = ["one"]
+  names            = ["one", "two"]
   randomize_suffix = true
 
   bucket_policy_only = {
@@ -33,21 +33,9 @@ module "cloud_storage" {
     "two" = false
   }
 
-  # FIXME: This doesn't work:
-  #
-  # │ Error: Invalid index
-  # │
-  # │   on ../../main.tf line 220, in resource "google_storage_bucket_object" "folders":
-  # │  220:   bucket   = google_storage_bucket.buckets[each.value.bucket].name
-  # │     ├────────────────
-  # │     │ each.value.bucket is "two"
-  # │     │ google_storage_bucket.buckets is object with 1 attribute "one"
-  # │
-  # │ The given key does not identify an element in this collection value.
-  #
-  # folders = {
-  #   "two" = ["dev", "prod"]
-  # }
+  folders = {
+    "two" = ["dev", "prod"]
+  }
 
   lifecycle_rules = [
     {
