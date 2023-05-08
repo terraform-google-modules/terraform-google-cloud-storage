@@ -35,6 +35,8 @@ spec:
     location: examples/multiple_buckets
   - name: simple_bucket
     location: examples/simple_bucket
+  - name: bucket_autoclass
+    location: examples/bucket_autoclass
   variables:
   - name: admins
     description: IAM-style members who will be granted roles/storage.objectAdmin on all buckets.
@@ -45,6 +47,7 @@ spec:
     description: Enable automatic classification of objects in specific bucket. Defaults to false. Map of lowercase unprefixed name => boolean
     type: bool
     default: false
+    required: false
   - name: bucket_admins
     description: Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket admins.
     type: map(string)

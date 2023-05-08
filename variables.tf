@@ -49,9 +49,9 @@ variable "storage_class" {
 }
 
 variable "autoclass" {
-    description = "While set to true, the bucket will automatically be assigned a Storage Class based on the content and access patterns of the objects."
-    type        = bool
-    default     = false
+  description = "Map with bucket_name, the bucket will automatically be assigned a Storage Class based on the size and access patterns of the objects. If enabled, exclusive with lifecycle_rules."
+  type        = map(bool)
+  default     = {}
 }
 
 variable "force_destroy" {

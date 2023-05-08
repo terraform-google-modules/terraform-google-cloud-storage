@@ -64,13 +64,12 @@ resource "google_storage_bucket" "buckets" {
       false,
     )
   }
-
-  autoclass {
-    enabled = lookup(
-      var.autoclass,
-      lower(each.value),
-      false,
-    )
+  # Use dynamic block instead because provider want to recreate bucket when run terraform plan even if enabled is false.
+  dynamic "autoclass" {
+    for_each = !try(var.autoclass[each.key], false) ? [] : ["autoclass"]
+    content {
+      enabled = true
+    }
   }
   default_event_based_hold = lookup(
     var.default_event_based_hold,

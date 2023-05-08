@@ -48,7 +48,7 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | `list(string)` | `[]` | no |
-| autoclass | While set to true, the bucket will automatically be assigned a Storage Class based on the content and access patterns of the objects. | `bool` | `false` | no |
+| autoclass | Map with bucket\_name, the bucket will automatically be assigned a Storage Class based on the size and access patterns of the objects. If enabled, exclusive with lifecycle\_rules. | `map(bool)` | `{}` | no |
 | bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket admins. | `map(string)` | `{}` | no |
 | bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket creators. | `map(string)` | `{}` | no |
 | bucket\_hmac\_key\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket HMAC Key admins. | `map(string)` | `{}` | no |
