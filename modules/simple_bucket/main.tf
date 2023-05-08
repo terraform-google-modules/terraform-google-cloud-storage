@@ -28,8 +28,12 @@ resource "google_storage_bucket" "bucket" {
     enabled = var.versioning
   }
 
-  autoclass {
-    enabled = var.autoclass
+  # Use dynamic block instead because provider want to recreate bucket when run terraform plan even if enabled is false.
+  dynamic "autoclass" {
+    for_each = !var.autoclass ? [] : ["autoclass"]
+    content {
+      enabled = true
+    }
   }
 
   dynamic "retention_policy" {
