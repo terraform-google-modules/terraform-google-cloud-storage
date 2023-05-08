@@ -1,6 +1,6 @@
-# Simple Example
+# Simple example with autoclass enabled
 
-This example illustrates how to use the `simple-bucket` submodule.
+This example illustrates how to use the `bucket_autoclass` submodule.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
