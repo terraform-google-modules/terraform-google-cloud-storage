@@ -41,10 +41,10 @@ func TestMultipleBuckets(t *testing.T) {
 
 		projectID := buckets.GetStringOutput("project_id")
 		names := terraform.OutputList(t, buckets.GetTFOptions(), "names_list")
-		for _, bucketName := range names {
+		for _, fullBucketName := range names {
 			// alpha command to list buckets has --json instead of format=json
 			gcloudArgs := gcloud.WithCommonArgs([]string{"--project", projectID, "--json"})
-			op := gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s", bucketName), gcloudArgs).Array()[0]
+			op := gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s", fullBucketName), gcloudArgs).Array()[0]
 
 			// verify lifecycle rules
 			lifecycle := op.Get("metadata.lifecycle.rule").Array()[0]
@@ -53,8 +53,11 @@ func TestMultipleBuckets(t *testing.T) {
 			assert.Equal("10", lifecycle.Get("condition.age").String(), "lifecycle condition is age 10")
 			assert.ElementsMatch([]string{"MULTI_REGIONAL", "STANDARD", "DURABLE_REDUCED_AVAILABILITY"}, utils.GetResultStrSlice(lifecycle.Get("condition.matchesStorageClass").Array()), "lifecycle conditions match")
 
-			bucketSuffix := bucketName[strings.LastIndex(bucketName, "-")+1:]
-			switch bucketSuffix {
+			// peel bucket name from prefix and randomized suffix
+			parts := strings.Split(fullBucketName, "-")
+			bucketName := parts[len(parts) - 2]
+
+			switch bucketName {
 			case "one":
 				// bucket with suffix one
 				assert.True(op.Get("metadata.iamConfiguration.bucketPolicyOnly.enabled").Bool(), "bucketPolicyOnly is enabled")
@@ -66,13 +69,13 @@ func TestMultipleBuckets(t *testing.T) {
 				// bucket with suffix two
 				assert.False(op.Get("metadata.iamConfiguration.bucketPolicyOnly.enabled").Bool(), "bucketPolicyOnly is disabled")
 				assert.False(op.Get("metadata.defaultEventBasedHold").Bool(), "defaultEventBasedHold is disabled")
-				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/dev/", bucketName), gcloudArgs)
-				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/prod/", bucketName), gcloudArgs)
+				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/dev/", fullBucketName), gcloudArgs)
+				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/prod/", fullBucketName), gcloudArgs)
 				bucket_lifecycles := op.Get("metadata.lifecycle.rule").Array()
 				assert.Equal(1, len(bucket_lifecycles), "Bucket 'two' has 1 lifecycle rule")
 			default:
 				// fail test if unknown suffix
-				t.Fatalf("Only expected two buckets with suffixes one and two. Found: %s", bucketName)
+				t.Fatalf("Only expected two buckets with suffixes one and two. Found: %s", fullBucketName)
 			}
 		}
 	})
