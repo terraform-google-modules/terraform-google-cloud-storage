@@ -349,8 +349,8 @@ github.com/googleapis/gax-go/v2 v2.9.1 h1:DpTpJqzZ3NvX9zqjhIuI1oVzYZMvboZe+3LoeE
 github.com/googleapis/gax-go/v2 v2.9.1/go.mod h1:4FG3gMrVZlyMp5itSYKMU9z/lBE7+SbnUOvzH2HqbEY=
 github.com/googleapis/go-type-adapters v1.0.0/go.mod h1:zHW75FOG2aur7gAO2B+MLby+cLsWGBF62rFAi7WjWO4=
 github.com/grpc-ecosystem/grpc-gateway v1.16.0/go.mod h1:BDjrQk3hbvj6Nolgz8mAMFbcEtjT1g+wF4CSlocrBnw=
-github.com/gruntwork-io/terratest v0.43.5 h1:SlIwa1ijRN6DwPysOfaGf2a4cbeajCy3y9IQe7fNGsc=
-github.com/gruntwork-io/terratest v0.43.5/go.mod h1:Tw+6/fcJFiBPpsx9NNSkLG5oHKIeaqiJHVLpQ+ORIfQ=
+github.com/gruntwork-io/terratest v0.43.6 h1:4WaimQtrUt1hbXEeHdI4JAKkHvFyudCkRGwOXJERASU=
+github.com/gruntwork-io/terratest v0.43.6/go.mod h1:Tw+6/fcJFiBPpsx9NNSkLG5oHKIeaqiJHVLpQ+ORIfQ=
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/errwrap v1.1.0 h1:OxrOeh75EUXMY8TBjag2fzXGZ40LB6IKw45YeGUDY2I=
 github.com/hashicorp/errwrap v1.1.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
