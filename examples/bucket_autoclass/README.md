@@ -11,7 +11,7 @@ This example illustrates how to use the `bucket_autoclass` submodule.
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
