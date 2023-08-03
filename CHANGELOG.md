@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v4.0.0...v4.0.1) (2023-08-03)
+
+
+### Bug Fixes
+
+* create random suffix resource on demand ([#185](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/185)) ([5050c91](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/5050c91efee42e94bac886f0d86ee7a76cc42058))
+* lifecycle_rule optional condition is_live failing when missing ([#246](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/246)) ([c8111a4](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/c8111a4fc877d1af2785820c31c8c02a22a43206))
+
 ## [4.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v3.4.1...v4.0.0) (2023-04-06)
 
 
