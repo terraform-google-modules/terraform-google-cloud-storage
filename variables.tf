@@ -61,7 +61,7 @@ variable "versioning" {
 }
 
 variable "autoclass" {
-  description = "Optional map of lowercase unprefixed name => boolean, defaults to false."
+  description = "Optional map of lowercase unprefixed bucket name => boolean, defaults to false."
   type        = map(bool)
   default     = {}
 }
