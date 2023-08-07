@@ -48,7 +48,7 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | admins | IAM-style members who will be granted roles/storage.objectAdmin on all buckets. | `list(string)` | `[]` | no |
-| autoclass | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
+| autoclass | Optional map of lowercase unprefixed bucket name => boolean, defaults to false. | `map(bool)` | `{}` | no |
 | bucket\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket admins. | `map(string)` | `{}` | no |
 | bucket\_creators | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket creators. | `map(string)` | `{}` | no |
 | bucket\_hmac\_key\_admins | Map of lowercase unprefixed name => comma-delimited IAM-style per-bucket HMAC Key admins. | `map(string)` | `{}` | no |
