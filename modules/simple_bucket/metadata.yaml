@@ -132,7 +132,7 @@ spec:
   - name: autoclass
     description: While set to true, autoclass is enabled for this bucket.
     type: bool
-    default: true
+    default: false
     required: false
   outputs:
   - name: bucket
