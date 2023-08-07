@@ -40,4 +40,6 @@ module "bucket" {
     role   = "roles/storage.objectViewer"
     member = "group:test-gcp-ops@test.blueprints.joonix.net"
   }]
+
+  autoclass = true
 }
