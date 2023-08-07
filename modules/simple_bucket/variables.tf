@@ -57,7 +57,7 @@ variable "versioning" {
 variable "autoclass" {
   description = "While set to true, autoclass is enabled for this bucket."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "force_destroy" {
