@@ -54,6 +54,12 @@ variable "versioning" {
   default     = true
 }
 
+variable "autoclass" {
+  description = "While set to true, autoclass is enabled for this bucket."
+  type        = bool
+  default     = false
+}
+
 variable "force_destroy" {
   description = "When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects."
   type        = bool

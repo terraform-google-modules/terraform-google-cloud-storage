@@ -129,6 +129,11 @@ spec:
     type: map(any)
     default: {}
     required: false
+  - name: autoclass
+    description: While set to true, autoclass is enabled for this bucket.
+    type: bool
+    default: false
+    required: false
   outputs:
   - name: bucket
     description: The created storage bucket

@@ -239,6 +239,11 @@ spec:
     type: map(any)
     default: {}
     required: false
+  - name: autoclass
+    description: Optional map of lowercase unprefixed bucket name => boolean, defaults to false.
+    type: map(bool)
+    default: {}
+    required: false
   outputs:
   - name: bucket
     description: Bucket resource (for single use).
