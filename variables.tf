@@ -42,10 +42,23 @@ variable "location" {
   default     = "EU"
 }
 
+variable "bucket_location" {
+  description = "Additional location for specific buckets. Map of lowercase unprefixed name => location to configure."
+  type        = map(string)
+  default     = {}
+}
+
 variable "storage_class" {
   description = "Bucket storage class."
   type        = string
   default     = "STANDARD"
+}
+
+
+variable "bucket_storage_class" {
+  description = "Additional storage_class for specific buckets. Map of lowercase unprefixed name => storage_class to configure."
+  type        = map(string)
+  default     = {}
 }
 
 variable "force_destroy" {
@@ -282,4 +295,10 @@ variable "public_access_prevention" {
   description = "Prevents public access to a bucket. Acceptable values are inherited or enforced. If inherited, the bucket uses public access prevention, only if the bucket is subject to the public access prevention organization policy constraint."
   type        = string
   default     = "inherited"
+}
+
+variable "bucket_public_access_prevention" {
+  description = "Additional public_access_prevention for specific buckets. Map of lowercase unprefixed name => public_access_prevention to configure."
+  type        = map(string)
+  default     = {}
 }
