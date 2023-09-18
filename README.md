@@ -34,7 +34,7 @@ module "gcs_buckets" {
     first = true
   }
   bucket_admins = {
-    second = "user:spam@example.com,eggs@example.com"
+    second = "user:spam@example.com,user:eggs@example.com"
   }
 }
 ```
