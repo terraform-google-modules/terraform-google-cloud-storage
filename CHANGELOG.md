@@ -7,6 +7,22 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v4.0.1...v5.0.0) (2023-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG >= 4.46:** adds support to autoclass ([#265](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/265))
+
+### Features
+
+* **TPG >= 4.46:** adds support to autoclass ([#265](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/265)) ([52eaa5a](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/52eaa5ae08e419340933b9b8c78e0d249d9e72bd))
+
+
+### Bug Fixes
+
+* upgraded versions.tf to include minor bumps from tpg v5 ([#276](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/276)) ([b94c2f9](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/b94c2f9fa00f21e6a329ce221a1282ce4455c1b8))
+
 ## [4.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v4.0.0...v4.0.1) (2023-08-03)
 
 
