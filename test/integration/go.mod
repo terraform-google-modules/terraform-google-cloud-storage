@@ -1,10 +1,12 @@
 module github.com/terraform-google-modules/terraform-google-cloud-storage/test/integration
 
-go 1.20
+go 1.21
+
+toolchain go1.21.5
 
 require (
-	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.10.1
-	github.com/gruntwork-io/terratest v0.46.7
+	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.10.2
+	github.com/gruntwork-io/terratest v0.46.8
 	github.com/stretchr/testify v1.8.4
 )
 
