@@ -103,10 +103,10 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "website" {
-    for_each = length(keys(var.website)) == 0 ? toset([]) : toset([var.website])
+    for_each = lookup(var.website, each.key, null) != null ? [var.website[each.key]] : []
     content {
-      main_page_suffix = lookup(website.value, "main_page_suffix", null)
-      not_found_page   = lookup(website.value, "not_found_page", null)
+      main_page_suffix = website.value.main_page_suffix
+      not_found_page   = website.value.not_found_page
     }
   }
 

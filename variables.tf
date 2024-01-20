@@ -243,9 +243,12 @@ variable "cors" {
 }
 
 variable "website" {
-  type        = map(any)
+  type = map(object({
+    main_page_suffix = string
+    not_found_page   = string
+  }))
   default     = {}
-  description = "Map of website values. Supported attributes: main_page_suffix, not_found_page"
+  description = "Map of website configurations for each bucket."
 }
 
 variable "retention_policy" {
