@@ -94,12 +94,12 @@ resource "google_storage_bucket" "buckets" {
     }
   }
   dynamic "cors" {
-    for_each = var.cors
+    for_each = lookup(var.cors, each.key, null) != null ? [var.cors[each.key]] : []
     content {
-      origin          = lookup(cors.value, "origin", null)
-      method          = lookup(cors.value, "method", null)
-      response_header = lookup(cors.value, "response_header", null)
-      max_age_seconds = lookup(cors.value, "max_age_seconds", null)
+      origin          = cors.value.origin
+      method          = cors.value.method
+      response_header = cors.value.response_header
+      max_age_seconds = cors.value.max_age_seconds
     }
   }
   dynamic "website" {

@@ -237,9 +237,14 @@ variable "bucket_lifecycle_rules" {
 }
 
 variable "cors" {
-  description = "Set of maps of mixed type attributes for CORS values. See appropriate attribute types here: https://www.terraform.io/docs/providers/google/r/storage_bucket.html#cors"
-  type        = set(any)
-  default     = []
+  description = "Map of CORS settings for each bucket."
+  type        = map(object({
+    origin          = list(string)
+    method          = list(string)
+    response_header = list(string)
+    max_age_seconds = number
+  }))
+  default     = {}
 }
 
 variable "website" {
