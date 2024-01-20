@@ -238,13 +238,13 @@ variable "bucket_lifecycle_rules" {
 
 variable "cors" {
   description = "Map of CORS settings for each bucket."
-  type        = map(object({
+  type = map(object({
     origin          = list(string)
     method          = list(string)
     response_header = list(string)
     max_age_seconds = number
   }))
-  default     = {}
+  default = {}
 }
 
 variable "website" {
