@@ -148,6 +148,22 @@ variable "labels" {
   description = "Labels to be attached to the buckets"
   type        = map(string)
   default     = {}
+  # Validations based on https://cloud.google.com/storage/docs/tags-and-labels#bucket-labels
+  validation {
+    condition = alltrue([
+      for key, value in var.labels : (
+        can(regex("^[a-z0-9_-]{1,63}$", key)) &&
+        can(regex("^[a-z0-9_-]{1,63}$", value)) &&
+        length(key) <= 63 &&
+        length(value) <= 63
+      )
+    ])
+    error_message = "Keys and values must meet the specified criteria: lowercase letters, numbers, underscores, and dashes, and be up to 63 characters long."
+  }
+  validation {
+    condition     = length(keys(var.labels)) <= 64
+    error_message = "The map should contain up to 64 objects"
+  }
 }
 
 variable "folders" {

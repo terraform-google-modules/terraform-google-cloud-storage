@@ -55,7 +55,7 @@ func TestMultipleBuckets(t *testing.T) {
 
 			// peel bucket name from prefix and randomized suffix
 			parts := strings.Split(fullBucketName, "-")
-			bucketName := parts[len(parts) - 2]
+			bucketName := parts[len(parts)-2]
 
 			switch bucketName {
 			case "one":
@@ -79,5 +79,49 @@ func TestMultipleBuckets(t *testing.T) {
 			}
 		}
 	})
+	buckets.Test()
+}
+
+func TestValidLabels(t *testing.T) {
+	buckets := tft.NewTFBlueprintTest(t, tft.WithRetryableTerraformErrors(retryErrors, 5, time.Minute))
+
+	buckets.DefineVerify(func(assert *assert.Assertions) {
+		buckets.DefaultVerify(assert)
+
+		labels := map[string]interface{}{
+			"valid_label_1": "value_1",
+			"valid_label_2": "value_2",
+		}
+
+		options := buckets.GetTFOptions()
+		options.Vars = map[string]interface{}{
+			"labels": labels,
+		}
+
+		terraform.InitAndApply(t, options)
+	})
+
+	buckets.Test()
+}
+
+func TestInvalidLabels(t *testing.T) {
+	buckets := tft.NewTFBlueprintTest(t, tft.WithRetryableTerraformErrors(retryErrors, 5, time.Minute))
+
+	buckets.DefineVerify(func(assert *assert.Assertions) {
+		buckets.DefaultVerify(assert)
+
+		invalidLabels := map[string]interface{}{
+			"invalid_label_123456789012345678901234567890123456789012345678901234567890": "Value_1",
+		}
+
+		options := buckets.GetTFOptions()
+		options.Vars = map[string]interface{}{
+			"labels": invalidLabels,
+		}
+
+		_, err := terraform.InitAndApplyE(t, options)
+		assert.Error(err)
+	})
+
 	buckets.Test()
 }
