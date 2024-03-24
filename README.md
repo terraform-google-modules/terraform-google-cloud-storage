@@ -85,7 +85,7 @@ Functional examples are included in the
 | storage\_class | Bucket storage class. | `string` | `"STANDARD"` | no |
 | versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
 | viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | `list(string)` | `[]` | no |
-| website | Map of website values. Supported attributes: main\_page\_suffix, not\_found\_page | `map(any)` | `{}` | no |
+| website | Map of website configurations for each bucket. | <pre>map(object({<br>    main_page_suffix = string<br>    not_found_page   = string<br>  }))</pre> | `{}` | no |
 
 ## Outputs
 
