@@ -155,6 +155,35 @@ resource "google_storage_bucket" "buckets" {
       log_object_prefix = lookup(logging.value, "log_object_prefix", null)
     }
   }
+
+  lifecycle {
+    # Bucket name validations based on requirements in the documetation
+    # https://cloud.google.com/storage/docs/buckets#naming
+    postcondition {
+      condition     = length(regexall("^[a-z|0-9|\\-|\\_|\\.]*$", self.name)) > 0
+      error_message = "The name value can only contain lowercase letters, numeric characters, dashes (-), underscores (_), and dots (.)"
+    }
+    postcondition {
+      condition     = length(regexall("^[a-z|0-9].*[a-z|0-9]$", self.name)) > 0
+      error_message = "The name value must start and end with a number or letter"
+    }
+    postcondition {
+      condition     = length(regexall("^.{3,63}$", self.name)) > 0 || length(self.name) <= 222 && length(regexall("^([a-z0-9-]{0,63}\\.)+[a-z0-9-]{0,63}$", self.name)) > 0
+      error_message = "The name value must contain 3-63 characters. Names containing dots can contain up to 222 characters, but each dot-separated component can be no longer than 63 characters"
+    }
+    postcondition {
+      condition     = length(regexall("^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$", self.name)) == 0
+      error_message = "The name value cannot be represented as an IP address in dotted-decimal notation (for example, 192.168.5.4)"
+    }
+    postcondition {
+      condition     = length(regexall("^goog.*$", self.name)) == 0
+      error_message = "The name value cannot begin with the \"goog\" prefix"
+    }
+    postcondition {
+      condition     = length(regexall("^.*google.*$", replace(self.name, "0", "o"))) == 0
+      error_message = "The name value cannot contain \"google\" or close misspellings, such as \"g00gle\""
+    }
+  }
 }
 
 resource "google_storage_bucket_iam_binding" "admins" {
