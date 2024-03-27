@@ -17,6 +17,32 @@
 variable "name" {
   description = "The name of the bucket."
   type        = string
+  # Bucket name validations based on requirements in the documetation
+  # https://cloud.google.com/storage/docs/buckets#naming
+  validation {
+    condition     = length(regexall("^[a-z|0-9|\\-|\\_|\\.]*$", local.cmek_bucket_name)) > 0
+    error_message = "The name value can only contain lowercase letters, numeric characters, dashes (-), underscores (_), and dots (.)"
+  }
+  validation {
+    condition     = length(regexall("^[a-z|0-9].*[a-z|0-9]$", local.cmek_bucket_name)) > 0
+    error_message = "The name value must start and end with a number or letter"
+  }
+  validation {
+    condition     = length(regexall("^.{3,63}$", local.cmek_bucket_name)) > 0 || length(local.cmek_bucket_name) <= 222 && length(regexall("^([a-z0-9-]{0,63}\\.)+[a-z0-9-]{0,63}$", local.cmek_bucket_name)) > 0
+    error_message = "The name value must contain 3-63 characters. Names containing dots can contain up to 222 characters, but each dot-separated component can be no longer than 63 characters"
+  }
+  validation {
+    condition     = length(regexall("^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$", local.cmek_bucket_name)) == 0
+    error_message = "The name value cannot be represented as an IP address in dotted-decimal notation (for example, 192.168.5.4)"
+  }
+  validation {
+    condition     = length(regexall("^goog.*$", local.cmek_bucket_name)) == 0
+    error_message = "The name value cannot begin with the \"goog\" prefix"
+  }
+  validation {
+    condition     = length(regexall("^.*google.*$", replace(local.cmek_bucket_name, "0", "o"))) == 0
+    error_message = "The name value cannot contain \"google\" or close misspellings, such as \"g00gle\""
+  }
 }
 
 variable "project_id" {
