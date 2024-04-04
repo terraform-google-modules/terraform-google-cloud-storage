@@ -283,3 +283,11 @@ variable "public_access_prevention" {
   type        = string
   default     = "inherited"
 }
+
+variable "soft_delete_policy" {
+  description = "Soft delete policies to apply. Map of lowercase unprefixed name => soft delete policy. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy"
+  type = map(object({
+    retention_duration_seconds = number
+  }))
+  default = {}
+}

@@ -155,7 +155,13 @@ resource "google_storage_bucket" "buckets" {
       log_object_prefix = lookup(logging.value, "log_object_prefix", null)
     }
   }
-}
+
+  dynamic "soft_delete_policy" {
+    for_each = lookup(var.soft_delete_policy, each.value, {}) != {} ? { v = lookup(var.soft_delete_policy, each.value) } : {}
+    content {
+      retention_duration_seconds = soft_delete_policy.value.retention_duration_seconds
+    }
+  }
 
 resource "google_storage_bucket_iam_binding" "admins" {
   for_each = var.set_admin_roles ? local.names_set : []
