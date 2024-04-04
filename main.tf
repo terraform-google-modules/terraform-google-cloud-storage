@@ -157,7 +157,7 @@ resource "google_storage_bucket" "buckets" {
   }
 
   dynamic "soft_delete_policy" {
-    for_each = lookup(var.soft_delete_policy, each.value, {}) != {} ? { v = lookup(var.soft_delete_policy, each.value) } : {}
+    for_each = [lookup(var.soft_delete_policy, each.value, { retention_duration_seconds = 604800 })]
     content {
       retention_duration_seconds = soft_delete_policy.value.retention_duration_seconds
     }
