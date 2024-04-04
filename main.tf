@@ -162,6 +162,7 @@ resource "google_storage_bucket" "buckets" {
       retention_duration_seconds = soft_delete_policy.value.retention_duration_seconds
     }
   }
+}
 
 resource "google_storage_bucket_iam_binding" "admins" {
   for_each = var.set_admin_roles ? local.names_set : []
