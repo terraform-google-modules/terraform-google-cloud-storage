@@ -154,7 +154,7 @@ variable "public_access_prevention" {
 variable "soft_delete_policy" {
   description = "Soft delete policies to apply. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy"
   type = object({
-    retention_duration_seconds = number
+    retention_duration_seconds = optional(number)
   })
-  default = { retention_duration_seconds = 604800 }
+  default = {}
 }

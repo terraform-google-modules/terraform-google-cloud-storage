@@ -54,7 +54,7 @@ Functional examples are included in the
 | project\_id | The ID of the project to create the bucket in. | `string` | n/a | yes |
 | public\_access\_prevention | Prevents public access to a bucket. Acceptable values are inherited or enforced. If inherited, the bucket uses public access prevention, only if the bucket is subject to the public access prevention organization policy constraint. | `string` | `"inherited"` | no |
 | retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | <pre>object({<br>    is_locked        = bool<br>    retention_period = number<br>  })</pre> | `null` | no |
-| soft\_delete\_policy | Soft delete policies to apply. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy | <pre>object({<br>    retention_duration_seconds = number<br>  })</pre> | <pre>{<br>  "retention_duration_seconds": 604800<br>}</pre> | no |
+| soft\_delete\_policy | Soft delete policies to apply. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy | <pre>object({<br>    retention_duration_seconds = optional(number)<br>  })</pre> | `{}` | no |
 | storage\_class | The Storage Class of the new bucket. | `string` | `null` | no |
 | versioning | While set to true, versioning is fully enabled for this bucket. | `bool` | `true` | no |
 | website | Map of website values. Supported attributes: main\_page\_suffix, not\_found\_page | `map(any)` | `{}` | no |
