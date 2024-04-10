@@ -102,6 +102,13 @@ resource "google_storage_bucket" "bucket" {
       log_object_prefix = var.log_object_prefix
     }
   }
+
+  dynamic "soft_delete_policy" {
+    for_each = var.soft_delete_policy == {} ? [] : [var.soft_delete_policy]
+    content {
+      retention_duration_seconds = lookup(soft_delete_policy.value, "retention_duration_seconds", null)
+    }
+  }
 }
 
 resource "google_storage_bucket_iam_member" "members" {

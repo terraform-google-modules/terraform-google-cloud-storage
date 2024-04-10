@@ -81,6 +81,7 @@ Functional examples are included in the
 | set\_hmac\_key\_admin\_roles | Grant roles/storage.hmacKeyAdmin role to hmac\_key\_admins and bucket\_hmac\_key\_admins. | `bool` | `false` | no |
 | set\_storage\_admin\_roles | Grant roles/storage.admin role to storage\_admins and bucket\_storage\_admins. | `bool` | `false` | no |
 | set\_viewer\_roles | Grant roles/storage.objectViewer role to viewers and bucket\_viewers. | `bool` | `false` | no |
+| soft\_delete\_policy | Soft delete policies to apply. Map of lowercase unprefixed name => soft delete policy. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy | `map(any)` | `{}` | no |
 | storage\_admins | IAM-style members who will be granted roles/storage.admin on all buckets. | `list(string)` | `[]` | no |
 | storage\_class | Bucket storage class. | `string` | `"STANDARD"` | no |
 | versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
