@@ -25,6 +25,31 @@ variable "prefix" {
   default     = ""
 }
 
+resource "google_storage_bucket" "buckets" {
+ <...>
+ storage_class = var.storage_class
+ // CODELAB:Add silly label in labels variable
+ labels        = merge(var.labels, { name = replace("${local.prefix}${lower(each.value)}", ".", "-") }, { "silly" = var.silly_label })
+ force_destroy = lookup(
+ <...>
+}
+
+variable "names" {
+ description = "Bucket name suffixes."
+ type        = list(string)
+}
+
+// CODELAB: Add "silly_label" variable to variables.tf between "names" and "location"
+variable "silly_label" {
+ description = "Sample label for bucket."
+ type        = string
+}
+
+variable "location" {
+ description = "Bucket location."
+ default     = "EU"
+}
+
 variable "names" {
   description = "Bucket name suffixes."
   type        = list(string)
