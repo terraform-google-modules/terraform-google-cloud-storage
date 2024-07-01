@@ -7,6 +7,17 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v5.0.0...v6.0.0) (2024-05-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* soft-delete configuration ([#309](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/309))
+
+### Features
+
+* soft-delete configuration ([#309](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/309)) ([1be844a](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/1be844a778afe5a060ba1a686ab1187396e8e267))
+
 ## [5.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v4.0.1...v5.0.0) (2023-10-17)
 
 

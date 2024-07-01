@@ -22,7 +22,7 @@ resource "random_string" "prefix" {
 
 module "cloud_storage" {
   source  = "terraform-google-modules/cloud-storage/google"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   project_id = var.project_id
 
