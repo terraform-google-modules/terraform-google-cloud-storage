@@ -16,8 +16,9 @@
 
 locals {
   int_required_roles = [
-    "roles/storage.admin",
+    "roles/cloudkms.admin",
     "roles/iam.serviceAccountUser",
+    "roles/storage.admin",
   ]
 }
 

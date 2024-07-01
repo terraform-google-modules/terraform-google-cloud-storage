@@ -43,7 +43,7 @@ resource "google_storage_bucket" "bucket" {
   dynamic "encryption" {
     for_each = var.encryption == null ? [] : [var.encryption]
     content {
-      default_kms_key_name = var.encryption.default_kms_key_name
+      default_kms_key_name = var.encryption.default_kms_key_name != null ? var.encryption.default_kms_key_name : module.encryption_key.keys[var.name]
     }
   }
 
@@ -118,4 +118,21 @@ resource "google_storage_bucket_iam_member" "members" {
   bucket = google_storage_bucket.bucket.name
   role   = each.value.role
   member = each.value.member
+}
+
+data "google_project" "project" {
+}
+
+module "encryption_key" {
+  source             = "terraform-google-modules/kms/google"
+  version            = "~> 2.0"
+  project_id         = var.project_id
+  location           = var.location
+  keyring            = var.name
+  prevent_destroy    = false
+  keys               = [var.name]
+  set_decrypters_for = [var.name]
+  set_encrypters_for = [var.name]
+  decrypters         = ["serviceAccount:service-${data.google_project.project.number}@gs-project-accounts.iam.gserviceaccount.com"]
+  encrypters         = ["serviceAccount:service-${data.google_project.project.number}@gs-project-accounts.iam.gserviceaccount.com"]
 }
