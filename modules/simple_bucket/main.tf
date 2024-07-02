@@ -121,6 +121,7 @@ resource "google_storage_bucket_iam_member" "members" {
 }
 
 data "google_project" "project" {
+  project_id = var.project_id
 }
 
 module "encryption_key" {
