@@ -42,7 +42,7 @@ Functional examples are included in the
 | bucket\_policy\_only | Enables Bucket Policy Only access to a bucket. | `bool` | `true` | no |
 | cors | Configuration of CORS for bucket with structure as defined in https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#cors. | `any` | `[]` | no |
 | custom\_placement\_config | Configuration of the bucket's custom location in a dual-region bucket setup. If the bucket is designated a single or multi-region, the variable are null. | <pre>object({<br>    data_locations = list(string)<br>  })</pre> | `null` | no |
-| encryption | A Cloud KMS key that will be used to encrypt objects inserted into this bucket | <pre>object({<br>    default_kms_key_name = string<br>  })</pre> | `null` | no |
+| encryption | A Cloud KMS key that will be used to encrypt objects inserted into this bucket. If default\_kms\_key\_name is set to 'null' a new keyring and key pair will be created and used to encrypt bucket using CMEK. | <pre>object({<br>    default_kms_key_name = string<br>  })</pre> | `null` | no |
 | force\_destroy | When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects. | `bool` | `false` | no |
 | iam\_members | The list of IAM members to grant permissions on the bucket. | <pre>list(object({<br>    role   = string<br>    member = string<br>  }))</pre> | `[]` | no |
 | labels | A set of key/value label pairs to assign to the bucket. | `map(string)` | `null` | no |

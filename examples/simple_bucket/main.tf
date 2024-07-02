@@ -42,5 +42,6 @@ module "bucket" {
     member = "group:test-gcp-ops@test.blueprints.joonix.net"
   }]
 
-  autoclass = true
+  autoclass  = true
+  encryption = { default_kms_key_name = null }
 }
