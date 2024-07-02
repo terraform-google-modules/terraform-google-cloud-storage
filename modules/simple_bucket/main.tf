@@ -43,7 +43,7 @@ resource "google_storage_bucket" "bucket" {
   dynamic "encryption" {
     for_each = var.encryption == null ? [] : [var.encryption]
     content {
-      default_kms_key_name = var.encryption.default_kms_key_name != null ? var.encryption.default_kms_key_name : module.encryption_key.keys[var.name]
+      default_kms_key_name = var.encryption.default_kms_key_name != null ? var.encryption.default_kms_key_name : module.encryption_key[0].keys[var.name]
     }
   }
 
@@ -125,6 +125,7 @@ data "google_project" "project" {
 }
 
 module "encryption_key" {
+  count              = var.encryption == null ? 0 : (var.encryption.default_kms_key_name == null ? 1 : 0)
   source             = "terraform-google-modules/kms/google"
   version            = "~> 2.0"
   project_id         = var.project_id
