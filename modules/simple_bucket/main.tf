@@ -120,8 +120,8 @@ resource "google_storage_bucket_iam_member" "members" {
   member = each.value.member
 }
 
-data "google_project" "project" {
-  project_id = var.project_id
+data "google_storage_project_service_account" "gcs_account" {
+  project = var.project_id
 }
 
 module "encryption_key" {
@@ -135,6 +135,6 @@ module "encryption_key" {
   keys               = [var.name]
   set_decrypters_for = [var.name]
   set_encrypters_for = [var.name]
-  decrypters         = ["serviceAccount:service-${data.google_project.project.number}@gs-project-accounts.iam.gserviceaccount.com"]
-  encrypters         = ["serviceAccount:service-${data.google_project.project.number}@gs-project-accounts.iam.gserviceaccount.com"]
+  decrypters         = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
+  encrypters         = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
 }
