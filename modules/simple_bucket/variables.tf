@@ -99,7 +99,7 @@ variable "cors" {
 }
 
 variable "encryption" {
-  description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket"
+  description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket. If default_kms_key_name is set to 'null' a new keyring and key pair will be created and used to encrypt bucket using CMEK."
   type = object({
     default_kms_key_name = string
   })
