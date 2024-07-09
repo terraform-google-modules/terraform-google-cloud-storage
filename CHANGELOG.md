@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v6.0.0...v6.0.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* adding "no_age" param in simple bucket ([#319](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/319)) ([87e66bb](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/87e66bb7af2f88e29db6a9fe1eda9bf53fe119bb))
+* lookup default value for soft delete policy  ([#318](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/318)) ([aa7c57e](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/aa7c57e92e691a22433092bceea9de879f66d7ab))
+
 ## [6.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v5.0.0...v6.0.0) (2024-05-03)
 
 
