@@ -27,6 +27,8 @@ module "cloud_storage" {
   project_id = var.project_id
 
   prefix           = "multiple-buckets-${random_string.prefix.result}"
+
+  silly_label = "awesome"
   names            = ["one", "two"]
   randomize_suffix = true
 
