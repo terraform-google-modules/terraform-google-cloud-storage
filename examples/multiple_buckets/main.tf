@@ -65,6 +65,13 @@ module "cloud_storage" {
     ]
   }
 
+  retention_policy = {
+    "two" = {
+      is_locked        = false
+      retention_period = 3600
+    }
+  }
+
   default_event_based_hold = {
     "one" = true
   }
