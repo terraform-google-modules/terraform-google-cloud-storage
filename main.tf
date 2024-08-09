@@ -111,10 +111,7 @@ resource "google_storage_bucket" "buckets" {
   }
 
   dynamic "retention_policy" {
-    for_each = lookup(var.retention_policy, each.value, {
-      is_locked        = null
-      retention_period = null
-    }) != {} ? [var.retention_policy[each.value]] : []
+    for_each = lookup(var.retention_policy, each.value, null) != null ? [var.retention_policy[each.value]] : []
     content {
       is_locked        = lookup(retention_policy.value, "is_locked", null)
       retention_period = lookup(retention_policy.value, "retention_period", null)
