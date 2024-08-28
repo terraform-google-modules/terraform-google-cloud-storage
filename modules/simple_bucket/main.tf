@@ -114,7 +114,7 @@ resource "google_storage_bucket" "bucket" {
 
 resource "google_storage_bucket_iam_member" "members" {
   for_each = {
-    for m in var.iam_members : "${m.role} ${m.member}" => m
+    for index, m in var.iam_members : "${index} ${m.role}" => m
   }
   bucket = google_storage_bucket.bucket.name
   role   = each.value.role
