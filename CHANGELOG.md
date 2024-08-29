@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v6.0.1...v6.1.0) (2024-08-29)
+
+
+### Features
+
+* **deps:** Update Terraform google to v6 ([#336](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/336)) ([2fa380d](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/2fa380d0a15f7daf776bb80019a11594aed5a5bf))
+* Encrypt bucket with CMEK ([#325](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/325)) ([07e3a4e](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/07e3a4e2b34dc4c7a2a99ae5e6893a3670251870))
+
 ## [6.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v6.0.0...v6.0.1) (2024-07-03)
 
 
