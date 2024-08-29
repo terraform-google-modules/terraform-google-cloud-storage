@@ -30,7 +30,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-cloud-storage/v6.0.1"
+    module_name = "blueprints/terraform/terraform-google-cloud-storage/v6.1.0"
   }
 
 }
