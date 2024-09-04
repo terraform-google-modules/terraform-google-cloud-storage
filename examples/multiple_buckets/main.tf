@@ -68,7 +68,7 @@ module "cloud_storage" {
   retention_policy = {
     "two" = {
       is_locked        = false
-      retention_period = 3600
+      retention_period = 1
     }
   }
 
