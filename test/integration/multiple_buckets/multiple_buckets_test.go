@@ -73,6 +73,7 @@ func TestMultipleBuckets(t *testing.T) {
 				gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s/prod/", fullBucketName), gcloudArgs)
 				bucket_lifecycles := op.Get("metadata.lifecycle.rule").Array()
 				assert.Equal(1, len(bucket_lifecycles), "Bucket 'two' has 1 lifecycle rule")
+				assert.Equal("1", op.Get("metadata.retentionPolicy.retentionPeriod").String(), "bucket retention policy retention period is 1")
 			default:
 				// fail test if unknown suffix
 				t.Fatalf("Only expected two buckets with suffixes one and two. Found: %s", fullBucketName)
