@@ -111,7 +111,7 @@ resource "google_storage_bucket" "buckets" {
   }
 
   dynamic "retention_policy" {
-    for_each = lookup(var.retention_policy, each.value, {}) != {} ? [var.retention_policy[each.value]] : []
+    for_each = lookup(var.retention_policy, each.value, null) != null ? [var.retention_policy[each.value]] : []
     content {
       is_locked        = lookup(retention_policy.value, "is_locked", null)
       retention_period = lookup(retention_policy.value, "retention_period", null)
@@ -119,7 +119,7 @@ resource "google_storage_bucket" "buckets" {
   }
 
   dynamic "custom_placement_config" {
-    for_each = lookup(var.custom_placement_config, each.value, {}) != {} ? [var.custom_placement_config[each.value]] : []
+    for_each = lookup(var.custom_placement_config, each.value, null) != null ? [var.custom_placement_config[each.value]] : []
     content {
       data_locations = lookup(custom_placement_config.value, "data_locations", null)
     }
@@ -149,7 +149,7 @@ resource "google_storage_bucket" "buckets" {
   }
 
   dynamic "logging" {
-    for_each = lookup(var.logging, each.value, {}) != {} ? { v = lookup(var.logging, each.value) } : {}
+    for_each = lookup(var.logging, each.value, null) != null ? { v = lookup(var.logging, each.value) } : {}
     content {
       log_bucket        = lookup(logging.value, "log_bucket", null)
       log_object_prefix = lookup(logging.value, "log_object_prefix", null)
