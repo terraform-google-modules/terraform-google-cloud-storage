@@ -1,0 +1,90 @@
+# Copyright 2024 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-cloud-storage-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Terraform Google Cloud Storage Module
+    source:
+      repo: https://github.com/terraform-google-modules/terraform-google-cloud-storage.git
+      sourceType: git
+      dir: /modules/simple_bucket
+  ui:
+    input:
+      variables:
+        autoclass:
+          name: autoclass
+          title: Autoclass
+        bucket_policy_only:
+          name: bucket_policy_only
+          title: Bucket Policy Only
+        cors:
+          name: cors
+          title: Cors
+        custom_placement_config:
+          name: custom_placement_config
+          title: Custom Placement Config
+        encryption:
+          name: encryption
+          title: Encryption
+        force_destroy:
+          name: force_destroy
+          title: Force Destroy
+        iam_members:
+          name: iam_members
+          title: Iam Members
+        labels:
+          name: labels
+          title: Labels
+        lifecycle_rules:
+          name: lifecycle_rules
+          title: Lifecycle Rules
+        location:
+          name: location
+          title: Location
+        log_bucket:
+          name: log_bucket
+          title: Log Bucket
+        log_object_prefix:
+          name: log_object_prefix
+          title: Log Object Prefix
+        name:
+          name: name
+          title: Name
+        project_id:
+          name: project_id
+          title: Project Id
+        public_access_prevention:
+          name: public_access_prevention
+          title: Public Access Prevention
+        retention_policy:
+          name: retention_policy
+          title: Retention Policy
+        soft_delete_policy:
+          name: soft_delete_policy
+          title: Soft Delete Policy
+        storage_class:
+          name: storage_class
+          title: Storage Class
+        versioning:
+          name: versioning
+          title: Versioning
+        website:
+          name: website
+          title: Website
