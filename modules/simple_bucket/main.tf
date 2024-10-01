@@ -23,7 +23,7 @@ resource "google_storage_bucket" "bucket" {
   labels                      = var.labels
   force_destroy               = var.force_destroy
   public_access_prevention    = var.public_access_prevention
- 
+
   versioning {
     enabled = var.versioning
   }
