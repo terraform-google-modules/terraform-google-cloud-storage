@@ -128,7 +128,7 @@ data "google_storage_project_service_account" "gcs_account" {
 module "encryption_key" {
   count              = var.encryption == null ? 0 : (var.encryption.default_kms_key_name == null ? 1 : 0)
   source             = "terraform-google-modules/kms/google"
-  version            = "~> 2.0"
+  version            = "~> 3.0"
   project_id         = var.project_id
   location           = var.location
   keyring            = var.name
