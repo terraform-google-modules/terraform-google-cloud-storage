@@ -478,7 +478,7 @@ spec:
         description: Bucket resources by name.
         type:
           - object
-          - zhengqin-cft-bucket-1:
+          - BjF3Mqh2vo:
               - object
               - autoclass:
                   - list
@@ -606,7 +606,7 @@ spec:
         description: Bucket names.
         type:
           - object
-          - zhengqin-cft-bucket-1: string
+          - BjF3Mqh2vo: string
       - name: names_list
         description: List of bucket names.
         type:
@@ -619,7 +619,7 @@ spec:
         description: Bucket URLs.
         type:
           - object
-          - zhengqin-cft-bucket-1: string
+          - BjF3Mqh2vo: string
       - name: urls_list
         description: List of bucket URLs.
         type:
