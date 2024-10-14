@@ -7,6 +7,20 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v6.1.0...v7.0.0) (2024-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/kms/google to v3 ([#343](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/343))
+* **TPG>=5.43:** replacing "no_age" -> "send_age_if_zero" ([#340](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/340))
+
+### Bug Fixes
+
+* **deps:** Update Terraform terraform-google-modules/kms/google to v3 ([#343](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/343)) ([e8bb6eb](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/e8bb6eb49fdaf5f6f300d1b6dc46f097173dc488))
+* **TPG>=5.43:** replacing "no_age" -&gt; "send_age_if_zero" ([#340](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/340)) ([f40bf31](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/f40bf318a55aa12d467cebac8706f774481958ac))
+* use null as default for lookup ([#332](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/332)) ([6c14d5e](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/6c14d5e50e2f29f21af870785eb89a862724d067))
+
 ## [6.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v6.0.1...v6.1.0) (2024-08-29)
 
 
