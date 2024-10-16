@@ -25,7 +25,7 @@ variable "project_id" {
 }
 
 variable "location" {
-  description = "The location of the bucket."
+  description = "The location of the bucket. See https://cloud.google.com/storage/docs/locations."
   type        = string
 }
 
@@ -99,7 +99,7 @@ variable "cors" {
 }
 
 variable "encryption" {
-  description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket. If default_kms_key_name is set to 'null' a new keyring and key pair will be created and used to encrypt bucket using CMEK."
+  description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket. To use a Cloud KMS key automatically created by the module use `internal_encryption_config`."
   type = object({
     default_kms_key_name = string
   })
@@ -155,6 +155,24 @@ variable "soft_delete_policy" {
   description = "Soft delete policies to apply. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy"
   type = object({
     retention_duration_seconds = optional(number)
+  })
+  default = {}
+}
+
+variable "internal_encryption_config" {
+  description = <<EOT
+  Configuration for the creation of an internal Google Cloud Key Management Service (KMS) Key for use as Customer-managed encryption key (CMEK) for the GCS Bucket
+  instead of creating one in advance and providing the key in the variable `encryption.default_kms_key_name`.
+  create_encryption_key: If `true` a Google Cloud Key Management Service (KMS) KeyRing and a Key will be created
+  prevent_destroy: Set the prevent_destroy lifecycle attribute on keys.
+  key_destroy_scheduled_duration: Set the period of time that versions of keys spend in the `DESTROY_SCHEDULED` state before transitioning to `DESTROYED`.
+  key_rotation_period: Generate a new key every time this period passes.
+  EOT
+  type = object({
+    create_encryption_key          = optional(bool, false)
+    prevent_destroy                = optional(bool, false)
+    key_destroy_scheduled_duration = optional(string, null)
+    key_rotation_period            = optional(string, "7776000s")
   })
   default = {}
 }

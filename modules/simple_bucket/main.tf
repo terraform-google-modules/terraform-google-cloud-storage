@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+locals {
+  internal_encryption = var.internal_encryption_config.create_encryption_key ? { default_kms_key_name = module.encryption_key[0].keys[var.name] } : null
+  encryption          = var.internal_encryption_config.create_encryption_key ? local.internal_encryption : var.encryption
+}
+
 resource "google_storage_bucket" "bucket" {
   name                        = var.name
   project                     = var.project_id
@@ -41,9 +46,9 @@ resource "google_storage_bucket" "bucket" {
   }
 
   dynamic "encryption" {
-    for_each = var.encryption == null ? [] : [var.encryption]
+    for_each = local.encryption == null ? [] : [local.encryption]
     content {
-      default_kms_key_name = var.encryption.default_kms_key_name != null ? var.encryption.default_kms_key_name : module.encryption_key[0].keys[var.name]
+      default_kms_key_name = local.encryption.default_kms_key_name
     }
   }
 
@@ -126,16 +131,19 @@ data "google_storage_project_service_account" "gcs_account" {
 }
 
 module "encryption_key" {
-  count              = var.encryption == null ? 0 : (var.encryption.default_kms_key_name == null ? 1 : 0)
-  source             = "terraform-google-modules/kms/google"
-  version            = "~> 3.0"
-  project_id         = var.project_id
-  location           = var.location
-  keyring            = var.name
-  prevent_destroy    = false
-  keys               = [var.name]
-  set_decrypters_for = [var.name]
-  set_encrypters_for = [var.name]
-  decrypters         = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
-  encrypters         = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
+  source  = "terraform-google-modules/kms/google"
+  version = "~> 3.0"
+  count   = var.internal_encryption_config.create_encryption_key ? 1 : 0
+
+  project_id                     = var.project_id
+  location                       = lower(var.location)
+  keyring                        = var.name
+  prevent_destroy                = var.internal_encryption_config.prevent_destroy
+  key_destroy_scheduled_duration = var.internal_encryption_config.key_destroy_scheduled_duration
+  key_rotation_period            = var.internal_encryption_config.key_rotation_period
+  keys                           = [var.name]
+  set_decrypters_for             = [var.name]
+  set_encrypters_for             = [var.name]
+  decrypters                     = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
+  encrypters                     = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
 }
