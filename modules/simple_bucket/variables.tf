@@ -25,7 +25,7 @@ variable "project_id" {
 }
 
 variable "location" {
-  description = "The location of the bucket. See https://cloud.google.com/storage/docs/locations ."
+  description = "The location of the bucket. See https://cloud.google.com/storage/docs/locations."
   type        = string
 }
 
@@ -99,7 +99,7 @@ variable "cors" {
 }
 
 variable "encryption" {
-  description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket. To use a Cloud KMS key automatically created by the module use `internal_encryption_config`"
+  description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket. To use a Cloud KMS key automatically created by the module use `internal_encryption_config`."
   type = object({
     default_kms_key_name = string
   })
