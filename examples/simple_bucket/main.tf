@@ -16,7 +16,7 @@
 
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   name       = "${var.project_id}-bucket"
   project_id = var.project_id
@@ -42,6 +42,5 @@ module "bucket" {
     member = "group:test-gcp-ops@test.blueprints.joonix.net"
   }]
 
-  autoclass  = true
-  encryption = { default_kms_key_name = null }
+  autoclass = true
 }
