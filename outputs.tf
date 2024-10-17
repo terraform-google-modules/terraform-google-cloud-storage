@@ -70,7 +70,7 @@ output "hmac_keys" {
 }
 
 output "apphub_service_uri" {
-  value       = {
+  value = {
     service_uri = local.buckets_list[*].self_link
     service_id  = local.buckets_list[*].name
   }
