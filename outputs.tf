@@ -68,3 +68,11 @@ output "hmac_keys" {
   value       = google_storage_hmac_key.hmac_keys[*]
   sensitive   = true
 }
+
+output "apphub_service_uri" {
+  value = {
+    service_uri = local.buckets_list[*].self_link
+    service_id  = local.buckets_list[*].name
+  }
+  description = "Service URI in CAIS style to be used by Apphub."
+}

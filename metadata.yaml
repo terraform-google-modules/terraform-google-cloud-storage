@@ -239,6 +239,16 @@ spec:
         varType: map(any)
         defaultValue: {}
     outputs:
+      - name: apphub_service_uri
+        description: Service URI in CAIS style to be used by Apphub.
+        type:
+          - object
+          - service_id:
+              - tuple
+              - - string
+            service_uri:
+              - tuple
+              - - string
       - name: bucket
         description: Bucket resource (for single use).
         type:
