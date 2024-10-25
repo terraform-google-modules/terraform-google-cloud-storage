@@ -85,12 +85,12 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
               version: ~> 0.13
             spec:
-              outputExpr: '{"member": service_account_id.member, "role": "roles/storage.objectAdmin"}'
+              outputExpr: "{\"member\": service_account_id.member, \"role\": \"roles/storage.objectAdmin\"}"
           - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
               version: ~> 4.4
             spec:
-              outputExpr: '{"member": iam_email, "role": "roles/storage.objectAdmin"}'
+              outputExpr: "{\"member\": iam_email, \"role\": \"roles/storage.objectAdmin\"}"
       - name: retention_policy
         description: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained.
         varType: |-
@@ -167,7 +167,7 @@ spec:
         defaultValue: {}
     outputs:
       - name: apphub_service_uri
-        description: Service URI in CAIS style to be used by Apphub.
+        description: URI in CAIS style to be used by Apphub.
         type:
           - object
           - service_id: string

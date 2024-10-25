@@ -36,8 +36,8 @@ output "internal_kms_configuration" {
 
 output "apphub_service_uri" {
   value = {
-    service_uri = "//storage.googleapis.com/${element(split("/b/", google_storage_bucket.bucket.self_link), 1)}"
-    service_id  = substr(format("%s-%s", google_storage_bucket.bucket.name, md5(var.project_id)), 0, 63)
+    service_uri = "//storage.googleapis.com/${google_storage_bucket.bucket.name}"
+    service_id  = substr(google_storage_bucket.bucket.name, 0, 63)
   }
   description = "URI in CAIS style to be used by Apphub."
 }

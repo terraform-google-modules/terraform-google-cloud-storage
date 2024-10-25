@@ -240,7 +240,7 @@ spec:
         defaultValue: {}
     outputs:
       - name: apphub_service_uri
-        description: Service URI in CAIS style to be used by Apphub.
+        description: URI in CAIS style to be used by Apphub.
         type:
           - tuple
           - - - object
