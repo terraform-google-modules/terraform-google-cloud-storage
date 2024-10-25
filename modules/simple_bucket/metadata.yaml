@@ -83,10 +83,14 @@ spec:
         connections:
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
-              version: ~> 0.12.0
+              version: ~> 0.13
             spec:
-              outputExpr: service_account_id.member
-              inputPath: member
+              outputExpr: '{"member": service_account_id.member, "role": "roles/storage.objectAdmin"}'
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ~> 4.4
+            spec:
+              outputExpr: '{"member": iam_email, "role": "roles/storage.objectAdmin"}'
       - name: retention_policy
         description: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained.
         varType: |-
