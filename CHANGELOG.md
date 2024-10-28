@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v8.0.0...v8.0.1) (2024-10-28)
+
+
+### Bug Fixes
+
+* Fix apphub uri and id representation ([#360](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/360)) ([2782340](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/2782340b070823f8cc684bb81184f3cb9d4c97c3))
+
 ## [8.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v7.0.0...v8.0.0) (2024-10-17)
 
 
