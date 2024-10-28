@@ -92,7 +92,7 @@ Functional examples are included in the
 
 | Name | Description |
 |------|-------------|
-| apphub\_service\_uri | Service URI in CAIS style to be used by Apphub. |
+| apphub\_service\_uri | URI in CAIS style to be used by Apphub. |
 | bucket | Bucket resource (for single use). |
 | buckets | Bucket resources as list. |
 | buckets\_map | Bucket resources by name. |

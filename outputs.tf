@@ -70,9 +70,9 @@ output "hmac_keys" {
 }
 
 output "apphub_service_uri" {
-  value = {
-    service_uri = local.buckets_list[*].self_link
-    service_id  = local.buckets_list[*].name
-  }
-  description = "Service URI in CAIS style to be used by Apphub."
+  value = [for bucket in local.buckets_list : {
+    service_uri = "//storage.googleapis.com/${bucket.name}"
+    service_id  = substr(bucket.name, 0, 63)
+  }]
+  description = "URI in CAIS style to be used by Apphub."
 }
