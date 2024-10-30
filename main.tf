@@ -44,7 +44,7 @@ resource "google_storage_bucket" "buckets" {
   project                  = var.project_id
   location                 = var.location
   storage_class            = var.storage_class
-  labels                   = merge(var.labels, { name = replace(join("-", compact([var.prefix, each.value])), ".", "-") })
+  labels                   = merge(var.labels, lookup(var.bucket_labels, each.value, {}), { name = replace(join("-", compact([var.prefix, each.value])), ".", "-") })
   public_access_prevention = var.public_access_prevention
 
   force_destroy = lookup(

@@ -145,8 +145,14 @@ variable "bucket_storage_admins" {
 }
 
 variable "labels" {
-  description = "Labels to be attached to the buckets"
+  description = "Common labels to be attached to all buckets"
   type        = map(string)
+  default     = {}
+}
+
+variable "bucket_labels" {
+  description = "Additional labels to be attached to specific buckets"
+  type        = map(map(string))
   default     = {}
 }
 
