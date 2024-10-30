@@ -29,6 +29,18 @@ module "cloud_storage" {
   prefix           = "multiple-buckets-${random_string.prefix.result}"
   names            = ["one", "two"]
   randomize_suffix = true
+  labels = {
+    somelabel = "generic"
+  }
+
+  bucket_labels = {
+    "one" = {
+      environment = "dev"
+    }
+    "two" = {
+      environment = "prod"
+    }
+  }
 
   bucket_policy_only = {
     "one" = true
