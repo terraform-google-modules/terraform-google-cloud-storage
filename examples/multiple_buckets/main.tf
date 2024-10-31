@@ -39,6 +39,7 @@ module "cloud_storage" {
     }
     "two" = {
       environment = "prod"
+      cost_center = "finance"
     }
   }
 
