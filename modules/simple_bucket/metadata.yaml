@@ -38,10 +38,6 @@ spec:
         location: examples/simple_bucket
   interfaces:
     variables:
-      - name: name
-        description: The name of the bucket.
-        varType: string
-        required: true
       - name: project_id
         description: The ID of the project to create the bucket in.
         varType: string
@@ -50,6 +46,33 @@ spec:
         description: The location of the bucket. See https://cloud.google.com/storage/docs/locations.
         varType: string
         required: true
+      - name: name
+        description: The name of the bucket.
+        varType: string
+        required: true
+      - name: force_destroy
+        description: When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects.
+        varType: bool
+        defaultValue: false
+      - name: iam_members
+        description: The list of IAM members to grant permissions on the bucket.
+        varType: |-
+          list(object({
+              role   = string
+              member = string
+            }))
+        defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
+              version: ">= 0.13"
+            spec:
+              outputExpr: "{\"member\": service_account_id.member, \"role\": \"roles/storage.objectAdmin\"}"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ">= 4.4"
+            spec:
+              outputExpr: "{\"member\": iam_email, \"role\": \"roles/storage.objectAdmin\"}"
       - name: storage_class
         description: The Storage Class of the new bucket.
         varType: string
@@ -68,29 +91,6 @@ spec:
         description: While set to true, autoclass is enabled for this bucket.
         varType: bool
         defaultValue: false
-      - name: force_destroy
-        description: When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects.
-        varType: bool
-        defaultValue: false
-      - name: iam_members
-        description: The list of IAM members to grant permissions on the bucket.
-        varType: |-
-          list(object({
-              role   = string
-              member = string
-            }))
-        defaultValue: []
-        connections:
-          - source:
-              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
-              version: ~> 0.13
-            spec:
-              outputExpr: '{"member": service_account_id.member, "role": "roles/storage.objectAdmin"}'
-          - source:
-              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
-              version: ~> 4.4
-            spec:
-              outputExpr: '{"member": iam_email, "role": "roles/storage.objectAdmin"}'
       - name: retention_policy
         description: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained.
         varType: |-

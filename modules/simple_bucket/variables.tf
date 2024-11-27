@@ -14,11 +14,6 @@
  * limitations under the License.
  */
 
-variable "name" {
-  description = "The name of the bucket."
-  type        = string
-}
-
 variable "project_id" {
   description = "The ID of the project to create the bucket in."
   type        = string
@@ -27,6 +22,26 @@ variable "project_id" {
 variable "location" {
   description = "The location of the bucket. See https://cloud.google.com/storage/docs/locations."
   type        = string
+}
+
+variable "name" {
+  description = "The name of the bucket."
+  type        = string
+}
+
+variable "force_destroy" {
+  description = "When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects."
+  type        = bool
+  default     = false
+}
+
+variable "iam_members" {
+  description = "The list of IAM members to grant permissions on the bucket."
+  type = list(object({
+    role   = string
+    member = string
+  }))
+  default = []
 }
 
 variable "storage_class" {
@@ -58,21 +73,6 @@ variable "autoclass" {
   description = "While set to true, autoclass is enabled for this bucket."
   type        = bool
   default     = false
-}
-
-variable "force_destroy" {
-  description = "When deleting a bucket, this boolean option will delete all contained objects. If false, Terraform will fail to delete buckets which contain objects."
-  type        = bool
-  default     = false
-}
-
-variable "iam_members" {
-  description = "The list of IAM members to grant permissions on the bucket."
-  type = list(object({
-    role   = string
-    member = string
-  }))
-  default = []
 }
 
 variable "retention_policy" {
