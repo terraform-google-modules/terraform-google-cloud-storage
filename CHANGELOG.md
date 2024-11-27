@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v8.0.1...v8.0.2) (2024-11-27)
+
+
+### Bug Fixes
+
+* Update variable's order in variables.tf and update display metad… ([#368](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/368)) ([29eb7e2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/29eb7e2cd361076f17c9c565be74cb8ebd2fd6df))
+
 ## [8.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v8.0.0...v8.0.1) (2024-10-28)
 
 
