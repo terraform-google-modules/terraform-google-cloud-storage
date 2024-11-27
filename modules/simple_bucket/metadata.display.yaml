@@ -46,6 +46,7 @@ spec:
         force_destroy:
           name: force_destroy
           title: Force Destroy
+          invisible: false
         iam_members:
           name: iam_members
           title: Iam Members
@@ -67,6 +68,8 @@ spec:
         name:
           name: name
           title: Name
+          regexValidation: ^[a-z0-9][a-z0-9-_.]{2,61}[a-z0-9]$
+          validation: Use lowercase letters, numbers,underscores, periods and hyphens. Start with a letter/number and end with letter/number. Must be between 3 and 63 characters.
         project_id:
           name: project_id
           title: Project Id
