@@ -292,6 +292,9 @@ spec:
                   not_found_page: string
       - name: internal_kms_configuration
         description: The intenal KMS Resource.
+        type:
+          - object
+          - keyring: string
       - name: name
         description: Bucket name.
         type: string
