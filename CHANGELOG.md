@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.3](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v8.0.2...v8.0.3) (2024-12-01)
+
+
+### Bug Fixes
+
+* add output type for internal_kms_configuration ([#370](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/370)) ([ddc3ab0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/ddc3ab0822d4c42de8041ba29d200d55964e0c26))
+
 ## [8.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v8.0.1...v8.0.2) (2024-11-27)
 
 
