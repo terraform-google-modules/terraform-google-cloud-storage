@@ -64,7 +64,6 @@ Functional examples are included in the
 
 | Name | Description |
 |------|-------------|
-| apphub\_service\_uri | URI in CAIS style to be used by Apphub. |
 | bucket | The created storage bucket |
 | internal\_kms\_configuration | The intenal KMS Resource. |
 | name | Bucket name. |
