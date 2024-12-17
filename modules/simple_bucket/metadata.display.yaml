@@ -47,6 +47,9 @@ spec:
           name: force_destroy
           title: Force Destroy
           invisible: false
+        hierarchical_namespace:
+          name: hierarchical_namespace
+          title: Hierarchical Namespace
         iam_members:
           name: iam_members
           title: Iam Members

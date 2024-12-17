@@ -75,6 +75,9 @@ spec:
         force_destroy:
           name: force_destroy
           title: Force Destroy
+        hierarchical_namespace:
+          name: hierarchical_namespace
+          title: Hierarchical Namespace
         hmac_key_admins:
           name: hmac_key_admins
           title: Hmac Key Admins

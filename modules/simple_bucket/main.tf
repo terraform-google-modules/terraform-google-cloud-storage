@@ -37,6 +37,10 @@ resource "google_storage_bucket" "bucket" {
     enabled = var.autoclass
   }
 
+  hierarchical_namespace {
+    enabled = var.hierarchical_namespace
+  }
+
   dynamic "retention_policy" {
     for_each = var.retention_policy == null ? [] : [var.retention_policy]
     content {
