@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC
+# Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -49,10 +49,13 @@ spec:
         force_destroy:
           name: force_destroy
           title: Force Destroy
-          invisible: false
         iam_members:
           name: iam_members
           title: Iam Members
+        internal_encryption_config:
+          name: internal_encryption_config
+          title: Internal Encryption Config
+          level: 1
         labels:
           name: labels
           title: Labels
@@ -90,7 +93,6 @@ spec:
         storage_class:
           name: storage_class
           title: Storage Class
-          level: 1
           enumValueLabels:
             - label: STANDARD
               value: STANDARD
@@ -104,6 +106,7 @@ spec:
               value: COLDLINE
             - label: ARCHIVE
               value: ARCHIVE
+          level: 1
           altDefaults:
             - type: ALTERNATE_TYPE_DC
               value: STANDARD
