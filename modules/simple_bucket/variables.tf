@@ -99,7 +99,7 @@ variable "cors" {
 }
 
 variable "encryption" {
-  description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket. To use a Cloud KMS key automatically created by the module use `internal_encryption_config`."
+  description = "A Cloud KMS key that will be used to encrypt objects inserted into this bucket. The key name should follow the format of `projects/<project-name>/locations/<location-name>/keyRings/<keyring-name>/cryptoKeys/<key-name>`. To use a Cloud KMS key automatically created by this module use the `internal_encryption_config` input variable."
   type = object({
     default_kms_key_name = string
   })
