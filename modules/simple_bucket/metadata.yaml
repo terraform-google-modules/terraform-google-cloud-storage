@@ -69,6 +69,11 @@ spec:
             spec:
               outputExpr: "{\"member\": service_account_id.member, \"role\": \"roles/storage.objectAdmin\"}"
           - source:
+              source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+              version: ">= 13.2.0"
+            spec:
+              outputExpr: "{\"member\": service_account_info.member, \"role\": \"roles/storage.objectAdmin\"}"
+          - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
               version: ">= 4.4"
             spec:
