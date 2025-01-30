@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [9.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.1...v9.0.2) (2025-01-29)
+
+
+### Bug Fixes
+
+* update description for encryption input variable of simple-bucket ([#380](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/380)) ([31dd911](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/31dd911ccb7b590af834166195c61690653037ac))
+
 ## [9.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.0...v9.0.1) (2025-01-16)
 
 
