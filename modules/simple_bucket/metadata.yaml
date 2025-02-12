@@ -175,7 +175,8 @@ spec:
         description: URI in CAIS style to be used by Apphub.
         type:
           - object
-          - service_id: string
+          - location: string
+            service_id: string
             service_uri: string
       - name: bucket
         description: The created storage bucket

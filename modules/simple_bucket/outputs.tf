@@ -38,6 +38,7 @@ output "apphub_service_uri" {
   value = {
     service_uri = "//storage.googleapis.com/${google_storage_bucket.bucket.name}"
     service_id  = substr(google_storage_bucket.bucket.name, 0, 63)
+    location    = var.location
   }
   description = "URI in CAIS style to be used by Apphub."
 }
