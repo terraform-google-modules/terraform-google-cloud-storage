@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [9.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.2...v9.1.0) (2025-02-13)
+
+
+### Features
+
+* add output required for apphub registration for simple_bucket module ([#383](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/383)) ([fbc43db](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/fbc43db125c5096f741acfc300f4d9a774d6e3bf))
+
 ## [9.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.1...v9.0.2) (2025-01-29)
 
 
