@@ -131,13 +131,17 @@ variable "lifecycle_rules" {
     # - matches_suffix - (Optional) One or more matching name suffixes to satisfy this condition
     # - num_newer_versions - (Optional) Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
     condition = object({
-      age                   = optional(number)
-      created_before        = optional(string)
-      with_state            = optional(string)
-      matches_storage_class = optional(string)
-      matches_prefix        = optional(list(string))
-      matches_suffix        = optional(list(string))
-      num_newer_versions    = optional(number)
+      age                       = optional(number)
+      created_before            = optional(string)
+      with_state                = optional(string)
+      matches_storage_class     = optional(string)
+      matches_prefix            = optional(list(string))
+      matches_suffix            = optional(list(string))
+      num_newer_versions        = optional(number)
+      custom_time_before        = optional(string)
+      days_since_custom_time    = optional(number)
+      days_since_noncurrent_time = optional(number)
+      noncurrent_time_before    = optional(string)
     })
   }))
   default = []
