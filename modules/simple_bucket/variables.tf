@@ -94,8 +94,13 @@ variable "custom_placement_config" {
 
 variable "cors" {
   description = "Configuration of CORS for bucket with structure as defined in https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#cors."
-  type        = any
-  default     = []
+  type = list(object({
+    origin          = optional(list(string))
+    method          = optional(list(string))
+    response_header = optional(list(string))
+    max_age_seconds = optional(number)
+  }))
+  default = []
 }
 
 variable "encryption" {
