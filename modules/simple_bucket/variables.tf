@@ -117,7 +117,10 @@ variable "lifecycle_rules" {
     # Object with keys:
     # - type - The type of the action of this Lifecycle Rule. Supported values: Delete and SetStorageClass.
     # - storage_class - (Required if action type is SetStorageClass) The target Storage Class of objects affected by this Lifecycle Rule.
-    action = any
+    action = object({
+      type          = string
+      storage_class = optional(string)
+    })
 
     # Object with keys:
     # - age - (Optional) Minimum age of an object in days to satisfy this condition.
@@ -127,7 +130,15 @@ variable "lifecycle_rules" {
     # - matches_prefix - (Optional) One or more matching name prefixes to satisfy this condition.
     # - matches_suffix - (Optional) One or more matching name suffixes to satisfy this condition
     # - num_newer_versions - (Optional) Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
-    condition = any
+    condition = object({
+      age                       = optional(number)
+      created_before            = optional(string)
+      with_state                = optional(string)
+      matches_storage_class     = optional(string)
+      matches_prefix            = optional(list(string))
+      matches_suffix            = optional(list(string))
+      num_newer_versions        = optional(number)
+    })
   }))
   default = []
 }
