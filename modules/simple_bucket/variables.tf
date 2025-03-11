@@ -156,7 +156,10 @@ variable "log_object_prefix" {
 }
 
 variable "website" {
-  type        = map(any)
+  type = object({
+    main_page_suffix = optional(string)
+    not_found_page   = optional(string)
+  })
   default     = {}
   description = "Map of website values. Supported attributes: main_page_suffix, not_found_page"
 }
