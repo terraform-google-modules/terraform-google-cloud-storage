@@ -280,7 +280,7 @@ variable "cors" {
     response_header = optional(list(string))
     max_age_seconds = optional(number)
   }))
-  default     = []
+  default = []
 }
 
 variable "website" {
