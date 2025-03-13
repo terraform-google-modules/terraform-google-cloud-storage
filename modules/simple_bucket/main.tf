@@ -132,7 +132,7 @@ data "google_storage_project_service_account" "gcs_account" {
 
 module "encryption_key" {
   source  = "terraform-google-modules/kms/google"
-  version = "~> 3.0"
+  version = "~> 4.0"
   count   = var.internal_encryption_config.create_encryption_key ? 1 : 0
 
   project_id                     = var.project_id
