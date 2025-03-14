@@ -18,7 +18,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 9.1"
+  version = "~> 10.0"
 
   name       = "example-bucket"
   project_id = "example-project"
