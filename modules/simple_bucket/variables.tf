@@ -198,13 +198,15 @@ variable "internal_encryption_config" {
   description = <<EOT
   Configuration for the creation of an internal Google Cloud Key Management Service (KMS) Key for use as Customer-managed encryption key (CMEK) for the GCS Bucket
   instead of creating one in advance and providing the key in the variable `encryption.default_kms_key_name`.
-  create_encryption_key: If `true` a Google Cloud Key Management Service (KMS) KeyRing and a Key will be created
+  create_encryption_key: If `true` a Google Cloud Key Management Service (KMS) KeyRing and a Key will be created.
+  use_autokey: If `true`, KMS key is created in configured autokey project automatically and used as default encryption key.
   prevent_destroy: Set the prevent_destroy lifecycle attribute on keys.
   key_destroy_scheduled_duration: Set the period of time that versions of keys spend in the `DESTROY_SCHEDULED` state before transitioning to `DESTROYED`.
   key_rotation_period: Generate a new key every time this period passes.
   EOT
   type = object({
     create_encryption_key          = optional(bool, false)
+    use_autokey                    = optional(bool, false)
     prevent_destroy                = optional(bool, false)
     key_destroy_scheduled_duration = optional(string, null)
     key_rotation_period            = optional(string, "7776000s")

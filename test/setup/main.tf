@@ -47,3 +47,71 @@ module "project" {
     "storage-api.googleapis.com",
   ], flatten(values(local.per_module_services)))
 }
+
+resource "google_folder" "autokey_folder" {
+  provider            = google-beta
+  display_name        = "ci-cloud-storage-folder"
+  parent              = "folders/${var.folder_id}"
+  deletion_protection = false
+}
+
+resource "google_project" "key_project" {
+  provider        = google-beta
+  project_id      = "ci-cloud-storage-autokey"
+  name            = "ci-cloud-storage-autokey"
+  folder_id       = google_folder.autokey_folder.folder_id
+  billing_account = var.billing_account
+  depends_on      = [google_folder.autokey_folder]
+  deletion_policy = "DELETE"
+}
+
+resource "google_project_service" "kms_api_service" {
+  provider                   = google-beta
+  service                    = "cloudkms.googleapis.com"
+  project                    = google_project.key_project.project_id
+  disable_on_destroy         = false
+  disable_dependent_services = true
+  depends_on                 = [google_project.key_project]
+}
+
+resource "time_sleep" "wait_enable_service_api" {
+  depends_on      = [google_project_service.kms_api_service]
+  create_duration = "30s"
+}
+
+resource "google_project_service_identity" "kms_service_agent" {
+  provider   = google-beta
+  service    = "cloudkms.googleapis.com"
+  project    = google_project.key_project.number
+  depends_on = [time_sleep.wait_enable_service_api]
+}
+
+resource "time_sleep" "wait_service_agent" {
+  depends_on      = [google_project_service_identity.kms_service_agent]
+  create_duration = "10s"
+}
+
+resource "google_project_iam_member" "autokey_project_admin" {
+  provider   = google-beta
+  project    = google_project.key_project.project_id
+  role       = "roles/cloudkms.admin"
+  member     = "serviceAccount:service-${google_project.key_project.number}@gcp-sa-cloudkms.iam.gserviceaccount.com"
+  depends_on = [time_sleep.wait_service_agent]
+}
+
+resource "time_sleep" "wait_srv_acc_permissions" {
+  create_duration = "10s"
+  depends_on      = [google_project_iam_member.autokey_project_admin]
+}
+
+resource "google_kms_autokey_config" "autokey_config" {
+  provider    = google-beta
+  folder      = google_folder.autokey_folder.folder_id
+  key_project = "projects/${google_project.key_project.project_id}"
+  depends_on  = [time_sleep.wait_srv_acc_permissions]
+}
+
+resource "time_sleep" "wait_autokey_config" {
+  create_duration = "10s"
+  depends_on      = [google_kms_autokey_config.autokey_config]
+}
