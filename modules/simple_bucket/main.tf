@@ -53,7 +53,7 @@ resource "google_storage_bucket" "bucket" {
   }
 
   dynamic "website" {
-    for_each = length(keys(var.website)) == 0 ? toset([]) : toset([var.website])
+    for_each = (var.website.main_page_suffix == null && var.website.not_found_page == null) ? toset([]) : toset([var.website])
     content {
       main_page_suffix = lookup(website.value, "main_page_suffix", null)
       not_found_page   = lookup(website.value, "not_found_page", null)
@@ -89,9 +89,9 @@ resource "google_storage_bucket" "bucket" {
         send_age_if_zero           = lookup(lifecycle_rule.value.condition, "send_age_if_zero", null)
         created_before             = lookup(lifecycle_rule.value.condition, "created_before", null)
         with_state                 = lookup(lifecycle_rule.value.condition, "with_state", contains(keys(lifecycle_rule.value.condition), "is_live") ? (lifecycle_rule.value.condition["is_live"] ? "LIVE" : null) : null)
-        matches_storage_class      = contains(keys(lifecycle_rule.value.condition), "matches_storage_class") ? split(",", lifecycle_rule.value.condition["matches_storage_class"]) : null
-        matches_prefix             = contains(keys(lifecycle_rule.value.condition), "matches_prefix") ? split(",", lifecycle_rule.value.condition["matches_prefix"]) : null
-        matches_suffix             = contains(keys(lifecycle_rule.value.condition), "matches_suffix") ? split(",", lifecycle_rule.value.condition["matches_suffix"]) : null
+        matches_storage_class      = lifecycle_rule.value.condition["matches_storage_class"] != null ? split(",", lifecycle_rule.value.condition["matches_storage_class"]) : null
+        matches_prefix             = lifecycle_rule.value.condition["matches_prefix"] != null ? split(",", lifecycle_rule.value.condition["matches_prefix"]) : null
+        matches_suffix             = lifecycle_rule.value.condition["matches_suffix"] != null ? split(",", lifecycle_rule.value.condition["matches_suffix"]) : null
         num_newer_versions         = lookup(lifecycle_rule.value.condition, "num_newer_versions", null)
         custom_time_before         = lookup(lifecycle_rule.value.condition, "custom_time_before", null)
         days_since_custom_time     = lookup(lifecycle_rule.value.condition, "days_since_custom_time", null)
@@ -132,7 +132,7 @@ data "google_storage_project_service_account" "gcs_account" {
 
 module "encryption_key" {
   source  = "terraform-google-modules/kms/google"
-  version = "~> 3.0"
+  version = "~> 4.0"
   count   = var.internal_encryption_config.create_encryption_key ? 1 : 0
 
   project_id                     = var.project_id

@@ -7,6 +7,28 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [10.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.1.0...v10.0.0) (2025-03-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/kms/google to v4 ([#384](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/384))
+* add concrete variable types ([#387](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/387))
+* added concrete types for simple sa variables ([#386](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/386))
+
+### Bug Fixes
+
+* add concrete variable types ([#387](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/387)) ([1fa5c70](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/1fa5c7017201fa645c630a53a58bed4925e42c6b))
+* added concrete types for simple sa variables ([#386](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/386)) ([534a547](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/534a547ead0308d39c12d023f19dc541ae1470c7))
+* **deps:** Update Terraform terraform-google-modules/kms/google to v4 ([#384](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/384)) ([d9ca2c4](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/d9ca2c4433cda865b090bbbd5f3a1ae3f5514c41))
+
+## [9.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.2...v9.1.0) (2025-02-13)
+
+
+### Features
+
+* add output required for apphub registration for simple_bucket module ([#383](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/383)) ([fbc43db](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/fbc43db125c5096f741acfc300f4d9a774d6e3bf))
+
 ## [9.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.1...v9.0.2) (2025-01-29)
 
 
