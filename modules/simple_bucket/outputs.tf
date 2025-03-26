@@ -34,11 +34,3 @@ output "internal_kms_configuration" {
   value       = var.internal_encryption_config.create_encryption_key ? module.encryption_key[0] : null
 }
 
-output "apphub_service_uri" {
-  value = {
-    service_uri = "//storage.googleapis.com/${element(split("//", google_storage_bucket.bucket.url), 1)}"
-    service_id  = substr(google_storage_bucket.bucket.name, 0, 63)
-    location    = var.location
-  }
-  description = "URI in CAIS style to be used by Apphub."
-}
