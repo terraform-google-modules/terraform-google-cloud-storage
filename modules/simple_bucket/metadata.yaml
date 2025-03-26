@@ -62,6 +62,22 @@ spec:
               member = string
             }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
+              version: ">= 0.13"
+            spec:
+              outputExpr: "{\"member\": service_account_id.member, \"role\": \"roles/storage.objectAdmin\"}"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+              version: ">= 13.2.0"
+            spec:
+              outputExpr: "{\"member\": service_account_info.member, \"role\": \"roles/storage.objectAdmin\"}"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ">= 4.4"
+            spec:
+              outputExpr: "{\"member\": iam_email, \"role\": \"roles/storage.objectAdmin\"}"
       - name: storage_class
         description: The Storage Class of the new bucket.
         varType: string
