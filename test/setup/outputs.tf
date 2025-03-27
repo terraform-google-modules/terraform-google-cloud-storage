@@ -22,3 +22,11 @@ output "sa_key" {
   value     = google_service_account_key.int_test.private_key
   sensitive = true
 }
+
+output "key_project_id" {
+  value = module.autokey-project.project_id
+}
+
+output "folder_id" {
+  value = google_folder.autokey_folder.folder_id
+}

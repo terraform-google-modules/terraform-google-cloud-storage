@@ -56,7 +56,19 @@ module "bucket" {
 
   autoclass = true
   internal_encryption_config = {
-    create_encryption_key          = true
-    use_autokey                    = true
+    create_encryption_key = true
+    use_autokey           = true
   }
+  depends_on = [time_sleep.wait_autokey_config]
+}
+
+resource "google_kms_autokey_config" "autokey_config" {
+  provider    = google-beta
+  folder      = var.folder_id
+  key_project = "projects/${var.key_project_id}"
+}
+
+resource "time_sleep" "wait_autokey_config" {
+  create_duration = "10s"
+  depends_on      = [google_kms_autokey_config.autokey_config]
 }

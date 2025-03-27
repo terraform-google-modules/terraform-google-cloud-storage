@@ -7,6 +7,8 @@ This example illustrates how to use the `simple-bucket` submodule.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| folder\_id | The folder where project is created | `string` | n/a | yes |
+| key\_project\_id | The project where autokey is setup | `string` | n/a | yes |
 | project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
 
 ## Outputs
