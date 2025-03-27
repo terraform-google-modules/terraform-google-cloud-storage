@@ -18,3 +18,13 @@ variable "project_id" {
   description = "The ID of the project in which to provision resources."
   type        = string
 }
+
+variable "key_project_id" {
+  type        = string
+  description = "The project where autokey is setup"
+}
+
+variable "folder_id" {
+  type        = string
+  description = "The folder where project is created"
+}
