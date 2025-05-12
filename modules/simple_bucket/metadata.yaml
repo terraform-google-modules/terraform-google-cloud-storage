@@ -204,6 +204,11 @@ spec:
     outputs:
       - name: apphub_service_uri
         description: URI in CAIS style to be used by Apphub.
+        type:
+          - object
+          - location: string
+            service_id: string
+            service_uri: string
       - name: bucket
         description: The created storage bucket
         type:
