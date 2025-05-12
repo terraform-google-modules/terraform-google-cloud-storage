@@ -202,6 +202,8 @@ spec:
             })
         defaultValue: {}
     outputs:
+      - name: apphub_service_uri
+        description: URI in CAIS style to be used by Apphub.
       - name: bucket
         description: The created storage bucket
         type:
