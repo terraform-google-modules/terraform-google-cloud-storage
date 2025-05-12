@@ -100,7 +100,7 @@ spec:
         description: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained.
         varType: |-
           object({
-              is_locked        = bool
+              is_locked        = optional(bool)
               retention_period = number
             })
       - name: custom_placement_config
