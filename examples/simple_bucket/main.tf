@@ -55,4 +55,7 @@ module "bucket" {
   }]
 
   autoclass = true
+  retention_policy = {
+    retention_period = 2
+  }
 }
