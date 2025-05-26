@@ -7,6 +7,20 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [10.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v10.0.1...v10.0.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* Making retention_policy is_locked as optional field ([#394](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/394)) ([e823780](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/e823780aac5d8c7268f7e930f59d76798485c6e0))
+
+## [10.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v10.0.0...v10.0.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* Update apphub service_uri to be available after apply ([#390](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/390)) ([66e472b](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/66e472b56cd21b45a3939883a66ccfcf5ec1b9ed))
+
 ## [10.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.1.0...v10.0.0) (2025-03-14)
 
 
