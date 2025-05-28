@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC
+# Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,9 +31,11 @@ spec:
         autoclass:
           name: autoclass
           title: Autoclass
+          level: 1
         bucket_policy_only:
           name: bucket_policy_only
           title: Bucket Policy Only
+          level: 1
         cors:
           name: cors
           title: Cors
@@ -43,6 +45,7 @@ spec:
         encryption:
           name: encryption
           title: Encryption
+          level: 1
         force_destroy:
           name: force_destroy
           title: Force Destroy
@@ -53,12 +56,17 @@ spec:
         iam_members:
           name: iam_members
           title: Iam Members
+        internal_encryption_config:
+          name: internal_encryption_config
+          title: Internal Encryption Config
+          level: 1
         labels:
           name: labels
           title: Labels
         lifecycle_rules:
           name: lifecycle_rules
           title: Lifecycle Rules
+          level: 1
         location:
           name: location
           title: Location
@@ -82,15 +90,34 @@ spec:
         retention_policy:
           name: retention_policy
           title: Retention Policy
+          level: 1
         soft_delete_policy:
           name: soft_delete_policy
           title: Soft Delete Policy
         storage_class:
           name: storage_class
           title: Storage Class
+          enumValueLabels:
+            - label: STANDARD
+              value: STANDARD
+            - label: MULTI_REGIONAL
+              value: MULTI_REGIONAL
+            - label: REGIONAL
+              value: REGIONAL
+            - label: NEARLINE
+              value: NEARLINE
+            - label: COLDLINE
+              value: COLDLINE
+            - label: ARCHIVE
+              value: ARCHIVE
+          level: 1
+          altDefaults:
+            - type: ALTERNATE_TYPE_DC
+              value: STANDARD
         versioning:
           name: versioning
           title: Versioning
+          level: 1
         website:
           name: website
           title: Website

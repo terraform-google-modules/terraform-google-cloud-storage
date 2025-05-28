@@ -7,6 +7,56 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [10.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v10.0.1...v10.0.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* Making retention_policy is_locked as optional field ([#394](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/394)) ([e823780](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/e823780aac5d8c7268f7e930f59d76798485c6e0))
+
+## [10.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v10.0.0...v10.0.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* Update apphub service_uri to be available after apply ([#390](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/390)) ([66e472b](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/66e472b56cd21b45a3939883a66ccfcf5ec1b9ed))
+
+## [10.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.1.0...v10.0.0) (2025-03-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/kms/google to v4 ([#384](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/384))
+* add concrete variable types ([#387](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/387))
+* added concrete types for simple sa variables ([#386](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/386))
+
+### Bug Fixes
+
+* add concrete variable types ([#387](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/387)) ([1fa5c70](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/1fa5c7017201fa645c630a53a58bed4925e42c6b))
+* added concrete types for simple sa variables ([#386](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/386)) ([534a547](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/534a547ead0308d39c12d023f19dc541ae1470c7))
+* **deps:** Update Terraform terraform-google-modules/kms/google to v4 ([#384](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/384)) ([d9ca2c4](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/d9ca2c4433cda865b090bbbd5f3a1ae3f5514c41))
+
+## [9.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.2...v9.1.0) (2025-02-13)
+
+
+### Features
+
+* add output required for apphub registration for simple_bucket module ([#383](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/383)) ([fbc43db](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/fbc43db125c5096f741acfc300f4d9a774d6e3bf))
+
+## [9.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.1...v9.0.2) (2025-01-29)
+
+
+### Bug Fixes
+
+* update description for encryption input variable of simple-bucket ([#380](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/380)) ([31dd911](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/31dd911ccb7b590af834166195c61690653037ac))
+
+## [9.0.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v9.0.0...v9.0.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* update display metadata ([#377](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/377)) ([684b909](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/684b90921cc2261c8181557cd7c3c324c94ba04c))
+
 ## [9.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v8.0.3...v9.0.0) (2024-12-13)
 
 

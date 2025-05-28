@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC
+# Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-cloud-storage.git
       sourceType: git
       dir: /modules/simple_bucket
-    version: 9.0.0
+    version: 10.0.2
     actuationTool:
       flavor: Terraform
       version: ">= 0.13"
@@ -69,6 +69,11 @@ spec:
             spec:
               outputExpr: "{\"member\": service_account_id.member, \"role\": \"roles/storage.objectAdmin\"}"
           - source:
+              source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+              version: ">= 13.2.0"
+            spec:
+              outputExpr: "{\"member\": service_account_info.member, \"role\": \"roles/storage.objectAdmin\"}"
+          - source:
               source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
               version: ">= 4.4"
             spec:
@@ -99,7 +104,7 @@ spec:
         description: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained.
         varType: |-
           object({
-              is_locked        = bool
+              is_locked        = optional(bool)
               retention_period = number
             })
       - name: custom_placement_config
@@ -110,10 +115,16 @@ spec:
             })
       - name: cors
         description: Configuration of CORS for bucket with structure as defined in https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#cors.
-        varType: any
+        varType: |-
+          list(object({
+              origin          = optional(list(string))
+              method          = optional(list(string))
+              response_header = optional(list(string))
+              max_age_seconds = optional(number)
+            }))
         defaultValue: []
       - name: encryption
-        description: A Cloud KMS key that will be used to encrypt objects inserted into this bucket. To use a Cloud KMS key automatically created by the module use `internal_encryption_config`.
+        description: A Cloud KMS key that will be used to encrypt objects inserted into this bucket. The key name should follow the format of `projects/<project-name>/locations/<location-name>/keyRings/<keyring-name>/cryptoKeys/<key-name>`. To use a Cloud KMS key automatically created by this module use the `internal_encryption_config` input variable.
         varType: |-
           object({
               default_kms_key_name = string
@@ -125,17 +136,38 @@ spec:
               # Object with keys:
               # - type - The type of the action of this Lifecycle Rule. Supported values: Delete and SetStorageClass.
               # - storage_class - (Required if action type is SetStorageClass) The target Storage Class of objects affected by this Lifecycle Rule.
-              action = any
+              action = object({
+                type          = string
+                storage_class = optional(string)
+              })
 
               # Object with keys:
               # - age - (Optional) Minimum age of an object in days to satisfy this condition.
+              # - send_age_if_zero - (Optional) While set true, num_newer_versions value will be sent in the request even for zero value of the field.
               # - created_before - (Optional) Creation date of an object in RFC 3339 (e.g. 2017-06-13) to satisfy this condition.
               # - with_state - (Optional) Match to live and/or archived objects. Supported values include: "LIVE", "ARCHIVED", "ANY".
               # - matches_storage_class - (Optional) Storage Class of objects to satisfy this condition. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD, DURABLE_REDUCED_AVAILABILITY.
               # - matches_prefix - (Optional) One or more matching name prefixes to satisfy this condition.
               # - matches_suffix - (Optional) One or more matching name suffixes to satisfy this condition
               # - num_newer_versions - (Optional) Relevant only for versioned objects. The number of newer versions of an object to satisfy this condition.
-              condition = any
+              # - custom_time_before - (Optional) A date in the RFC 3339 format YYYY-MM-DD. This condition is satisfied when the customTime metadata for the object is set to an earlier date than the date used in this lifecycle condition.
+              # - days_since_custom_time - (Optional) Days since the date set in the customTime metadata for the object.
+              # - days_since_noncurrent_time - (Optional) Relevant only for versioned objects. Number of days elapsed since the noncurrent timestamp of an object.
+              # - noncurrent_time_before - (Optional) Relevant only for versioned objects. The date in RFC 3339 (e.g. 2017-06-13) when the object became nonconcurrent.
+              condition = object({
+                age                        = optional(number)
+                send_age_if_zero           = optional(bool)
+                created_before             = optional(string)
+                with_state                 = optional(string)
+                matches_storage_class      = optional(string)
+                matches_prefix             = optional(string)
+                matches_suffix             = optional(string)
+                num_newer_versions         = optional(number)
+                custom_time_before         = optional(string)
+                days_since_custom_time     = optional(number)
+                days_since_noncurrent_time = optional(number)
+                noncurrent_time_before     = optional(string)
+              })
             }))
         defaultValue: []
       - name: log_bucket
@@ -146,7 +178,11 @@ spec:
         varType: string
       - name: website
         description: "Map of website values. Supported attributes: main_page_suffix, not_found_page"
-        varType: map(any)
+        varType: |-
+          object({
+              main_page_suffix = optional(string)
+              not_found_page   = optional(string)
+            })
         defaultValue: {}
       - name: public_access_prevention
         description: Prevents public access to a bucket. Acceptable values are inherited or enforced. If inherited, the bucket uses public access prevention, only if the bucket is subject to the public access prevention organization policy constraint.
@@ -170,6 +206,13 @@ spec:
             })
         defaultValue: {}
     outputs:
+      - name: apphub_service_uri
+        description: URI in CAIS style to be used by Apphub.
+        type:
+          - object
+          - location: string
+            service_id: string
+            service_uri: string
       - name: bucket
         description: The created storage bucket
         type:
@@ -308,7 +351,7 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/cloudkms.admin
+          - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/iam.serviceAccountUser
           - roles/storage.admin
     services:
