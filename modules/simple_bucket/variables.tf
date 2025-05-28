@@ -76,7 +76,7 @@ variable "autoclass" {
 }
 
 variable "hierarchical_namespace" {
-  description = "While set to true, hierarchical namespace is enable for this bucket."
+  description = "When set to true, hierarchical namespace is enable for this bucket."
   type        = bool
   default     = false
 }
