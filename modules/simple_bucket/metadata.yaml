@@ -96,6 +96,10 @@ spec:
         description: While set to true, autoclass is enabled for this bucket.
         varType: bool
         defaultValue: false
+      - name: hierarchical_namespace
+        description: While set to true, hierarchical namespace is enabled for this bucket.
+        varType: bool
+        defaultValue: false
       - name: retention_policy
         description: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained.
         varType: |-
@@ -247,6 +251,11 @@ spec:
               - - object
                 - default_kms_key_name: string
             force_destroy: bool
+            hierarchical_namespace:
+              - list
+              - - object
+                - enabled: bool
+                  terminal_storage_class: string
             id: string
             labels:
               - map

@@ -76,6 +76,10 @@ spec:
         description: Optional map of lowercase unprefixed bucket name => boolean, defaults to false.
         varType: map(bool)
         defaultValue: {}
+      - name: hierarchical_namespace
+        description: Optional map of lowercase unprefixed bucket name => boolean, defaults to false.
+        varType: map(bool)
+        defaultValue: {}
       - name: encryption_key_names
         description: Optional map of lowercase unprefixed name => string, empty strings are ignored.
         varType: map(string)
@@ -330,6 +334,11 @@ spec:
               - - object
                 - default_kms_key_name: string
             force_destroy: bool
+            hierarchical_namespace:
+              - list
+              - - object
+                - enabled: bool
+                  terminal_storage_class: string
             id: string
             labels:
               - map
@@ -448,6 +457,11 @@ spec:
                   - - object
                     - default_kms_key_name: string
                 force_destroy: bool
+                hierarchical_namespace:
+                  - list
+                  - - object
+                    - enabled: bool
+                      terminal_storage_class: string
                 id: string
                 labels:
                   - map
@@ -567,6 +581,11 @@ spec:
                   - - object
                     - default_kms_key_name: string
                 force_destroy: bool
+                hierarchical_namespace:
+                  - list
+                  - - object
+                    - enabled: bool
+                      terminal_storage_class: string
                 id: string
                 labels:
                   - map

@@ -75,6 +75,12 @@ variable "autoclass" {
   default     = false
 }
 
+variable "hierarchical_namespace" {
+  description = "When set to true, hierarchical namespace is enable for this bucket."
+  type        = bool
+  default     = false
+}
+
 variable "retention_policy" {
   description = "Configuration of the bucket's data retention policy for how long objects in the bucket should be retained."
   type = object({
