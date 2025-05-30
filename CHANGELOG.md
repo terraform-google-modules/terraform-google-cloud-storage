@@ -7,6 +7,23 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [11.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v10.0.2...v11.0.0) (2025-05-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tf>=1.3:** bump TF to >=1.3 ([#367](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/367))
+* add hierarchical namespace flag ([#375](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/375))
+
+### Features
+
+* add hierarchical namespace flag ([#375](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/375)) ([b65e3eb](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/b65e3ebf1c4df261355afb57e63fbd033cb8ea36))
+
+
+### Bug Fixes
+
+* **tf>=1.3:** bump TF to &gt;=1.3 ([#367](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/367)) ([b5b0362](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/b5b036297c8761b05a60aaeb21dd822f4e360e36))
+
 ## [10.0.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v10.0.1...v10.0.2) (2025-05-19)
 
 
