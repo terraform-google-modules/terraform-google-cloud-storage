@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-cloud-storage.git
       sourceType: git
       dir: /modules/simple_bucket
-    version: 10.0.2
+    version: 11.0.0
     actuationTool:
       flavor: Terraform
       version: ">= 0.13"
