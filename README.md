@@ -63,6 +63,7 @@ Functional examples are included in the
 | encryption\_key\_names | Optional map of lowercase unprefixed name => string, empty strings are ignored. | `map(string)` | `{}` | no |
 | folders | Map of lowercase unprefixed name => list of top level folder objects. | `map(list(string))` | `{}` | no |
 | force\_destroy | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
+| hierarchical\_namespace | Optional map of lowercase unprefixed bucket name => boolean, defaults to false. | `map(bool)` | `{}` | no |
 | hmac\_key\_admins | IAM-style members who will be granted roles/storage.hmacKeyAdmin on all buckets. | `list(string)` | `[]` | no |
 | hmac\_service\_accounts | List of HMAC service accounts to grant access to GCS. | `map(string)` | `{}` | no |
 | labels | Labels to be attached to the buckets | `map(string)` | `{}` | no |

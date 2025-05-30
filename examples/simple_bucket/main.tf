@@ -16,7 +16,7 @@
 
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 9.0"
+  version = "~> 10.0"
 
   name       = "${var.project_id}-bucket"
   project_id = var.project_id
@@ -55,4 +55,7 @@ module "bucket" {
   }]
 
   autoclass = true
+  retention_policy = {
+    retention_period = 2
+  }
 }

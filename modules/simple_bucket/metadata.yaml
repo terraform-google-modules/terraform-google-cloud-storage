@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-cloud-storage.git
       sourceType: git
       dir: /modules/simple_bucket
-    version: 10.0.1
+    version: 10.0.2
     actuationTool:
       flavor: Terraform
       version: ">= 0.13"
@@ -96,11 +96,15 @@ spec:
         description: While set to true, autoclass is enabled for this bucket.
         varType: bool
         defaultValue: false
+      - name: hierarchical_namespace
+        description: While set to true, hierarchical namespace is enabled for this bucket.
+        varType: bool
+        defaultValue: false
       - name: retention_policy
         description: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained.
         varType: |-
           object({
-              is_locked        = bool
+              is_locked        = optional(bool)
               retention_period = number
             })
       - name: custom_placement_config
@@ -247,6 +251,11 @@ spec:
               - - object
                 - default_kms_key_name: string
             force_destroy: bool
+            hierarchical_namespace:
+              - list
+              - - object
+                - enabled: bool
+                  terminal_storage_class: string
             id: string
             labels:
               - map

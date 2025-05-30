@@ -24,7 +24,7 @@ spec:
     source:
       repo: https://github.com/terraform-google-modules/terraform-google-cloud-storage.git
       sourceType: git
-    version: 10.0.1
+    version: 10.0.2
     actuationTool:
       flavor: Terraform
       version: ">= 0.13"
@@ -73,6 +73,10 @@ spec:
         varType: map(bool)
         defaultValue: {}
       - name: autoclass
+        description: Optional map of lowercase unprefixed bucket name => boolean, defaults to false.
+        varType: map(bool)
+        defaultValue: {}
+      - name: hierarchical_namespace
         description: Optional map of lowercase unprefixed bucket name => boolean, defaults to false.
         varType: map(bool)
         defaultValue: {}
@@ -330,6 +334,11 @@ spec:
               - - object
                 - default_kms_key_name: string
             force_destroy: bool
+            hierarchical_namespace:
+              - list
+              - - object
+                - enabled: bool
+                  terminal_storage_class: string
             id: string
             labels:
               - map
@@ -448,6 +457,11 @@ spec:
                   - - object
                     - default_kms_key_name: string
                 force_destroy: bool
+                hierarchical_namespace:
+                  - list
+                  - - object
+                    - enabled: bool
+                      terminal_storage_class: string
                 id: string
                 labels:
                   - map
@@ -567,6 +581,11 @@ spec:
                   - - object
                     - default_kms_key_name: string
                 force_destroy: bool
+                hierarchical_namespace:
+                  - list
+                  - - object
+                    - enabled: bool
+                      terminal_storage_class: string
                 id: string
                 labels:
                   - map

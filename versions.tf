@@ -15,12 +15,12 @@
  */
 
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 1.3"
   required_providers {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 5.43.0, < 7"
+      version = ">= 6.9.0, < 7"
     }
 
     random = {
@@ -30,7 +30,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-cloud-storage/v10.0.1"
+    module_name = "blueprints/terraform/terraform-google-cloud-storage/v10.0.2"
   }
 
 }
