@@ -31,7 +31,7 @@ output "url" {
 
 output "internal_kms_configuration" {
   description = "The intenal KMS Resource."
-  value       = var.internal_encryption_config.create_encryption_key ? module.encryption_key[0] : null
+  value       = var.internal_encryption_config.create_encryption_key ? var.internal_encryption_config.use_autokey ? google_kms_key_handle.default[0] : module.encryption_key[0] : null
 }
 
 output "apphub_service_uri" {
