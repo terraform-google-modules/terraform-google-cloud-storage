@@ -58,4 +58,13 @@ module "bucket" {
   retention_policy = {
     retention_period = 2
   }
+
+  ip_filter = {
+    "one" = {
+      mode = "Enabled"
+      public_network_source = {
+        allowed_ip_cidr_ranges = ["0.0.0.0/0"]
+      }
+    }
+  }
 }
