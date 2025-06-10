@@ -339,3 +339,18 @@ variable "soft_delete_policy" {
   type        = map(any)
   default     = {}
 }
+
+variable "ip_filter" {
+  description = "The IP filter configuration for a bucket. Map of lowercase unprefixed name => ip filter config object. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter"
+  type = map(object({
+    mode = string
+    public_network_source = optional(object({
+      allowed_ip_cidr_ranges = list(string)
+    }))
+    vpc_network_sources = optional(list(object({
+      network                = string
+      allowed_ip_cidr_ranges = list(string)
+    })))
+  }))
+  default = {}
+}
