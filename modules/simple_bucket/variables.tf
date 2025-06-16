@@ -211,3 +211,14 @@ variable "internal_encryption_config" {
   })
   default = {}
 }
+
+variable "ip_filter" {
+  description = "The IP filter configuration for the bucket."
+  type = object({
+    mode = string
+    public_network_source = optional(object({
+      allowed_ip_cidr_ranges = list(string)
+    }))
+  })
+  default = null
+}
