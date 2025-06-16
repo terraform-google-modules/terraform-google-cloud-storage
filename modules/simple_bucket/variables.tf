@@ -219,6 +219,10 @@ variable "ip_filter" {
     public_network_source = optional(object({
       allowed_ip_cidr_ranges = list(string)
     }))
+    vpc_network_sources = optional(list(object({
+      network                = string
+      allowed_ip_cidr_ranges = list(string)
+    })))
   })
   default = null
 }

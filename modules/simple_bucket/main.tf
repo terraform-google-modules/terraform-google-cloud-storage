@@ -125,9 +125,16 @@ resource "google_storage_bucket" "bucket" {
     content {
       mode = ip_filter.value.mode
       dynamic "public_network_source" {
-        for_each = ip_filter.value.public_network_source == null ? [] : [ip_filter.value.public_network_source]
+        for_each = ip_filter.value.public_network_source != null ? [ip_filter.value.public_network_source] : []
         content {
           allowed_ip_cidr_ranges = public_network_source.value.allowed_ip_cidr_ranges
+        }
+      }
+      dynamic "vpc_network_sources" {
+        for_each = ip_filter.value.vpc_network_sources != null ? ip_filter.value.vpc_network_sources : []
+        content {
+          network                = vpc_network_sources.value.network
+          allowed_ip_cidr_ranges = vpc_network_sources.value.allowed_ip_cidr_ranges
         }
       }
     }
