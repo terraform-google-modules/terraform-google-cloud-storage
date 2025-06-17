@@ -24,7 +24,8 @@ resource "random_id" "bucket_suffix" {
 
 locals {
   suffix       = var.randomize_suffix ? random_id.bucket_suffix[0].hex : ""
-  names_set    = toset(var.names)
+  // CODELAB:Add silly label in labels variable
+  labels        = merge(var.labels, { name = replace("${local.prefix}${lower(element(var.names, count.index))}", ".", "-") }, { "silly" = var.silly_label })
   buckets_list = [for name in var.names : google_storage_bucket.buckets[name]]
   first_bucket = local.buckets_list[0]
   folder_list = flatten([

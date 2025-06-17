@@ -24,6 +24,9 @@ module "cloud_storage" {
   source  = "terraform-google-modules/cloud-storage/google"
   version = "~> 10.0"
 
+  // CODELAB: Add "silly_label" as an example to main.tf.
+  silly_label = "awesome"
+
   project_id = var.project_id
 
   prefix           = "multiple-buckets-${random_string.prefix.result}"
