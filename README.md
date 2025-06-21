@@ -85,6 +85,7 @@ Functional examples are included in the
 | soft\_delete\_policy | Soft delete policies to apply. Map of lowercase unprefixed name => soft delete policy. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy | `map(any)` | `{}` | no |
 | storage\_admins | IAM-style members who will be granted roles/storage.admin on all buckets. | `list(string)` | `[]` | no |
 | storage\_class | Bucket storage class. | `string` | `"STANDARD"` | no |
+| terminal\_autoclass | Optional map of storage class that objects in the bucket eventually transitions to. Supported values include: NEARLINE, ARCHIVE. Only used if autoclass is set as true. bucket\_name => value, defaults to NEARLINE | `map(string)` | `{}` | no |
 | versioning | Optional map of lowercase unprefixed name => boolean, defaults to false. | `map(bool)` | `{}` | no |
 | viewers | IAM-style members who will be granted roles/storage.objectViewer on all buckets. | `list(string)` | `[]` | no |
 | website | Map of website values. Supported attributes: main\_page\_suffix, not\_found\_page | <pre>object({<br>    main_page_suffix = optional(string)<br>    not_found_page   = optional(string)<br>  })</pre> | `{}` | no |

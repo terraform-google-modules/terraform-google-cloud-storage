@@ -68,10 +68,10 @@ variable "autoclass" {
 
 variable "terminal_autoclass" {
   description = "Optional map of storage class that objects in the bucket eventually transitions to. Supported values include: NEARLINE, ARCHIVE. Only used if autoclass is set as true. bucket_name => value, defaults to NEARLINE"
-  type = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
   validation {
-    condition = alltrue([ for _, v in var.terminal_autoclass : var.autoclass == false || v == "NEARLINE" || v == "ARCHIVE"])
+    condition     = alltrue([for _, v in var.terminal_autoclass : var.autoclass == false || v == "NEARLINE" || v == "ARCHIVE"])
     error_message = "Acceptable value for terminal_autoclass is NEARLINE or ARCHIVE"
   }
 }

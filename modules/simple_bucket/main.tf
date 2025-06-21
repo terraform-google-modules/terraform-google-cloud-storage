@@ -34,7 +34,7 @@ resource "google_storage_bucket" "bucket" {
   }
 
   autoclass {
-    enabled = var.autoclass
+    enabled                = var.autoclass
     terminal_storage_class = var.terminal_autoclass
   }
 
