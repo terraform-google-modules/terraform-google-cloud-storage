@@ -30,6 +30,12 @@ variable "names" {
   type        = list(string)
 }
 
+// CODELAB: Add "silly_label" variable to variables.tf between "names" and "location"
+variable "silly_label" {
+ description = "Sample label for bucket."
+ type        = string
+}
+
 variable "randomize_suffix" {
   description = "Adds an identical, but randomized 4-character suffix to all bucket names"
   type        = bool
