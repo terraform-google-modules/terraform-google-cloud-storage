@@ -34,6 +34,7 @@ var retryErrors = map[string]string{
 }
 
 func TestMultipleBuckets(t *testing.T) {
+
 	buckets := tft.NewTFBlueprintTest(t, tft.WithRetryableTerraformErrors(retryErrors, 5, time.Minute))
 
 	buckets.DefineVerify(func(assert *assert.Assertions) {
@@ -46,6 +47,8 @@ func TestMultipleBuckets(t *testing.T) {
 			gcloudArgs := gcloud.WithCommonArgs([]string{"--project", projectID, "--json"})
 			op := gcloud.Run(t, fmt.Sprintf("alpha storage ls --buckets gs://%s", fullBucketName), gcloudArgs).Array()[0]
 
+			assert.Equal("awesome", op.Get("metadata.labels.silly").String(), "should have silly label set to awesome")
+
 			// verify lifecycle rules
 			lifecycle := op.Get("metadata.lifecycle.rule").Array()[0]
 			assert.Equal("NEARLINE", lifecycle.Get("action.storageClass").String(), "lifecycle action sets NEARLINE storageClass")
@@ -55,7 +58,7 @@ func TestMultipleBuckets(t *testing.T) {
 
 			// peel bucket name from prefix and randomized suffix
 			parts := strings.Split(fullBucketName, "-")
-			bucketName := parts[len(parts) - 2]
+			bucketName := parts[len(parts)-2]
 
 			switch bucketName {
 			case "one":

@@ -18,7 +18,7 @@ module "project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 18.0"
 
-  name              = "ci-cloud-storage"
+  name              = "terrafrom-modules-cli"
   random_project_id = "true"
   org_id            = var.org_id
   folder_id         = var.folder_id
