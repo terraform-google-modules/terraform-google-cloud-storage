@@ -24,8 +24,8 @@ locals {
 
 resource "google_service_account" "int_test" {
   project      = module.project.project_id
-  account_id   = "ci-cloud-storage"
-  display_name = "ci-cloud-storage"
+  account_id   = "terrafrom-modules-cli"
+  display_name = "terrafrom-modules-cli"
 }
 
 resource "google_project_iam_member" "int_test" {
