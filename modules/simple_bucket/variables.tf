@@ -213,7 +213,31 @@ variable "internal_encryption_config" {
 }
 
 variable "ip_filter" {
-  description = "The IP filter configuration for the bucket."
+  description = <<EOT
+The IP filter configuration for the bucket. Restricts access based on source IP addresses.
+
+- mode: "Enabled" or "Disabled"
+- public_network_source: (Optional) Configure allowed public internet IP ranges
+- vpc_network_sources: (Optional) Configure allowed VPC networks and IP ranges
+
+Both public_network_source and vpc_network_sources can be configured together.
+
+Example:
+```
+ip_filter = {
+  mode = "Enabled"
+  public_network_source = {
+    allowed_ip_cidr_ranges = ["203.0.113.0/24"]
+  }
+  vpc_network_sources = [{
+    network = "projects/my-project/global/networks/my-vpc"
+    allowed_ip_cidr_ranges = ["10.0.0.0/8"]
+  }]
+}
+```
+
+Limits: Max 200 IP CIDR blocks, 25 VPC networks. May block some Google Cloud services.
+EOT
   type = object({
     mode = string
     public_network_source = optional(object({
