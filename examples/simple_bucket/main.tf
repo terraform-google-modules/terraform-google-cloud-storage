@@ -60,11 +60,9 @@ module "bucket" {
   }
 
   ip_filter = {
-    "one" = {
-      mode = "Enabled"
-      public_network_source = {
-        allowed_ip_cidr_ranges = ["0.0.0.0/0"]
-      }
+    mode = "Enabled"
+    public_network_source = {
+      allowed_ip_cidr_ranges = ["0.0.0.0/0"]
     }
   }
 }
