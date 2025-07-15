@@ -28,7 +28,7 @@ spec:
     version: 11.0.0
     actuationTool:
       flavor: Terraform
-      version: ">= 0.13"
+      version: ">= 1.3"
     description: {}
   content:
     examples:
@@ -97,7 +97,7 @@ spec:
         varType: bool
         defaultValue: false
       - name: hierarchical_namespace
-        description: While set to true, hierarchical namespace is enabled for this bucket.
+        description: When set to true, hierarchical namespace is enable for this bucket.
         varType: bool
         defaultValue: false
       - name: retention_policy
@@ -351,16 +351,11 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/cloudkms.cryptoKeyEncrypterDecrypter
-          - roles/iam.serviceAccountUser
           - roles/storage.admin
+          - roles/iam.serviceAccountUser
+          - roles/logging.logWriter
     services:
-      - cloudkms.googleapis.com
-      - cloudresourcemanager.googleapis.com
-      - compute.googleapis.com
-      - iam.googleapis.com
-      - serviceusage.googleapis.com
-      - storage-api.googleapis.com
+      - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 5.43.0, < 7"
+        version: ">= 6.9.0, < 7"
