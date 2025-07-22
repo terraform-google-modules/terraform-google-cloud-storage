@@ -27,7 +27,7 @@ spec:
     version: 11.0.0
     actuationTool:
       flavor: Terraform
-      version: ">= 0.13"
+      version: ">= 1.3"
     description: {}
   content:
     subBlueprints:
@@ -701,18 +701,18 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/cloudkms.cryptoKeyEncrypterDecrypter
-          - roles/iam.serviceAccountUser
+          - roles/serviceusage.serviceUsageAdmin
           - roles/storage.admin
+          - roles/iam.serviceAccountAdmin
+          - roles/iam.serviceAccountUser
+          - roles/resourcemanager.projectIamAdmin
     services:
-      - cloudkms.googleapis.com
       - cloudresourcemanager.googleapis.com
-      - compute.googleapis.com
       - iam.googleapis.com
       - serviceusage.googleapis.com
-      - storage-api.googleapis.com
+      - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 5.43.0, < 7"
+        version: ">= 6.9.0, < 7"
       - source: hashicorp/random
         version: ">= 2.1"

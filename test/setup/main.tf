@@ -14,6 +14,20 @@
  * limitations under the License.
  */
 
+locals {
+  per_module_services = {
+    simple_bucket = [
+      "storage.googleapis.com",
+    ]
+    root = [
+      "storage.googleapis.com",
+      "iam.googleapis.com",
+      "serviceusage.googleapis.com",
+      "cloudresourcemanager.googleapis.com",
+    ]
+  }
+}
+
 module "project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 18.0"
@@ -24,12 +38,12 @@ module "project" {
   folder_id         = var.folder_id
   billing_account   = var.billing_account
 
-  activate_apis = [
+  activate_apis = concat([
     "cloudkms.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "iam.googleapis.com",
     "serviceusage.googleapis.com",
     "storage-api.googleapis.com",
-  ]
+  ], flatten(values(local.per_module_services)))
 }
