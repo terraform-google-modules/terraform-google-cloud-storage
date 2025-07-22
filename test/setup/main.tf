@@ -33,3 +33,56 @@ module "project" {
     "storage-api.googleapis.com",
   ]
 }
+
+resource "google_folder" "autokey_folder" {
+  provider            = google-beta
+  display_name        = "ci-cloud-storage-folder"
+  parent              = "folders/${var.folder_id}"
+  deletion_protection = false
+}
+
+module "autokey-project" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 18.0"
+
+  name              = "ci-cloud-storage-autokey"
+  random_project_id = "true"
+  org_id            = var.org_id
+  folder_id         = google_folder.autokey_folder.folder_id
+  billing_account   = var.billing_account
+  deletion_policy   = "DELETE"
+
+  activate_apis = [
+    "cloudkms.googleapis.com",
+  ]
+}
+
+resource "time_sleep" "wait_enable_service_api" {
+  depends_on      = [module.autokey-project]
+  create_duration = "30s"
+}
+
+resource "google_project_service_identity" "kms_service_agent" {
+  provider   = google-beta
+  service    = "cloudkms.googleapis.com"
+  project    = module.autokey-project.project_id
+  depends_on = [time_sleep.wait_enable_service_api]
+}
+
+resource "time_sleep" "wait_service_agent" {
+  depends_on      = [google_project_service_identity.kms_service_agent]
+  create_duration = "10s"
+}
+
+resource "google_project_iam_member" "autokey_project_admin" {
+  provider   = google-beta
+  project    = module.autokey-project.project_id
+  role       = "roles/cloudkms.admin"
+  member     = "serviceAccount:service-${module.autokey-project.project_number}@gcp-sa-cloudkms.iam.gserviceaccount.com"
+  depends_on = [time_sleep.wait_service_agent]
+}
+
+resource "time_sleep" "wait_srv_acc_permissions" {
+  create_duration = "10s"
+  depends_on      = [google_project_iam_member.autokey_project_admin]
+}
