@@ -28,6 +28,10 @@ module "cloud_storage" {
 
   prefix           = "multiple-buckets-${random_string.prefix.result}"
   names            = ["one", "two"]
+
+  // CODELAB: Add "silly_label" as an example to main.tf.
+  silly_label        = "awesome"
+
   randomize_suffix = true
 
   bucket_policy_only = {
