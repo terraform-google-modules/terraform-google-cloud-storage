@@ -19,6 +19,7 @@ locals {
     simple_bucket = [
       "roles/storage.admin",
       "roles/iam.serviceAccountUser",
+      "roles/cloudkms.admin",
       "roles/logging.logWriter",
     ]
     root = [

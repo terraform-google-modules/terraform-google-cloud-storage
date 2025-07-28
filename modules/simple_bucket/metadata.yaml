@@ -353,8 +353,11 @@ spec:
         roles:
           - roles/storage.admin
           - roles/iam.serviceAccountUser
+          - roles/cloudkms.admin
           - roles/logging.logWriter
     services:
+      - cloudkms.googleapis.com
+      - iam.googleapis.com
       - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google

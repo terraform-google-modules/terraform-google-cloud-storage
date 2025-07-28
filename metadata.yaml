@@ -701,11 +701,11 @@ spec:
     roles:
       - level: Project
         roles:
+          - roles/resourcemanager.projectIamAdmin
           - roles/serviceusage.serviceUsageAdmin
           - roles/storage.admin
           - roles/iam.serviceAccountAdmin
           - roles/iam.serviceAccountUser
-          - roles/resourcemanager.projectIamAdmin
     services:
       - cloudresourcemanager.googleapis.com
       - iam.googleapis.com

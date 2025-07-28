@@ -18,6 +18,8 @@ locals {
   per_module_services = {
     simple_bucket = [
       "storage.googleapis.com",
+      "cloudkms.googleapis.com",
+      "iam.googleapis.com",
     ]
     root = [
       "storage.googleapis.com",
@@ -39,10 +41,8 @@ module "project" {
   billing_account   = var.billing_account
 
   activate_apis = concat([
-    "cloudkms.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
-    "iam.googleapis.com",
     "serviceusage.googleapis.com",
     "storage-api.googleapis.com",
   ], flatten(values(local.per_module_services)))
