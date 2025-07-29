@@ -15,11 +15,27 @@
  */
 
 locals {
-  int_required_roles = [
+  per_module_roles = {
+    simple_bucket = [
+      "roles/storage.admin",
+      "roles/iam.serviceAccountUser",
+      "roles/cloudkms.admin",
+      "roles/logging.logWriter",
+    ]
+    root = [
+      "roles/resourcemanager.projectIamAdmin",
+      "roles/serviceusage.serviceUsageAdmin",
+      "roles/storage.admin",
+      "roles/iam.serviceAccountAdmin",
+      "roles/iam.serviceAccountUser",
+    ]
+  }
+
+  int_required_roles = concat([
     "roles/cloudkms.cryptoKeyEncrypterDecrypter",
     "roles/iam.serviceAccountUser",
     "roles/storage.admin",
-  ]
+  ], flatten(values(local.per_module_roles)))
 }
 
 resource "google_service_account" "int_test" {
