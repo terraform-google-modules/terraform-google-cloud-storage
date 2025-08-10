@@ -71,7 +71,7 @@ variable "terminal_autoclass" {
   type        = map(string)
   default     = {}
   validation {
-    condition     = alltrue([for _, v in var.terminal_autoclass : var.autoclass == false || v == "NEARLINE" || v == "ARCHIVE"])
+    condition     = var.terminal_autoclass == {} || alltrue([for _, v in var.terminal_autoclass : v == "NEARLINE" || v == "ARCHIVE"])
     error_message = "Acceptable value for terminal_autoclass is NEARLINE or ARCHIVE"
   }
 }
