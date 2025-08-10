@@ -80,7 +80,7 @@ variable "terminal_autoclass" {
   type        = string
   default     = "NEARLINE"
   validation {
-    condition     = var.autoclass == false || var.terminal_autoclass == "NEARLINE" || var.terminal_autoclass == "ARCHIVE"
+    condition     = var.terminal_autoclass == "NEARLINE" || var.terminal_autoclass == "ARCHIVE"
     error_message = "Acceptable value for terminal_autoclass is NEARLINE or ARCHIVE"
   }
 }
