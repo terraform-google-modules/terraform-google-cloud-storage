@@ -34,8 +34,6 @@ spec:
       - name: simple_bucket
         location: modules/simple_bucket
     examples:
-      - name: ip_filter
-        location: examples/ip_filter
       - name: multiple_buckets
         location: examples/multiple_buckets
       - name: simple_bucket
