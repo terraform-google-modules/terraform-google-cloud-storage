@@ -393,10 +393,10 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/storage.admin
           - roles/iam.serviceAccountUser
           - roles/cloudkms.admin
           - roles/logging.logWriter
+          - roles/storage.admin
     services:
       - cloudkms.googleapis.com
       - iam.googleapis.com
