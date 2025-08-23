@@ -219,6 +219,8 @@ The IP filter configuration for the bucket. Restricts access based on source IP 
 - mode: "Enabled" or "Disabled"
 - public_network_source: (Optional) Configure allowed public internet IP ranges
 - vpc_network_sources: (Optional) Configure allowed VPC networks and IP ranges
+- allow_cross_org_vpcs: (Optional) Allow VPC networks from different organizations
+- allow_all_service_agent_access: (Optional) Allow Google Cloud service agents to access the bucket regardless of IP filtering
 
 Both public_network_source and vpc_network_sources can be configured together.
 
@@ -233,6 +235,8 @@ ip_filter = {
     network = "projects/my-project/global/networks/my-vpc"
     allowed_ip_cidr_ranges = ["10.0.0.0/8"]
   }]
+  allow_cross_org_vpcs = true
+  allow_all_service_agent_access = true
 }
 ```
 
@@ -247,6 +251,8 @@ EOT
       network                = string
       allowed_ip_cidr_ranges = list(string)
     })))
+    allow_cross_org_vpcs            = optional(bool)
+    allow_all_service_agent_access = optional(bool)
   })
   default = null
 }

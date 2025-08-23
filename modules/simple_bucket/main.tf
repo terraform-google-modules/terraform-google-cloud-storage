@@ -123,7 +123,9 @@ resource "google_storage_bucket" "bucket" {
   dynamic "ip_filter" {
     for_each = var.ip_filter == null ? [] : [var.ip_filter]
     content {
-      mode = ip_filter.value.mode
+      mode                           = ip_filter.value.mode
+      allow_cross_org_vpcs           = ip_filter.value.allow_cross_org_vpcs
+      allow_all_service_agent_access = ip_filter.value.allow_all_service_agent_access
       dynamic "public_network_source" {
         for_each = ip_filter.value.public_network_source != null ? [ip_filter.value.public_network_source] : []
         content {

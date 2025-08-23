@@ -212,6 +212,8 @@ spec:
           - mode: "Enabled" or "Disabled"
           - public_network_source: (Optional) Configure allowed public internet IP ranges
           - vpc_network_sources: (Optional) Configure allowed VPC networks and IP ranges
+          - allow_cross_org_vpcs: (Optional) Allow VPC networks from different organizations
+          - allow_all_service_agent_access: (Optional) Allow Google Cloud service agents to access the bucket regardless of IP filtering
 
           Both public_network_source and vpc_network_sources can be configured together.
 
@@ -226,6 +228,8 @@ spec:
               network = "projects/my-project/global/networks/my-vpc"
               allowed_ip_cidr_ranges = ["10.0.0.0/8"]
             }]
+            allow_cross_org_vpcs = true
+            allow_all_service_agent_access = true
           }
           ```
 
@@ -240,6 +244,8 @@ spec:
                 network                = string
                 allowed_ip_cidr_ranges = list(string)
               })))
+              allow_cross_org_vpcs            = optional(bool)
+              allow_all_service_agent_access = optional(bool)
             })
     outputs:
       - name: apphub_service_uri
@@ -387,14 +393,14 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/storage.admin
           - roles/iam.serviceAccountUser
           - roles/cloudkms.admin
           - roles/logging.logWriter
+          - roles/storage.admin
     services:
       - cloudkms.googleapis.com
       - iam.googleapis.com
       - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.9.0, < 7"
+        version: ">= 6.49.2, < 7"
