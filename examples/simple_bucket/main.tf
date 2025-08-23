@@ -15,8 +15,7 @@
  */
 
 module "bucket" {
-  source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 10.0"
+  source = "../../modules/simple_bucket"
 
   name       = "${var.project_id}-bucket"
   project_id = var.project_id
@@ -57,5 +56,13 @@ module "bucket" {
   autoclass = true
   retention_policy = {
     retention_period = 2
+  }
+
+  ip_filter = {
+    mode = "Enabled"
+    public_network_source = {
+      allowed_ip_cidr_ranges = ["0.0.0.0/0"]
+    }
+    allow_all_service_agent_access = true
   }
 }
