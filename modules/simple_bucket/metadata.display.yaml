@@ -39,13 +39,41 @@ spec:
         cors:
           name: cors
           title: Cors
+          properties:
+            method:
+              name: method
+              title: Method
+              regexValidation: ^(GET|HEAD|POST|PUT|DELETE|OPTIONS|PATCH)$
+              validation: Method must be one of [GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH].
+            origin:
+              name: origin
+              title: Origin
+              regexValidation: "^([*]|https?://([a-zA-Z0-9.-]+|[[0-9a-fA-F:.]+])(:[0-9]{1,5})?)$"
+              validation: Must be "*" or a valid HTTP/HTTPS origin, optionally including a port (e.g., https://example.com, http://localhost:8080).
+            response_header:
+              name: response_header
+              title: Response Header
+              regexValidation: "^([*]|[A-Za-z0-9]+(-[A-Za-z0-9]+)*)$"
+              validation: Must be "*" or a valid HTTP header name containing only letters, digits, and hyphens, and must start and end with a letter or digit (e.g., Content-Type, X-Custom-Header)
         custom_placement_config:
           name: custom_placement_config
           title: Custom Placement Config
+          properties:
+            data_locations:
+              name: data_locations
+              title: Data Locations
+              regexValidation: "^(?:[A-Z]+(?:-[A-Z0-9]+)*)(?:,[A-Z]+(?:-[A-Z0-9]+)*)*$"
+              validation: Must be a region ID in the format REGION-NAME+NUMBER (e.g., US-CENTRAL1, EUROPE-WEST4, ASIA-SOUTH1)
         encryption:
           name: encryption
           title: Encryption
           level: 1
+          properties:
+            default_kms_key_name:
+              name: default_kms_key_name
+              title: Default KMS Key Name
+              regexValidation: "^projects/[A-Za-z0-9_-]+/locations/[A-Za-z0-9_-]+/keyRings/[A-Za-z0-9_-]+/cryptoKeys/[A-Za-z0-9_-]+$"
+              validation: Must be a valid Cloud KMS key resource name in the format projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}
         force_destroy:
           name: force_destroy
           title: Force Destroy
@@ -56,10 +84,27 @@ spec:
         iam_members:
           name: iam_members
           title: Iam Members
+          properties:
+            role:
+              name: role
+              title: Role
+              regexValidation: "^(?:[a-z][a-z0-9-]{4,29}/)?roles/[a-zA-Z0-9_.]+$"
+              validation: Role must be in the format roles/{role_name}.
+            member:
+              name: member
+              title: Member
+              regexValidation: "^(user:[^@ ]+@[^@ ]+[.][^@ ]+|serviceAccount:[^@ ]+@[^@ ]+[.][^@ ]+|group:[^@ ]+@[^@ ]+[.][^@ ]+|domain:[^@ ]+[.][^@ ]+|allUsers|allAuthenticatedUsers)$"
+              validation: Value must be a valid IAM member, such as user:{email}, serviceAccount:{email}, group:{email}, domain:{domain}, allUsers, or allAuthenticatedUsers
         internal_encryption_config:
           name: internal_encryption_config
           title: Internal Encryption Config
           level: 1
+          properties:
+            key_rotation_period:
+              name: key_rotation_period
+              title: Key Rotation Period
+              regexValidation: "^(8[6-9][0-9]{3}|9[0-9]{4}|[1-9][0-9]{5,})(.[0-9]{1,9})?s$"
+              validation: Must be a duration in seconds, with optional fractional part (up to 9 digits), ending in "s". Must be greater than 86400s (24 hours).
         labels:
           name: labels
           title: Labels
@@ -67,12 +112,90 @@ spec:
           name: lifecycle_rules
           title: Lifecycle Rules
           level: 1
+          properties:
+            action:
+              name: action
+              title: Action
+              properties:
+                type:
+                  name: type
+                  title: Type
+                  enumValueLabels:
+                    - label: DELETE
+                      value: Delete
+                    - label: SET_STORAGE_CLASS
+                      value: SetStorageClass
+                storage_class:
+                  name: storage_class
+                  title: Storage Class
+                  enumValueLabels:
+                    - label: STANDARD
+                      value: STANDARD
+                    - label: MULTI_REGIONAL
+                      value: MULTI_REGIONAL
+                    - label: REGIONAL
+                      value: REGIONAL
+                    - label: NEARLINE
+                      value: NEARLINE
+                    - label: COLDLINE
+                      value: COLDLINE
+                    - label: ARCHIVE
+                      value: ARCHIVE
+            condition:
+              name: condition
+              title: Condition
+              properties:
+                created_before:
+                  name: created_before
+                  title: Created Before
+                  regexValidation: "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+                  validation: Must be a date in RFC 3339 format (YYYY-MM-DD)
+                with_state:
+                  name: with_state
+                  title: With State
+                  enumValueLabels:
+                    - label: LIVE
+                      value: LIVE
+                    - label: ARCHIVED
+                      value: ARCHIVED
+                    - label: ANY
+                      value: ANY
+                matches_storage_class:
+                  name: matches_storage_class
+                  title: Matches Storage Class
+                  enumValueLabels:
+                    - label: STANDARD
+                      value: STANDARD
+                    - label: MULTI_REGIONAL
+                      value: MULTI_REGIONAL
+                    - label: REGIONAL
+                      value: REGIONAL
+                    - label: NEARLINE
+                      value: NEARLINE
+                    - label: COLDLINE
+                      value: COLDLINE
+                    - label: ARCHIVE
+                      value: ARCHIVE
+                custom_time_before:
+                  name: custom_time_before
+                  title: Custom Time Before
+                  regexValidation: "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+                  validation: Must be a date in RFC 3339 format (YYYY-MM-DD)
+                noncurrent_time_before:
+                  name: noncurrent_time_before
+                  title: Noncurrent Time Before
+                  regexValidation: "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+                  validation: Must be a date in RFC 3339 format (YYYY-MM-DD)
         location:
           name: location
           title: Location
+          regexValidation: ^(?:[A-Z]+(?:-[A-Z0-9]+)*)(?:,[A-Z]+(?:-[A-Z0-9]+)*)*$
+          validation: Must be a region ID in the format REGION-NAME+NUMBER (e.g., US-CENTRAL1, EUROPE-WEST4, ASIA-SOUTH1)
         log_bucket:
           name: log_bucket
           title: Log Bucket
+          regexValidation: "^([A-Za-z0-9-_.]+)/?$"
+          validation: Must be a valid bucket name or namespaced identifier (letters, numbers, hyphens, underscores, periods), e.g., my-log-bucket or project-id/my-log-bucket
         log_object_prefix:
           name: log_object_prefix
           title: Log Object Prefix
@@ -87,6 +210,11 @@ spec:
         public_access_prevention:
           name: public_access_prevention
           title: Public Access Prevention
+          enumValueLabels:
+            - label: INHERITED
+              value: inherited
+            - label: ENFORCED
+              value: enforced
         retention_policy:
           name: retention_policy
           title: Retention Policy
@@ -121,3 +249,14 @@ spec:
         website:
           name: website
           title: Website
+          properties:
+            main_page_suffix:
+              name: main_page_suffix
+              title: Main Page Suffix
+              regexValidation: "^[A-Za-z0-9._-]+$"
+              validation: Must be a valid Cloud Storage object name. It may contain any UTF-8 characters except control characters
+            not_found_page:
+              name: not_found_page
+              title: Not Found Page
+              regexValidation: "^[A-Za-z0-9._-]+$"
+              validation: Must be a valid Cloud Storage object name. It may contain letters (a–z, A–Z), numbers (0–9), dots (.), underscores (_), slashes (/), and hyphens (-)
