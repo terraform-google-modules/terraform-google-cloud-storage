@@ -21,7 +21,8 @@ resource "random_string" "prefix" {
 }
 
 module "cloud_storage" {
-  source = "../.."
+  source  = "terraform-google-modules/cloud-storage/google"
+  version = "~> 10.0"
 
   project_id = var.project_id
 

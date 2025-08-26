@@ -251,7 +251,7 @@ EOT
       network                = string
       allowed_ip_cidr_ranges = list(string)
     })))
-    allow_cross_org_vpcs            = optional(bool)
+    allow_cross_org_vpcs           = optional(bool)
     allow_all_service_agent_access = optional(bool)
   })
   default = null
