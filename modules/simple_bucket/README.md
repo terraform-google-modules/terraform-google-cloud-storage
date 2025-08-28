@@ -58,6 +58,7 @@ Functional examples are included in the
 | retention\_policy | Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. | <pre>object({<br>    is_locked        = optional(bool)<br>    retention_period = number<br>  })</pre> | `null` | no |
 | soft\_delete\_policy | Soft delete policies to apply. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy | <pre>object({<br>    retention_duration_seconds = optional(number)<br>  })</pre> | `{}` | no |
 | storage\_class | The Storage Class of the new bucket. | `string` | `null` | no |
+| terminal\_autoclass | The storage class that objects in the bucket eventually transition to if they are not read for a certain length of time. Supported values include: NEARLINE, ARCHIVE. Only used if autoclass is set as true | `string` | `"NEARLINE"` | no |
 | versioning | While set to true, versioning is fully enabled for this bucket. | `bool` | `true` | no |
 | website | Map of website values. Supported attributes: main\_page\_suffix, not\_found\_page | <pre>object({<br>    main_page_suffix = optional(string)<br>    not_found_page   = optional(string)<br>  })</pre> | `{}` | no |
 
