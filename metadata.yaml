@@ -729,6 +729,6 @@ spec:
       - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.49.2, < 7"
+        version: ">= 6.9.0, < 8"
       - source: hashicorp/random
         version: ">= 2.1"
