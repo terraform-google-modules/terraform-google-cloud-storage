@@ -62,7 +62,7 @@ spec:
             data_locations:
               name: data_locations
               title: Data Locations
-              regexValidation: "^(?:[A-Z]+(?:-[A-Z0-9]+)*)(?:,[A-Z]+(?:-[A-Z0-9]+)*)*$"
+              regexValidation: "^[A-Za-z]+(?:-[A-Za-z0-9]+)*(?:,[A-Za-z]+(?:-[A-Za-z0-9]+)*)*$"
               validation: Must be a region ID in the format REGION-NAME+NUMBER (e.g., US-CENTRAL1, EUROPE-WEST4, ASIA-SOUTH1)
         encryption:
           name: encryption
@@ -189,8 +189,6 @@ spec:
         location:
           name: location
           title: Location
-          regexValidation: ^(?:[A-Z]+(?:-[A-Z0-9]+)*)(?:,[A-Z]+(?:-[A-Z0-9]+)*)*$
-          validation: Must be a region ID in the format REGION-NAME+NUMBER (e.g., US-CENTRAL1, EUROPE-WEST4, ASIA-SOUTH1)
         log_bucket:
           name: log_bucket
           title: Log Bucket
