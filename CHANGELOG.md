@@ -7,6 +7,20 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [11.1.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.1.1...v11.1.2) (2025-09-17)
+
+
+### Bug Fixes
+
+* removed regex from location field and made the data_locations on… ([#423](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/423)) ([91dc2d6](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/91dc2d68848015dd0125bc6e8226b810d15c079c))
+
+## [11.1.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.1.0...v11.1.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* fixed lone quantitifier error in regex ([#418](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/418)) ([8c73e83](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/8c73e831b49a28ac2a5bd8d33bf536bc8beccc93))
+
 ## [11.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.0.0...v11.1.0) (2025-08-28)
 
 
