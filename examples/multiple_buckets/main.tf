@@ -29,7 +29,7 @@ module "cloud_storage" {
   prefix           = "multiple-buckets-${random_string.prefix.result}"
   names            = ["one", "two"]
   randomize_suffix = true
-
+ silly_label="awesome"
   bucket_policy_only = {
     "one" = true
     "two" = false
