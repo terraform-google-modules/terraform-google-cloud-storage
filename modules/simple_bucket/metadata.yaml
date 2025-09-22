@@ -393,14 +393,14 @@ spec:
     roles:
       - level: Project
         roles:
+          - roles/cloudkms.admin
           - roles/logging.logWriter
           - roles/storage.admin
           - roles/iam.serviceAccountUser
-          - roles/cloudkms.admin
     services:
       - cloudkms.googleapis.com
       - iam.googleapis.com
       - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.9.0, < 8"
+        version: ">= 6.37.0, < 8"
