@@ -234,6 +234,7 @@ spec:
           ```
 
           Limits: Max 200 IP CIDR blocks, 25 VPC networks. May block some Google Cloud services.
+          See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter-1
         varType: |-
           object({
               mode = string
@@ -393,10 +394,10 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/cloudkms.admin
-          - roles/logging.logWriter
           - roles/storage.admin
           - roles/iam.serviceAccountUser
+          - roles/cloudkms.admin
+          - roles/logging.logWriter
     services:
       - cloudkms.googleapis.com
       - iam.googleapis.com

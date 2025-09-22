@@ -241,6 +241,7 @@ ip_filter = {
 ```
 
 Limits: Max 200 IP CIDR blocks, 25 VPC networks. May block some Google Cloud services.
+See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter-1
 EOT
   type = object({
     mode = string

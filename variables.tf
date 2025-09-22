@@ -341,7 +341,7 @@ variable "soft_delete_policy" {
 }
 
 variable "ip_filter" {
-  description = "The IP filter configuration for a bucket. Map of lowercase unprefixed name => ip filter config object. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter"
+  description = "The IP filter configuration for a bucket. Map of lowercase unprefixed name => ip filter config object. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter-1"
   type = map(object({
     mode = string
     public_network_source = optional(object({

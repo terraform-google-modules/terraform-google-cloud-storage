@@ -289,7 +289,7 @@ spec:
         varType: map(any)
         defaultValue: {}
       - name: ip_filter
-        description: The IP filter configuration for a bucket. Map of lowercase unprefixed name => ip filter config object. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter
+        description: The IP filter configuration for a bucket. Map of lowercase unprefixed name => ip filter config object. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter-1
         varType: |-
           map(object({
               mode = string
@@ -717,11 +717,11 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/resourcemanager.projectIamAdmin
-          - roles/serviceusage.serviceUsageAdmin
           - roles/storage.admin
           - roles/iam.serviceAccountAdmin
           - roles/iam.serviceAccountUser
+          - roles/resourcemanager.projectIamAdmin
+          - roles/serviceusage.serviceUsageAdmin
     services:
       - cloudresourcemanager.googleapis.com
       - iam.googleapis.com
