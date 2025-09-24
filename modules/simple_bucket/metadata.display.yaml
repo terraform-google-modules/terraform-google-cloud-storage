@@ -145,6 +145,10 @@ spec:
               name: condition
               title: Condition
               properties:
+                age:
+                  name: age
+                  title: Age
+                  min: 0
                 created_before:
                   name: created_before
                   title: Created Before
@@ -176,11 +180,23 @@ spec:
                       value: COLDLINE
                     - label: ARCHIVE
                       value: ARCHIVE
+                num_newer_versions:
+                  name: num_newer_versions
+                  title: Num Newer Versions
+                  min: 0
                 custom_time_before:
                   name: custom_time_before
                   title: Custom Time Before
                   regexValidation: "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
                   validation: Must be a date in RFC 3339 format (YYYY-MM-DD)
+                days_since_custom_time:
+                  name: days_since_custom_time
+                  title: Days Since Custom Time
+                  min: 0
+                days_since_noncurrent_time:
+                  name: days_since_noncurrent_time
+                  title: Days Since Noncurrent Time
+                  min: 0
                 noncurrent_time_before:
                   name: noncurrent_time_before
                   title: Noncurrent Time Before
@@ -215,9 +231,21 @@ spec:
           name: retention_policy
           title: Retention Policy
           level: 1
+          properties:
+            retention_period:
+              name: retention_period
+              title: Retention Period
+              min: 1
+              max: 3155760000
         soft_delete_policy:
           name: soft_delete_policy
           title: Soft Delete Policy
+          properties:
+            retention_duration_seconds:
+              name: retention_duration_seconds
+              title: Retention Duration Seconds
+              min: 0
+              max: 7776000
         storage_class:
           name: storage_class
           title: Storage Class
