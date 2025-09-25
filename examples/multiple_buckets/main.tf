@@ -80,7 +80,7 @@ module "cloud_storage" {
     "one" = {
       mode = "Enabled"
       public_network_source = {
-        allowed_ip_cidr_ranges = ["0.0.0.0/0"]
+        allowed_ip_cidr_ranges = ["0.0.0.0/0", "::/0"]
       }
       allow_all_service_agent_access = true
     }
