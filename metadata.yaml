@@ -288,6 +288,22 @@ spec:
         description: Soft delete policies to apply. Map of lowercase unprefixed name => soft delete policy. Format is the same as described in provider documentation https://www.terraform.io/docs/providers/google/r/storage_bucket.html#nested_soft_delete_policy
         varType: map(any)
         defaultValue: {}
+      - name: ip_filter
+        description: The IP filter configuration for a bucket. Map of lowercase unprefixed name => ip filter config object. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter-1
+        varType: |-
+          map(object({
+              mode = string
+              public_network_source = optional(object({
+                allowed_ip_cidr_ranges = list(string)
+              }))
+              vpc_network_sources = optional(list(object({
+                network                = string
+                allowed_ip_cidr_ranges = list(string)
+              })))
+              allow_cross_org_vpcs           = optional(bool)
+              allow_all_service_agent_access = optional(bool)
+            }))
+        defaultValue: {}
     outputs:
       - name: apphub_service_uri
         description: URI in CAIS style to be used by Apphub.
@@ -701,11 +717,11 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/resourcemanager.projectIamAdmin
-          - roles/serviceusage.serviceUsageAdmin
           - roles/storage.admin
           - roles/iam.serviceAccountAdmin
           - roles/iam.serviceAccountUser
+          - roles/resourcemanager.projectIamAdmin
+          - roles/serviceusage.serviceUsageAdmin
     services:
       - cloudresourcemanager.googleapis.com
       - iam.googleapis.com
@@ -713,6 +729,6 @@ spec:
       - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.9.0, < 7"
+        version: ">= 6.37.0, < 8"
       - source: hashicorp/random
         version: ">= 2.1"

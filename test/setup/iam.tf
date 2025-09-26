@@ -35,7 +35,16 @@ locals {
     "roles/cloudkms.cryptoKeyEncrypterDecrypter",
     "roles/iam.serviceAccountUser",
     "roles/storage.admin",
+    "projects/${module.project.project_id}/roles/${google_project_iam_custom_role.int_test.role_id}",
   ], flatten(values(local.per_module_roles)))
+}
+
+resource "google_project_iam_custom_role" "int_test" {
+  project     = module.project.project_id
+  role_id     = "BypassBucketIPfiltering"
+  title       = "Bypass bucket IP filtering"
+  description = "Allow test service account to bypass bucket ip filtering rules"
+  permissions = ["storage.buckets.exemptFromIpFilter"]
 }
 
 resource "google_service_account" "int_test" {

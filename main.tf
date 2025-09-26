@@ -172,6 +172,31 @@ resource "google_storage_bucket" "buckets" {
       retention_duration_seconds = lookup(soft_delete_policy.value, "retention_duration_seconds", null)
     }
   }
+
+  dynamic "ip_filter" {
+    for_each = lookup(var.ip_filter, each.value, null) != null ? [lookup(var.ip_filter, each.value)] : []
+
+    content {
+      mode                           = ip_filter.value.mode
+      allow_cross_org_vpcs           = ip_filter.value.allow_cross_org_vpcs
+      allow_all_service_agent_access = ip_filter.value.allow_all_service_agent_access
+
+      dynamic "public_network_source" {
+        for_each = ip_filter.value.public_network_source != null ? [ip_filter.value.public_network_source] : []
+        content {
+          allowed_ip_cidr_ranges = public_network_source.value.allowed_ip_cidr_ranges
+        }
+      }
+
+      dynamic "vpc_network_sources" {
+        for_each = ip_filter.value.vpc_network_sources != null ? ip_filter.value.vpc_network_sources : []
+        content {
+          network                = vpc_network_sources.value.network
+          allowed_ip_cidr_ranges = vpc_network_sources.value.allowed_ip_cidr_ranges
+        }
+      }
+    }
+  }
 }
 
 resource "google_storage_bucket_iam_binding" "admins" {

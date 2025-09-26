@@ -65,6 +65,9 @@ func TestMultipleBuckets(t *testing.T) {
 				bucket_lifecycle := op.Get("metadata.lifecycle.rule").Array()[1]
 				assert.Equal("Delete", bucket_lifecycle.Get("action.type").String(), "bucket lifecycle action is Delete")
 				assert.Equal("90", bucket_lifecycle.Get("condition.age").String(), "bucket lifecycle condition is age 90")
+				assert.Equal("Enabled", op.Get("metadata.ipFilter.mode").String(), "ipFilter mode is Enabled")
+				assert.Contains(utils.GetResultStrSlice(op.Get("metadata.ipFilter.publicNetworkSource.allowedIpCidrRanges").Array()), "0.0.0.0/0", "ipFilter allows 0.0.0.0/0")
+				assert.True(op.Get("metadata.ipFilter.allowAllServiceAgentAccess").Bool(), "ipFilter allows all service agent access")
 			case "two":
 				// bucket with suffix two
 				assert.False(op.Get("metadata.iamConfiguration.bucketPolicyOnly.enabled").Bool(), "bucketPolicyOnly is disabled")
