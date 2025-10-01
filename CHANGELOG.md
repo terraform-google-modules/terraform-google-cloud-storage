@@ -7,6 +7,22 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [12.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.1.2...v12.0.0) (2025-09-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=6.37:** Add support for ip_filter to storage buckets ([#403](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/403))
+
+### Features
+
+* **TPG>=6.37:** Add support for ip_filter to storage buckets ([#403](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/403)) ([1b30061](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/1b3006153a44444ce358e17b6cbd5811bcf5f457))
+
+
+### Bug Fixes
+
+* added missing validations ([#426](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/426)) ([52dd221](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/52dd2218b0948625fbfb7f8b2ea5860d5b4d09c0))
+
 ## [11.1.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.1.1...v11.1.2) (2025-09-17)
 
 
