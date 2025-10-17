@@ -212,6 +212,10 @@ resource "google_storage_bucket_iam_binding" "admins" {
       ),
     ),
   )
+
+  lifecycle {
+    replace_triggered_by = [google_storage_bucket.buckets[each.value]]
+  }
 }
 
 resource "google_storage_bucket_iam_binding" "creators" {
@@ -227,6 +231,10 @@ resource "google_storage_bucket_iam_binding" "creators" {
       ),
     ),
   )
+
+  lifecycle {
+    replace_triggered_by = [google_storage_bucket.buckets[each.value]]
+  }
 }
 
 resource "google_storage_bucket_iam_binding" "viewers" {
@@ -242,6 +250,10 @@ resource "google_storage_bucket_iam_binding" "viewers" {
       ),
     ),
   )
+
+  lifecycle {
+    replace_triggered_by = [google_storage_bucket.buckets[each.value]]
+  }
 }
 
 resource "google_storage_bucket_iam_binding" "hmac_key_admins" {
@@ -257,6 +269,10 @@ resource "google_storage_bucket_iam_binding" "hmac_key_admins" {
       ),
     ),
   )
+
+  lifecycle {
+    replace_triggered_by = [google_storage_bucket.buckets[each.key]]
+  }
 }
 
 resource "google_storage_bucket_iam_binding" "storage_admins" {
@@ -272,6 +288,10 @@ resource "google_storage_bucket_iam_binding" "storage_admins" {
       ),
     ),
   )
+
+  lifecycle {
+    replace_triggered_by = [google_storage_bucket.buckets[each.value]]
+  }
 }
 
 resource "google_storage_bucket_object" "folders" {
