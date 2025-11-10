@@ -7,6 +7,49 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [12.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.1.2...v12.0.0) (2025-09-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=6.37:** Add support for ip_filter to storage buckets ([#403](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/403))
+
+### Features
+
+* **TPG>=6.37:** Add support for ip_filter to storage buckets ([#403](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/403)) ([1b30061](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/1b3006153a44444ce358e17b6cbd5811bcf5f457))
+
+
+### Bug Fixes
+
+* added missing validations ([#426](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/426)) ([52dd221](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/52dd2218b0948625fbfb7f8b2ea5860d5b4d09c0))
+
+## [11.1.2](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.1.1...v11.1.2) (2025-09-17)
+
+
+### Bug Fixes
+
+* removed regex from location field and made the data_locations on… ([#423](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/423)) ([91dc2d6](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/91dc2d68848015dd0125bc6e8226b810d15c079c))
+
+## [11.1.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.1.0...v11.1.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* fixed lone quantitifier error in regex ([#418](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/418)) ([8c73e83](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/8c73e831b49a28ac2a5bd8d33bf536bc8beccc93))
+
+## [11.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.0.0...v11.1.0) (2025-08-28)
+
+
+### Features
+
+* **deps:** Update Terraform google to v7 ([#415](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/415)) ([c6e20af](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/c6e20af4dcfdf3d0bd9cc44b5252900758ea694c))
+* per module requirements configs to cloud-storage ([#410](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/410)) ([f6725eb](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/f6725eb1c3db1a4aa6a1286d9226c4b45a2cf751))
+
+
+### Bug Fixes
+
+* added missing validations ([#414](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/414)) ([f98a696](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/f98a69659ce9e778aef655e6b60aeeb533d51d13))
+
 ## [11.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v10.0.2...v11.0.0) (2025-05-30)
 
 

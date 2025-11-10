@@ -25,10 +25,10 @@ spec:
       repo: https://github.com/terraform-google-modules/terraform-google-cloud-storage.git
       sourceType: git
       dir: /modules/simple_bucket
-    version: 11.0.0
+    version: 12.0.0
     actuationTool:
       flavor: Terraform
-      version: ">= 0.13"
+      version: ">= 1.3"
     description: {}
   content:
     examples:
@@ -97,7 +97,7 @@ spec:
         varType: bool
         defaultValue: false
       - name: hierarchical_namespace
-        description: While set to true, hierarchical namespace is enabled for this bucket.
+        description: When set to true, hierarchical namespace is enable for this bucket.
         varType: bool
         defaultValue: false
       - name: retention_policy
@@ -205,6 +205,49 @@ spec:
               key_rotation_period            = optional(string, "7776000s")
             })
         defaultValue: {}
+      - name: ip_filter
+        description: |
+          The IP filter configuration for the bucket. Restricts access based on source IP addresses.
+
+          - mode: "Enabled" or "Disabled"
+          - public_network_source: (Optional) Configure allowed public internet IP ranges
+          - vpc_network_sources: (Optional) Configure allowed VPC networks and IP ranges
+          - allow_cross_org_vpcs: (Optional) Allow VPC networks from different organizations
+          - allow_all_service_agent_access: (Optional) Allow Google Cloud service agents to access the bucket regardless of IP filtering
+
+          Both public_network_source and vpc_network_sources can be configured together.
+
+          Example:
+          ```
+          ip_filter = {
+            mode = "Enabled"
+            public_network_source = {
+              allowed_ip_cidr_ranges = ["203.0.113.0/24"]
+            }
+            vpc_network_sources = [{
+              network = "projects/my-project/global/networks/my-vpc"
+              allowed_ip_cidr_ranges = ["10.0.0.0/8"]
+            }]
+            allow_cross_org_vpcs = true
+            allow_all_service_agent_access = true
+          }
+          ```
+
+          Limits: Max 200 IP CIDR blocks, 25 VPC networks. May block some Google Cloud services.
+          See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter-1
+        varType: |-
+          object({
+              mode = string
+              public_network_source = optional(object({
+                allowed_ip_cidr_ranges = list(string)
+              }))
+              vpc_network_sources = optional(list(object({
+                network                = string
+                allowed_ip_cidr_ranges = list(string)
+              })))
+              allow_cross_org_vpcs           = optional(bool)
+              allow_all_service_agent_access = optional(bool)
+            })
     outputs:
       - name: apphub_service_uri
         description: URI in CAIS style to be used by Apphub.
@@ -351,16 +394,14 @@ spec:
     roles:
       - level: Project
         roles:
-          - roles/cloudkms.cryptoKeyEncrypterDecrypter
-          - roles/iam.serviceAccountUser
           - roles/storage.admin
+          - roles/iam.serviceAccountUser
+          - roles/cloudkms.admin
+          - roles/logging.logWriter
     services:
       - cloudkms.googleapis.com
-      - cloudresourcemanager.googleapis.com
-      - compute.googleapis.com
       - iam.googleapis.com
-      - serviceusage.googleapis.com
-      - storage-api.googleapis.com
+      - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 5.43.0, < 7"
+        version: ">= 6.37.0, < 8"

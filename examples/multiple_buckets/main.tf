@@ -22,7 +22,7 @@ resource "random_string" "prefix" {
 
 module "cloud_storage" {
   source  = "terraform-google-modules/cloud-storage/google"
-  version = "~> 10.0"
+  version = "~> 11.0"
 
   project_id = var.project_id
 
@@ -74,5 +74,15 @@ module "cloud_storage" {
 
   default_event_based_hold = {
     "one" = true
+  }
+
+  ip_filter = {
+    "one" = {
+      mode = "Enabled"
+      public_network_source = {
+        allowed_ip_cidr_ranges = ["0.0.0.0/0", "::/0"]
+      }
+      allow_all_service_agent_access = true
+    }
   }
 }

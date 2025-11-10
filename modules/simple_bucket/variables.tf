@@ -221,3 +221,49 @@ variable "internal_encryption_config" {
   })
   default = {}
 }
+
+variable "ip_filter" {
+  description = <<EOT
+The IP filter configuration for the bucket. Restricts access based on source IP addresses.
+
+- mode: "Enabled" or "Disabled"
+- public_network_source: (Optional) Configure allowed public internet IP ranges
+- vpc_network_sources: (Optional) Configure allowed VPC networks and IP ranges
+- allow_cross_org_vpcs: (Optional) Allow VPC networks from different organizations
+- allow_all_service_agent_access: (Optional) Allow Google Cloud service agents to access the bucket regardless of IP filtering
+
+Both public_network_source and vpc_network_sources can be configured together.
+
+Example:
+```
+ip_filter = {
+  mode = "Enabled"
+  public_network_source = {
+    allowed_ip_cidr_ranges = ["203.0.113.0/24"]
+  }
+  vpc_network_sources = [{
+    network = "projects/my-project/global/networks/my-vpc"
+    allowed_ip_cidr_ranges = ["10.0.0.0/8"]
+  }]
+  allow_cross_org_vpcs = true
+  allow_all_service_agent_access = true
+}
+```
+
+Limits: Max 200 IP CIDR blocks, 25 VPC networks. May block some Google Cloud services.
+See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter-1
+EOT
+  type = object({
+    mode = string
+    public_network_source = optional(object({
+      allowed_ip_cidr_ranges = list(string)
+    }))
+    vpc_network_sources = optional(list(object({
+      network                = string
+      allowed_ip_cidr_ranges = list(string)
+    })))
+    allow_cross_org_vpcs           = optional(bool)
+    allow_all_service_agent_access = optional(bool)
+  })
+  default = null
+}
