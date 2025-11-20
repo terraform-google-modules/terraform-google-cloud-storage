@@ -66,6 +66,12 @@ variable "autoclass" {
   default     = {}
 }
 
+variable "terminal_storage_class" {
+  description = "Optional map of lowercase unprefixed bucket name => terminal storage class, defaults to NEARLINE."
+  type        = map(string)
+  default     = {}
+}
+
 variable "hierarchical_namespace" {
   description = "Optional map of lowercase unprefixed bucket name => boolean, defaults to false."
   type        = map(bool)
