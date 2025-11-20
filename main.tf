@@ -75,6 +75,11 @@ resource "google_storage_bucket" "buckets" {
       lower(each.value),
       false,
     )
+    terminal_storage_class = lookup(
+      var.autoclass,
+      lower(each.value),
+      false
+    ) ? lookup(var.terminal_storage_class, lower(each.value), "NEARLINE") : null
   }
   hierarchical_namespace {
     enabled = lookup(
