@@ -15,7 +15,7 @@
  */
 
 locals {
-  internal_encryption = var.internal_encryption_config.create_encryption_key ? { default_kms_key_name = module.encryption_key[0].keys[var.name] } : null
+  internal_encryption = var.internal_encryption_config.create_encryption_key ? var.internal_encryption_config.use_autokey ? { default_kms_key_name = google_kms_key_handle.default[0].kms_key } : { default_kms_key_name = module.encryption_key[0].keys[var.name] } : null
   encryption          = var.internal_encryption_config.create_encryption_key ? local.internal_encryption : var.encryption
 }
 
@@ -143,6 +143,15 @@ resource "google_storage_bucket" "bucket" {
   }
 }
 
+resource "google_kms_key_handle" "default" {
+  count                  = var.internal_encryption_config.create_encryption_key ? var.internal_encryption_config.use_autokey ? 1 : 0 : 0
+  provider               = google-beta
+  project                = var.project_id
+  name                   = var.name
+  location               = var.location
+  resource_type_selector = "storage.googleapis.com/Bucket"
+}
+
 resource "google_storage_bucket_iam_member" "members" {
   for_each = {
     for m in var.iam_members : "${m.role} ${m.member}" => m
@@ -159,7 +168,7 @@ data "google_storage_project_service_account" "gcs_account" {
 module "encryption_key" {
   source  = "terraform-google-modules/kms/google"
   version = "~> 4.0"
-  count   = var.internal_encryption_config.create_encryption_key ? 1 : 0
+  count   = var.internal_encryption_config.create_encryption_key ? var.internal_encryption_config.use_autokey ? 0 : 1 : 0
 
   project_id                     = var.project_id
   location                       = lower(var.location)
