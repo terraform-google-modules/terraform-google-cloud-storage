@@ -92,7 +92,7 @@ resource "google_storage_bucket" "bucket" {
         age                        = lookup(lifecycle_rule.value.condition, "age", null)
         send_age_if_zero           = lookup(lifecycle_rule.value.condition, "send_age_if_zero", null)
         created_before             = lookup(lifecycle_rule.value.condition, "created_before", null)
-        with_state                 = lookup(lifecycle_rule.value.condition, "with_state", contains(keys(lifecycle_rule.value.condition), "is_live") ? (lifecycle_rule.value.condition["is_live"] ? "LIVE" : null) : null)
+        with_state                 = lookup(lifecycle_rule.value.condition, "with_state", contains(keys(lifecycle_rule.value.condition), "is_live") ? (lifecycle_rule.value.condition["is_live"] ? "LIVE" : "ARCHIVED") : null)
         matches_storage_class      = lifecycle_rule.value.condition["matches_storage_class"] != null ? split(",", lifecycle_rule.value.condition["matches_storage_class"]) : null
         matches_prefix             = lifecycle_rule.value.condition["matches_prefix"] != null ? split(",", lifecycle_rule.value.condition["matches_prefix"]) : null
         matches_suffix             = lifecycle_rule.value.condition["matches_suffix"] != null ? split(",", lifecycle_rule.value.condition["matches_suffix"]) : null
