@@ -177,6 +177,7 @@ spec:
               # - send_age_if_zero - (Optional) While set true, num_newer_versions value will be sent in the request even for zero value of the field.
               # - created_before - (Optional) Creation date of an object in RFC 3339 (e.g. 2017-06-13) to satisfy this condition.
               # - with_state - (Optional) Match to live and/or archived objects. Supported values include: "LIVE", "ARCHIVED", "ANY".
+              # - is_live - (Optional, Deprecated) Use with_state instead. Set to true to match live objects, false to match archived objects. Automatically converted to with_state.
               # - matches_storage_class - (Optional) Comma delimited string for storage class of objects to satisfy this condition. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD, DURABLE_REDUCED_AVAILABILITY.
               # - matches_prefix - (Optional) One or more matching name prefixes to satisfy this condition.
               # - matches_suffix - (Optional) One or more matching name suffixes to satisfy this condition.
@@ -218,6 +219,7 @@ spec:
               # - send_age_if_zero - (Optional) While set true, num_newer_versions value will be sent in the request even for zero value of the field.
               # - created_before - (Optional) Creation date of an object in RFC 3339 (e.g. 2017-06-13) to satisfy this condition.
               # - with_state - (Optional) Match to live and/or archived objects. Supported values include: "LIVE", "ARCHIVED", "ANY".
+              # - is_live - (Optional, Deprecated) Use with_state instead. Set to true to match live objects, false to match archived objects. Automatically converted to with_state.
               # - matches_storage_class - (Optional) Storage Class of objects to satisfy this condition. Supported values include: MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD, DURABLE_REDUCED_AVAILABILITY.
               # - matches_prefix - (Optional) One or more matching name prefixes to satisfy this condition.
               # - matches_suffix - (Optional) One or more matching name suffixes to satisfy this condition
