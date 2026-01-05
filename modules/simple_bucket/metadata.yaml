@@ -82,8 +82,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-vm//modules/compute_instance
               version: ">= 14.1.0"
             spec:
-              outputExpr: "{\"member\": \"serviceAccount:${instances_details[0].service_account[0].email}\", \"role\": \"roles/storage.objectAdmin\"}"  
-            
+              outputExpr: "{\"member\": \"serviceAccount:${instances_details[0].service_account[0].email}\", \"role\": \"roles/storage.objectAdmin\"}"
       - name: storage_class
         description: The Storage Class of the new bucket.
         varType: string
