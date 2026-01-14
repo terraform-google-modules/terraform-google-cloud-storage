@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [12.2.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.1.0...v12.2.0) (2026-01-14)
+
+
+### Features
+
+* **gcs-storage:** Update connection for compute_instance module ([#440](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/440)) ([05479c8](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/05479c8acf457dd92487f8a3a31836d0f69baff6))
+
 ## [12.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.0.0...v12.1.0) (2026-01-07)
 
 
