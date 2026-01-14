@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project.project_id
+variable "project_id" {
+  description = "The ID of the project in which to provision resources."
+  type        = string
 }
 
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+variable "key_project_id" {
+  type        = string
+  description = "The project where autokey is setup"
 }
 
-output "key_project_id" {
-  value = module.autokey-project.project_id
-}
-
-output "folder_id" {
-  value = google_folder.autokey_folder.folder_id
+variable "folder_id" {
+  type        = string
+  description = "The folder where project is created"
 }
