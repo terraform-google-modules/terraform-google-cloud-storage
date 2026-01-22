@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-cloud-storage:simple_bucket/v12.2.0"
+    module_name = "blueprints/terraform/terraform-google-cloud-storage:simple_bucket/v12.3.0"
   }
 
 }

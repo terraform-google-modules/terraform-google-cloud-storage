@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [12.3.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.2.0...v12.3.0) (2026-01-22)
+
+
+### Features
+
+* **dynamic_value:** Refactor IAM member resource iteration method ([#442](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/442)) ([546a866](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/546a866f76ab8c27553a7c1fe581a304ac3bd2d7))
+
 ## [12.2.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.1.0...v12.2.0) (2026-01-14)
 
 
