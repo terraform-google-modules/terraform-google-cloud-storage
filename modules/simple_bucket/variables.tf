@@ -75,6 +75,12 @@ variable "autoclass" {
   default     = false
 }
 
+variable "terminal_storage_class" {
+  description = "Optional final storage class for objects when autoclass is enabled. Defaults to NEARLINE."
+  type        = string
+  default     = "NEARLINE"
+}
+
 variable "hierarchical_namespace" {
   description = "When set to true, hierarchical namespace is enable for this bucket."
   type        = bool

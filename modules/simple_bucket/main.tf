@@ -34,7 +34,8 @@ resource "google_storage_bucket" "bucket" {
   }
 
   autoclass {
-    enabled = var.autoclass
+    enabled                = var.autoclass
+    terminal_storage_class = var.autoclass ? var.terminal_storage_class : null
   }
 
   hierarchical_namespace {
