@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,11 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.project.project_id
-}
-
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
-}
-
-output "key_project_id" {
-  value = module.autokey-project.project_id
-}
-
-output "folder_id" {
-  value = google_folder.autokey_folder.folder_id
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+  }
 }
