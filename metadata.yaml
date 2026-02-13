@@ -24,7 +24,7 @@ spec:
     source:
       repo: https://github.com/terraform-google-modules/terraform-google-cloud-storage.git
       sourceType: git
-    version: 12.0.0
+    version: 12.3.0
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"

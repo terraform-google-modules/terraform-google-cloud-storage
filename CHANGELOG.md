@@ -7,6 +7,27 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [12.3.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.2.0...v12.3.0) (2026-01-22)
+
+
+### Features
+
+* **dynamic_value:** Refactor IAM member resource iteration method ([#442](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/442)) ([546a866](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/546a866f76ab8c27553a7c1fe581a304ac3bd2d7))
+
+## [12.2.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.1.0...v12.2.0) (2026-01-14)
+
+
+### Features
+
+* **gcs-storage:** Update connection for compute_instance module ([#440](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/440)) ([05479c8](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/05479c8acf457dd92487f8a3a31836d0f69baff6))
+
+## [12.1.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.0.0...v12.1.0) (2026-01-07)
+
+
+### Features
+
+* **gcs-storage:** Add connection for compute_instance module ([#438](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/438)) ([0c9a94e](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/0c9a94e4da99405e115180d39872078498f53f09))
+
 ## [12.0.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v11.1.2...v12.0.0) (2025-09-30)
 
 
