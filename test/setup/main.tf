@@ -39,6 +39,7 @@ module "project" {
   org_id            = var.org_id
   folder_id         = var.folder_id
   billing_account   = var.billing_account
+  deletion_policy   = "DELETE"
 
   activate_apis = concat([
     "cloudresourcemanager.googleapis.com",
