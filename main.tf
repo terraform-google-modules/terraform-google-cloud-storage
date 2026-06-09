@@ -281,6 +281,13 @@ resource "google_storage_bucket_object" "folders" {
   content  = "foo"                   # Note that the content string isn't actually used, but is only there since the resource requires it
 }
 
+resource "google_compute_backend_bucket" "buckets" {
+  for_each    = var.create_backend_buckets ? local.names_set : toset([])
+  name        = google_storage_bucket.buckets[each.key].name
+  bucket_name = google_storage_bucket.buckets[each.key].name
+  project     = var.project_id
+}
+
 resource "google_storage_hmac_key" "hmac_keys" {
   project               = var.project_id
   for_each              = var.set_hmac_access ? var.hmac_service_accounts : {}

@@ -69,6 +69,11 @@ output "hmac_keys" {
   sensitive   = true
 }
 
+output "backend_buckets" {
+  description = "Backend bucket resources by name. Only populated when create_backend_buckets is true."
+  value       = google_compute_backend_bucket.buckets
+}
+
 output "apphub_service_uri" {
   value = [for bucket in local.buckets_list : {
     service_uri = "//storage.googleapis.com/${bucket.name}"

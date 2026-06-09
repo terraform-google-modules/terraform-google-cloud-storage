@@ -340,6 +340,12 @@ variable "soft_delete_policy" {
   default     = {}
 }
 
+variable "create_backend_buckets" {
+  description = "When true, creates a google_compute_backend_bucket for each GCS bucket, enabling them to be used as load balancer backends for path-based routing."
+  type        = bool
+  default     = true
+}
+
 variable "ip_filter" {
   description = "The IP filter configuration for a bucket. Map of lowercase unprefixed name => ip filter config object. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#ip_filter-1"
   type = map(object({
