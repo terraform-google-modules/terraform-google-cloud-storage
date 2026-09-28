@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [12.4.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.3.0...v12.4.0) (2026-09-25)
+
+
+### Features
+
+* **deps:** Update Terraform google to v8 ([#451](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/451)) ([7abf374](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/7abf374790647606d7e8b0c5a8967b5dea5a46f2))
+
 ## [12.3.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.2.0...v12.3.0) (2026-01-22)
 
 
