@@ -36,10 +36,11 @@ variable "force_destroy" {
 }
 
 variable "iam_members" {
-  description = "The list of IAM members to grant permissions on the bucket."
+  description = "The list of IAM members to grant permissions on the bucket. Set `key` to a static string when `member` is unknown at plan time."
   type = list(object({
     role   = string
     member = string
+    key    = optional(string)
   }))
   default = []
 }
