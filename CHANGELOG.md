@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [12.4.1](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.4.0...v12.4.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* populate null defaultValue in gcs-storage blueprint metadata ([#455](https://github.com/terraform-google-modules/terraform-google-cloud-storage/issues/455)) ([301f5b3](https://github.com/terraform-google-modules/terraform-google-cloud-storage/commit/301f5b367d23f992af6323c7b089321e54bf9673))
+
 ## [12.4.0](https://github.com/terraform-google-modules/terraform-google-cloud-storage/compare/v12.3.0...v12.4.0) (2026-09-25)
 
 
