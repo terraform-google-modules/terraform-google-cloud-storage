@@ -52,6 +52,10 @@ module "bucket" {
   iam_members = [{
     role   = "roles/storage.objectViewer"
     member = "group:test-gcp-ops@test.blueprints.joonix.net"
+    }, {
+    role   = "roles/storage.objectCreator"
+    member = "group:test-gcp-ops@test.blueprints.joonix.net"
+    key    = "ops-object-creator"
   }]
 
   autoclass = true
