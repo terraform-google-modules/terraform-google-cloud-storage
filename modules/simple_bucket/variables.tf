@@ -36,10 +36,15 @@ variable "force_destroy" {
 }
 
 variable "iam_members" {
-  description = "The list of IAM members to grant permissions on the bucket."
+  description = "The list of IAM members to grant permissions on the bucket. An optional IAM Condition can be set per member; conditions require uniform bucket-level access (bucket_policy_only) to be enabled."
   type = list(object({
     role   = string
     member = string
+    condition = optional(object({
+      title       = string
+      expression  = string
+      description = optional(string)
+    }))
   }))
   default = []
 }
