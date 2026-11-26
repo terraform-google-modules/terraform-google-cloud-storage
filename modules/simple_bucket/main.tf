@@ -150,6 +150,15 @@ resource "google_storage_bucket_iam_member" "members" {
   bucket = google_storage_bucket.bucket.name
   role   = each.value.role
   member = each.value.member
+
+  dynamic "condition" {
+    for_each = each.value.condition != null ? [each.value.condition] : []
+    content {
+      title       = condition.value.title
+      description = condition.value.description
+      expression  = condition.value.expression
+    }
+  }
 }
 
 data "google_storage_project_service_account" "gcs_account" {
